@@ -1,16 +1,16 @@
 
 import unittest
 from unittest.mock import MagicMock, patch
-from app.sub_agents.art_director import ArtDirector
-from app.schema import Trend, TaxonomyAttributes
+from fashion.sub_agents.art_director import ArtDirector
+from fashion.schema import Trend, TaxonomyAttributes
 
 class TestArtDirectorRefactor(unittest.TestCase):
     def setUp(self):
         self.art_director = ArtDirector()
 
-    @patch('app.sub_agents.art_director.genai')
-    @patch('app.sub_agents.art_director.storage')
-    @patch('app.sub_agents.art_director.Image')
+    @patch('fashion.sub_agents.art_director.genai')
+    @patch('fashion.sub_agents.art_director.storage')
+    @patch('fashion.sub_agents.art_director.Image')
     def test_create_moodboards_list(self, mock_image, mock_storage, mock_genai):
         # Setup mocks
         mock_client = MagicMock()

@@ -1,0 +1,422 @@
+[
+  {
+    "core_identifiers": { "sku": "185932", "brand": "Aurum", "product_name": "Black Satin Draped Midi Skirt" },
+    "attributes": { "size": "Medium", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 89.99, "stock_quantity": 315 }
+  },
+  {
+    "core_identifiers": { "sku": "192833", "brand": "Volt", "product_name": "Relaxed Fit Cargo Pants" },
+    "attributes": { "size": "Medium", "color_name": "Olive Green" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 65.0, "stock_quantity": 352 }
+  },
+  {
+    "core_identifiers": { "sku": "194821", "brand": "Maison Onyx", "product_name": "Quilted Faux Leather Chain Belt Shorts" },
+    "attributes": { "size": "Medium", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 99.99, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "234444", "brand": "Maison Onyx", "product_name": "Faux Leather Straight-Leg Pants" },
+    "attributes": { "size": "Medium", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 79.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "238444", "brand": "Aurum", "product_name": "Ditsy Floral A-Line Maxi Skirt" },
+    "attributes": { "size": "Medium", "color_name": "Cream Multi Floral" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 64.5, "stock_quantity": 342 }
+  },
+  {
+    "core_identifiers": { "sku": "294832", "brand": "Modern Muse", "product_name": "High-Waisted Pleated Culottes" },
+    "attributes": { "size": "Medium", "color_name": "Oatmeal" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 198.0, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "295883", "brand": "Neon & Co.", "product_name": "The Rigid Slouch Jean" },
+    "attributes": { "size": "Medium", "color_name": "Vintage Indigo" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 98.0, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "394055", "brand": "Neon & Co.", "product_name": "High-Waisted Distressed Straight-Leg Jeans" },
+    "attributes": { "size": "Medium", "color_name": "Light Wash Blue" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 74.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "394855", "brand": "Neon & Co.", "product_name": "Pleated Plaid Mini Skirt" },
+    "attributes": { "size": "Medium", "color_name": "Red Tartan" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 39.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "554345", "brand": "Modern Muse", "product_name": "Tweed Pencil Skirt" },
+    "attributes": { "size": "Medium", "color_name": "Cream Multi" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 89.99, "stock_quantity": 158 }
+  },
+  {
+    "core_identifiers": { "sku": "583944", "brand": "Volt", "product_name": "Unisex Fleece Jogger Sweatpants" },
+    "attributes": { "size": "Medium", "color_name": "Charcoal Gray" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 45.99, "stock_quantity": 342 }
+  },
+  {
+    "core_identifiers": { "sku": "598345", "brand": "Aurum", "product_name": "Ditsy Floral Maxi Skirt" },
+    "attributes": { "size": "Medium", "color_name": "Cream Multi Floral" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 64.99, "stock_quantity": 245 }
+  },
+  {
+    "core_identifiers": { "sku": "839185", "brand": "Modern Muse", "product_name": "High-Waisted Houndstooth Trousers" },
+    "attributes": { "size": "Medium", "color_name": "Black/White Houndstooth" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 99.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "90802", "brand": "Neon & Co.", "product_name": "Classic Straight Fit Jeans" },
+    "attributes": { "size": "Medium", "color_name": "Medium Wash Blue" },
+    "categorization": { "category": "Apparel", "sub_category": "Bottom" },
+    "commercial_status": { "current_price": 75.5, "stock_quantity": 341 }
+  },
+  {
+    "core_identifiers": { "sku": "119283", "brand": "Maison Onyx", "product_name": "Pearl-Collar Sleeveless Sheath Dress" },
+    "attributes": { "size": "Medium", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 179.99, "stock_quantity": 125 }
+  },
+  {
+    "core_identifiers": { "sku": "119928", "brand": "Maison Onyx", "product_name": "Floral V-Neck Button-Front Dress" },
+    "attributes": { "size": "Medium", "color_name": "Black Floral" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 62.5, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "192838", "brand": "Modern Muse", "product_name": "Sleeveless Tweed Mini Dress with Contrast Trim" },
+    "attributes": { "size": "Medium", "color_name": "Cream/Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 445.0, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "192841", "brand": "Maison Onyx", "product_name": "Symmetrical Kaleidoscope Print Maxi Dress" },
+    "attributes": { "size": "Medium", "color_name": "Multi-Color" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 110.0, "stock_quantity": 342 }
+  },
+  {
+    "core_identifiers": { "sku": "192844", "brand": "Modern Muse", "product_name": "Geometric Print Satin Shirtdress" },
+    "attributes": { "size": "Medium", "color_name": "Cream/Grey" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 275.0, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "229384", "brand": "Maison Onyx", "product_name": "Asymmetrical Rib-Knit Midi Dress" },
+    "attributes": { "size": "Medium", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 59.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "293852", "brand": "Maison Onyx", "product_name": "Satin Jacquard Wrap Midi Dress" },
+    "attributes": { "size": "Medium", "color_name": "Navy Blue" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 325.0, "stock_quantity": 185 }
+  },
+  {
+    "core_identifiers": { "sku": "343485", "brand": "Maison Onyx", "product_name": "Embellished Tweed Sheath Dress" },
+    "attributes": { "size": "Medium", "color_name": "Black/White Multi" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 450.0, "stock_quantity": 85 }
+  },
+  {
+    "core_identifiers": { "sku": "443323", "brand": "Maison Onyx", "product_name": "Ruby Red Silk Cowl Neck Slip Dress" },
+    "attributes": { "size": "Medium", "color_name": "Ruby Red" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 249.99, "stock_quantity": 158 }
+  },
+  {
+    "core_identifiers": { "sku": "492834", "brand": "Maison Onyx", "product_name": "Pink Geometric Print Mock Neck Midi Dress" },
+    "attributes": { "size": "Medium", "color_name": "Fuchsia Kaleidoscope" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 210.0, "stock_quantity": 178 }
+  },
+  {
+    "core_identifiers": { "sku": "524146", "brand": "Maison Onyx", "product_name": "Faux Leather Corset Mini Dress" },
+    "attributes": { "size": "Medium", "color_name": "Chocolate Brown" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 79.99, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "543444", "brand": "Maison Onyx", "product_name": "Floral Lace V-Neck Mini Dress" },
+    "attributes": { "size": "Medium", "color_name": "Black Multi Floral" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 49.99, "stock_quantity": 178 }
+  },
+  {
+    "core_identifiers": { "sku": "555734", "brand": "Maison Onyx", "product_name": "Galaxy Glow Glitter Mini Dress" },
+    "attributes": { "size": "Medium", "color_name": "Rainbow Glitter" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 44.99, "stock_quantity": 287 }
+  },
+  {
+    "core_identifiers": { "sku": "593844", "brand": "Neon & Co.", "product_name": "Women's Sporty Zip-Up Bodycon Dress" },
+    "attributes": { "size": "Medium", "color_name": "Royal Blue" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 59.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "634234", "brand": "Aurum", "product_name": "Floral Puff Sleeve Mini Dress" },
+    "attributes": { "size": "Medium", "color_name": "Pink Multi Floral" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 180.0, "stock_quantity": 158 }
+  },
+  {
+    "core_identifiers": { "sku": "634544", "brand": "Maison Onyx", "product_name": "Amalfi Long Sleeve Cut Out Mini Dress in White" },
+    "attributes": { "size": "Medium", "color_name": "White" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 59.99, "stock_quantity": 234 }
+  },
+  {
+    "core_identifiers": { "sku": "643575", "brand": "Maison Onyx", "product_name": "Psychedelic Swirl Cowl Neck Mini Dress" },
+    "attributes": { "size": "Medium", "color_name": "Sunset Swirl" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 65.0, "stock_quantity": 288 }
+  },
+  {
+    "core_identifiers": { "sku": "653444", "brand": "Neon & Co.", "product_name": "Graffiti Print T-Shirt Dress" },
+    "attributes": { "size": "Medium", "color_name": "White" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 149.99, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "654567", "brand": "Maison Onyx", "product_name": "Lavender Ruched Strapless Mini Dress" },
+    "attributes": { "size": "Medium", "color_name": "Lavender" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 42.5, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "735634", "brand": "Maison Onyx", "product_name": "Metallic Halter Cowl Neck Midi Dress" },
+    "attributes": { "size": "Medium", "color_name": "Gunmetal" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 119.99, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "745624", "brand": "Aurum", "product_name": "Ribbed Knit Long Sleeve Maxi Dress" },
+    "attributes": { "size": "Medium", "color_name": "Heather Taupe" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 129.0, "stock_quantity": 342 }
+  },
+  {
+    "core_identifiers": { "sku": "982349", "brand": "Maison Onyx", "product_name": "Tweed Sleeveless Mini Dress" },
+    "attributes": { "size": "Medium", "color_name": "White/Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 450.0, "stock_quantity": 85 }
+  },
+  {
+    "core_identifiers": { "sku": "999039", "brand": "Maison Onyx", "product_name": "Abstract Print Cowl Neck Slip Dress" },
+    "attributes": { "size": "Medium", "color_name": "Multi-Color" },
+    "categorization": { "category": "Apparel", "sub_category": "Dress" },
+    "commercial_status": { "current_price": 59.99, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "129037", "brand": "Maison Onyx", "product_name": "Women's Quilted Leather Chelsea Boot" },
+    "attributes": { "size": null, "color_name": "Black" },
+    "categorization": { "category": "Footwear", "sub_category": "Boots" },
+    "commercial_status": { "current_price": 180.0, "stock_quantity": 342 }
+  },
+  {
+    "core_identifiers": { "sku": "190222", "brand": "Maison Onyx", "product_name": "Women's Classic Leather Riding Boot" },
+    "attributes": { "size": "8.5", "color_name": "Cognac" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 279.99, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "191921", "brand": "Maison Onyx", "product_name": "Pearl Embellished Satin Slingback Pumps" },
+    "attributes": { "size": "8.5", "color_name": "Black" },
+    "categorization": { "category": "Footwear", "sub_category": "Heels" },
+    "commercial_status": { "current_price": 450.0, "stock_quantity": 88 }
+  },
+  {
+    "core_identifiers": { "sku": "192223", "brand": "Modern Muse", "product_name": "Tweed Frayed Edge Slingback Pump" },
+    "attributes": { "size": null, "color_name": "Beige Multi" },
+    "categorization": { "category": "Footwear", "sub_category": "Heels" },
+    "commercial_status": { "current_price": 139.99, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "192831", "brand": "Modern Muse", "product_name": "Two-Tone Cap-Toe Ballet Flats" },
+    "attributes": { "size": "7.5", "color_name": "Beige/Black" },
+    "categorization": { "category": "Footwear", "sub_category": "Flats" },
+    "commercial_status": { "current_price": 89.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "222333", "brand": "Aurum", "product_name": "Suede Platform Block Heel Sandal" },
+    "attributes": { "size": "8.5", "color_name": "Taupe" },
+    "categorization": { "category": "Footwear", "sub_category": "Sandals" },
+    "commercial_status": { "current_price": 99.99, "stock_quantity": 287 }
+  },
+  {
+    "core_identifiers": { "sku": "345745", "brand": "Neon & Co.", "product_name": "Lasocki Strappy Kitten Heel Sandal" },
+    "attributes": { "size": "7.5", "color_name": "Lilac" },
+    "categorization": { "category": "Footwear", "sub_category": "Heels" },
+    "commercial_status": { "current_price": 59.99, "stock_quantity": 245 }
+  },
+  {
+    "core_identifiers": { "sku": "39288", "brand": "Modern Muse", "product_name": "Quilted Leather Espadrille Slip-On" },
+    "attributes": { "size": "8", "color_name": "Cream" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 119.99, "stock_quantity": 248 }
+  },
+  {
+    "core_identifiers": { "sku": "473843", "brand": "Maison Onyx", "product_name": "Classic Pointed Toe Stiletto Pumps" },
+    "attributes": { "size": "8.5", "color_name": "Black" },
+    "categorization": { "category": "Footwear", "sub_category": "Heels" },
+    "commercial_status": { "current_price": 95.0, "stock_quantity": 345 }
+  },
+  {
+    "core_identifiers": { "sku": "555877", "brand": "Maison Onyx", "product_name": "Sutton Classic Riding Boot" },
+    "attributes": { "size": "Medium", "color_name": "Cognac" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 299.99, "stock_quantity": 182 }
+  },
+  {
+    "core_identifiers": { "sku": "584922", "brand": "Maison Onyx", "product_name": "Suede Ankle Strap Block Heel Pump" },
+    "attributes": { "size": "Medium", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 110.0, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "632567", "brand": "Modern Muse", "product_name": "Gola Retro Color-Block Runner" },
+    "attributes": { "size": "US 9", "color_name": "Red/Teal" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 89.99, "stock_quantity": 315 }
+  },
+  {
+    "core_identifiers": { "sku": "634522", "brand": "Aurum", "product_name": "Classic Leather Ballet Flats" },
+    "attributes": { "size": "7.5", "color_name": "Lavender" },
+    "categorization": { "category": "Shoes", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 89.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "663452", "brand": "Neon & Co.", "product_name": "White Chunky Platform Sneaker" },
+    "attributes": { "size": "8.5", "color_name": "White" },
+    "categorization": { "category": "Footwear", "sub_category": "Sneakers" },
+    "commercial_status": { "current_price": 79.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "724354", "brand": "Maison Onyx", "product_name": "Black Platform Chelsea Boots" },
+    "attributes": { "size": "8.5", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 99.99, "stock_quantity": 315 }
+  },
+  {
+    "core_identifiers": { "sku": "725345", "brand": "Aurum", "product_name": "AuraStep Ventilated Comfort Clogs" },
+    "attributes": { "size": "Medium", "color_name": "Sand" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 44.99, "stock_quantity": 245 }
+  },
+  {
+    "core_identifiers": { "sku": "734222", "brand": "Maison Onyx", "product_name": "Chunky Platform Fisherman Sandal" },
+    "attributes": { "size": "8", "color_name": "Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 74.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "734522", "brand": "Maison Onyx", "product_name": "Metallic Silver Pointed-Toe Knee-High Boot" },
+    "attributes": { "size": "8.5", "color_name": "Silver" },
+    "categorization": { "category": "Footwear", "sub_category": "Boots" },
+    "commercial_status": { "current_price": 220.0, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "734555", "brand": "Modern Muse", "product_name": "LA Originals Classic High-Top Sneakers" },
+    "attributes": { "size": null, "color_name": "White/Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Footwear" },
+    "commercial_status": { "current_price": 74.99, "stock_quantity": 342 }
+  },
+  {
+    "core_identifiers": { "sku": "109244", "brand": "Modern Muse", "product_name": "Breton Stripe Long Sleeve Top with Button Cuffs" },
+    "attributes": { "size": "M", "color_name": "Navy/Cream" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 185.0, "stock_quantity": 352 }
+  },
+  {
+    "core_identifiers": { "sku": "199902", "brand": "Maison Onyx", "product_name": "Silk and Lace Camisole" },
+    "attributes": { "size": "Medium", "color_name": "Champagne" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 54.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "234893", "brand": "Maison Onyx", "product_name": "Pearl Embellished Tweed Jacket" },
+    "attributes": { "size": "Medium", "color_name": "Ecru/Black" },
+    "categorization": { "category": "Apparel", "sub_category": "Outerwear" },
+    "commercial_status": { "current_price": 450.0, "stock_quantity": 8 }
+  },
+  {
+    "core_identifiers": { "sku": "239944", "brand": "Modern Muse", "product_name": "Checkered Knit Sweater Vest" },
+    "attributes": { "size": "Medium", "color_name": "Black/Cream" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 70.0, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "292929", "brand": "Modern Muse", "product_name": "Pink Tweed Jacket" },
+    "attributes": { "size": "Medium", "color_name": "Light Pink" },
+    "categorization": { "category": "Apparel", "sub_category": "Outerwear" },
+    "commercial_status": { "current_price": 450.0, "stock_quantity": 85 }
+  },
+  {
+    "core_identifiers": { "sku": "335234", "brand": "Neon & Co.", "product_name": "Kaleidoscope Geometric Print Shirt" },
+    "attributes": { "size": "Medium", "color_name": "Multicolor" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 72.5, "stock_quantity": 188 }
+  },
+  {
+    "core_identifiers": { "sku": "349022", "brand": "Modern Muse", "product_name": "Emerald Green Satin High-Neck Blouse" },
+    "attributes": { "size": "Medium", "color_name": "Emerald Green" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 95.0, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "394855", "brand": "Modern Muse", "product_name": "Relaxed Fit Long Sleeve Button-Down Shirt" },
+    "attributes": { "size": "Medium", "color_name": "White" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 64.99, "stock_quantity": 312 }
+  },
+  {
+    "core_identifiers": { "sku": "595544", "brand": "Modern Muse", "product_name": "Breton Stripe Button-Cuff Sweater" },
+    "attributes": { "size": "Medium", "color_name": "Navy/Cream" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 110.0, "stock_quantity": 345 }
+  },
+  {
+    "core_identifiers": { "sku": "634523", "brand": "Maison Onyx", "product_name": "Satin Halter Neck Crop Top" },
+    "attributes": { "size": "M", "color_name": "Royal Blue" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 65.0, "stock_quantity": 215 }
+  },
+  {
+    "core_identifiers": { "sku": "667734", "brand": "Modern Muse", "product_name": "Relaxed Fit Embroidered Hoodie" },
+    "attributes": { "size": "Medium", "color_name": "Beige" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 110.0, "stock_quantity": 288 }
+  },
+  {
+    "core_identifiers": { "sku": "684321", "brand": "Aurum", "product_name": "Striped Bateau Neck Crop Top" },
+    "attributes": { "size": "Medium", "color_name": "Black/White" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 49.99, "stock_quantity": 287 }
+  },
+  {
+    "core_identifiers": { "sku": "733344", "brand": "Neon & Co.", "product_name": "Psychedelic Swirl Mesh Long-Sleeve Top" },
+    "attributes": { "size": "Medium", "color_name": "Multicolor" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 99.99, "stock_quantity": 237 }
+  },
+  {
+    "core_identifiers": { "sku": "734222", "brand": "Aurum", "product_name": "Balcont Vintage Wash Graphic Tee" },
+    "attributes": { "size": "Medium", "color_name": "Washed Grey" },
+    "categorization": { "category": "Apparel", "sub_category": "Top" },
+    "commercial_status": { "current_price": 45.0, "stock_quantity": 287 }
+  }
+]

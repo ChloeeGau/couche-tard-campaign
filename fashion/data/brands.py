@@ -1,0 +1,221 @@
+from fashion.schema import Brand
+import json
+from typing import List
+
+# Raw brand data loaded from JSON
+brand_data = """[
+  {
+    "brand_identifier": "maison_onyx",
+    "name": "Maison Onyx",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/maison_onyx/style_guide_maison_onyx.pdf",
+    "brand_core": {
+      "archetype": "The Ruler / The Magician",
+      "mantra": "Own the night.",
+      "target_audience": "The Socialite (20s\u201330s). She follows trends but elevates them. She\u2019s at the newest rooftop bar, the front row of fashion week, or a VIP table. She isn't afraid of attention; she commands it.",
+      "key_differentiator": "We don't do basics. Every piece is an event."
+    },
+    "visual_identity": {
+      "logo": "An interlaced monogram (think luxury heritage brands) in gold foil.",
+      "color_palette": [
+        "Jet Black",
+        "Metallic Gold",
+        "Champagne",
+        "Deep Emerald"
+      ],
+      "typography": {
+        "headlines": "High-Contrast Modern Serif (e.g., Didot or Bodoni). Sharp, thin serifs that look like a fashion magazine cover.",
+        "body_copy": "Geometric Sans-Serif (e.g., Century Gothic). Minimalist and spacious to let the headlines breathe."
+      }
+    },
+    "photography_and_art_direction": {
+      "style": "The imagery must feel expensive, cinematic, and slightly voyeuristic.",
+      "lighting": "Flash Editorial. High-contrast, direct flash photography that mimics paparazzi shots or late-night party photos. Shadows are hard and dramatic.",
+      "environment": "Luxury interiors. Marble staircases, the back of a black car, velvet hotel lobbies, or mirrored elevators.",
+      "styling": "More is More. The quilted shorts shouldn't be worn with a t-shirt. Style them with sheer black tights, sky-high stilettos or patent leather knee-high boots, a matching structured blazer or a silk corset top, and heavy gold jewelry."
+    },
+    "voice_and_tone": {
+      "tone": "Exclusive, Seductive, Confident, Concise.",
+      "keywords": [
+        "Iconic",
+        "Obsession",
+        "Luxe",
+        "Statement",
+        "Power"
+      ],
+      "do": "Keep captions short. Let the image speak. Use phrases that imply exclusivity.",
+      "dont": "Use 'cute', 'sweet', or friendly emojis. No exclamation points unless absolutely necessary. We are cool, not excited.",
+      "sample_copy": [
+        "The Chain Reaction. Quilted leather meets gold hardware. Your new uniform for after dark.",
+        "Main character energy only. Shop the Midnight Collection."
+      ]
+    }
+  },
+  {
+    "brand_identifier": "modern_muse",
+    "name": "Modern Muse",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/modern_muse/style_guide_modern_muse.pdf",
+    "brand_core": {
+      "archetype": "The Lover / The Everyman",
+      "mantra": "Effortless elegance for the everyday.",
+      "target_audience": "The Young Professional (25\u201340). She has a busy schedule, loves aesthetically pleasing coffee shops, and invests in 'capsule wardrobe' pieces. She values versatility over fast trends.",
+      "key_differentiator": "It\u2019s not about being the loudest in the room; it\u2019s about having the best silhouette. It\u2019s a white tee tucked perfectly into tailored trousers."
+    },
+    "visual_identity": {
+      "logo": "A minimalist wordmark with wide kerning (spacing). Simple, understated, timeless.",
+      "color_palette": [
+        "Latte Beige",
+        "Slate Blue",
+        "Charcoal",
+        "Soft Cream",
+        "Burnt Sienna",
+        "Olive"
+      ],
+      "typography": {
+        "headlines": "Editorial Serif (e.g., Playfair Display). It adds a touch of sophistication and warmth.",
+        "body_copy": "Clean Sans-Serif (e.g., Lato or Montserrat) for modern readability."
+      }
+    },
+    "photography_and_art_direction": {
+      "style": "Aspirational but attainable. The photos should look like a fashion blogger's Instagram feed\u2014curated but candid.",
+      "lighting": "Soft, diffused natural light. 'Cloudy day' lighting is preferred over harsh sunlight to soften skin tones and fabric textures.",
+      "environment": "Chic urban settings (cobblestone streets, brownstone steps), modern lofts with plants, or art galleries. Studio: Warm grey or beige backgrounds. Never stark white.",
+      "styling": "The 'French Tuck'. Tops are rarely worn loose; they are half-tucked. Layering: Blazers over graphic tees. Trench coats over hoodies. Accessories: Minimal gold jewelry, structured leather bags, and oversized sunglasses."
+    },
+    "voice_and_tone": {
+      "tone": "Polished, witty, and assured. We talk to the customer like a stylish older sister.",
+      "keywords": [
+        "Timeless",
+        "Essential",
+        "Silhouette",
+        "Elevated",
+        "Texture"
+      ],
+      "do": "Focus on fabric quality and versatility (e.g., 'From desk to dinner').",
+      "dont": "Use slang like 'swag' or 'lit.' Avoid urgency. We don't scream sales; we suggest investments.",
+      "sample_copy": [
+        "The Sunday Uniform. Soft cotton meets structured tailoring. Pair our Graphic Art Midi with a blazer for a look that says 'I tried' without actually trying."
+      ]
+    }
+  },
+  {
+    "brand_identifier": "neon_and_co",
+    "name": "Neon & Co.",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/neon_and_co/style_guide_neon_and_co.pdf",
+    "brand_core": {
+      "archetype": "The Jester / The Best Friend",
+      "promise": "Style that doesn't take itself too seriously.",
+      "target_audience": "Digital natives (Gen Z) who want affordable, trendy pieces for TikTok, concerts, or hanging out at the mall. They value comfort just as much as style.",
+      "key_differentiator": "We bring the energy. Our clothes are conversation starters, but they are easy to wear."
+    },
+    "visual_identity": {
+      "color_palette": [
+        "Bubblegum Pink",
+        "Electric Blue",
+        "Bright White",
+        "Jet Black"
+      ],
+      "typography": {
+        "headlines": "Bold Sans-Serif (thick and geometric, like Futura Extra Bold or Impact). It shouts, but it's clean.",
+        "body_copy": "Simple, rounded sans-serif that feels friendly and easy to read on mobile screens."
+      }
+    },
+    "photography_and_art_direction": {
+      "style": "Whatever feels less 'gritty' and more 'sunny and social.' High energy, smiling, movement, and groups of friends. Less 'posing cool,' more 'caught laughing.'",
+      "lighting": "High-key lighting (bright and even). Whether in the studio or outdoors, the images should feel 'popped' and colorful, not shadowy or moody.",
+      "environment": "Studio: Solid color backdrops that contrast with the clothes (e.g., this white dress against a hot pink background). Lifestyle: Skate parks, arcades, diners, or sunny sidewalks.",
+      "styling": "High-Low Mix. Pair the graphic dress with clean white sneakers, a denim jacket tied around the waist, or a simple beanie. Make it look accessible to the average shopper."
+    },
+    "voice_and_tone": {
+      "tone": "Enthusiastic, inclusive, and trendy. We speak like a text message from a best friend.",
+      "keywords": [
+        "Fresh",
+        "Obsessed",
+        "Mood",
+        "Comfy",
+        "Weekend-ready"
+      ],
+      "do": "Use exclamation points! Use emojis (\u2728\ud83d\udc5f\ud83c\udf08). Ask questions to engage the audience.",
+      "dont": "Be too edgy, aggressive, or philosophical. Avoid dark or negative language.",
+      "sample_copy": [
+        "Main character energy activated \u2728 This graffiti tee dress is the comfy-cool fit your weekend needs. Pair with kicks and go. \ud83d\uded2"
+      ]
+    }
+  },
+  {
+    "brand_identifier": "volt",
+    "name": "Volt",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/volt/style_guide_volt.pdf",
+    "brand_core": {
+      "archetype": "The Rebel / The Jester",
+      "vibe": "'Volt' is fast, loud, and digital-first. It draws inspiration from gaming, rave culture, and brutalism. The guide emphasizes energy, chaos, and irony."
+    },
+    "visual_identity": {
+      "color_palette": [
+        "Acid Green",
+        "Safety Orange",
+        "Deep Black",
+        "Chrome Silver"
+      ],
+      "typography": {
+        "headlines": "Distorted or stretched fonts. Gothic/Blackletter mixed with pixelated computer fonts.",
+        "body_copy": "Text can overlap images. Monospace or raw terminal fonts."
+      }
+    },
+    "photography_and_art_direction": {
+      "lighting": "High-contrast direct flash. Neon gels. 'Overexposed' aesthetic is acceptable.",
+      "environment": "Urban decay, subway stations, convenience stores, or green-screen digital backgrounds.",
+      "casting": "'Anti-model' casting. Real people with unique modifications (tattoos, piercings, dyed hair). Attitude is more important than conventional beauty."
+    },
+    "voice_and_tone": {
+      "keywords": [
+        "Hype",
+        "Witty",
+        "Raw",
+        "Direct"
+      ],
+      "do": "Use internet slang, lower-case only styling (e.g., 'just dropped.'), and emojis (\ud83d\udd0b, \u26a1, \ud83d\udc80).",
+      "dont": "Be overly formal, poetic, or 'corporate.' Avoid explaining things too much."
+    }
+  },
+  {
+    "brand_identifier": "aurum",
+    "name": "Aurum",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/aurum/style_guide_aurum.pdf",
+    "brand_core": {
+      "archetype": "The Caregiver / The Sage",
+      "vibe": "'Aurum' is about slow fashion, organic materials, and timeless silhouettes. The guide emphasizes calmness, texture, and silence."
+    },
+    "visual_identity": {
+      "color_palette": [
+        "Sand",
+        "Sage Green",
+        "Charcoal",
+        "Unbleached Cotton"
+      ],
+      "typography": {
+        "headlines": "Elegant, thin Serif font (e.g., Garamond style). W-i-d-e letter spacing (kerning) to create a sense of luxury breathing room.",
+        "body_copy": "Clean Sans-Serif for body copy."
+      }
+    },
+    "photography_and_art_direction": {
+      "lighting": "100% Natural light. No hard flash. Golden hour preferred.",
+      "environment": "Minimalist interiors (concrete, wood, linen) or untouched nature (dunes, forests). Never busy city streets.",
+      "casting": "Models with natural features. Minimal makeup. Emphasize skin texture and diversity in age (not just youth)."
+    },
+    "voice_and_tone": {
+      "keywords": [
+        "Introspective",
+        "Educational",
+        "Gentle",
+        "Elevated"
+      ],
+      "do": "Use words like 'Curated', 'Heirloom', 'Conscious'.",
+      "dont": "Use exclamation points, slang, or urgency tactics (e.g., avoid 'Buy Now!' or 'Hurry!')."
+    }
+  }
+]"""
+
+def retrieve_brands() -> List[Brand]:
+    x = json.loads(brand_data)
+    brands = [Brand(**item) for item in x]
+    return brands

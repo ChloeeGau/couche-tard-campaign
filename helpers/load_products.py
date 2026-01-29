@@ -79,7 +79,7 @@ def get_all_storage_uris(bucket_name, prefix=None, extensions=None):
         gcs_uri = f"gs://{bucket_name}/{blob.name}"
         uri_list.append(gcs_uri)
     return uri_list
-uri_list=get_all_storage_uris('creative-content', extensions=['.jpg', '.png', '.jpeg']) 
+uri_list=get_all_storage_uris('product-image-assets', extensions=['.jpg', '.png', '.jpeg']) 
 
 for uri in uri_list:
     create_product(uri)
@@ -105,7 +105,7 @@ def create_product(product_image_path: str) -> Dict[str, Any]:
                 )
                 prompt_content.append(image_part)
               
-                prompt_content.append(f"""
+                prompt_content.append("""
                   Output as a JSON object and MUST conform to the following schema:
                   ``` json
                     {
@@ -177,8 +177,8 @@ def create_product(product_image_path: str) -> Dict[str, Any]:
 # get_all_storage_uris('creative-content', extensions=['.jpg', '.png', '.jpeg'])
 
 
-create_product('gs://creative-content/catalog/bottom/185932.png')
-create_product('gs://creative-content/catalog/top/239944.png')
-print(f"type: {type(products[0])}")
-print(products[0])
-print(json.dumps(products[0], indent=4, sort_keys=True))
+create_product('gs://product-image-assets/bottom/185932.png')
+create_product('gs://product-image-assets/top/239944.png')
+# print(f"type: {type(products[0])}")
+# print(products[0])
+# print(json.dumps(products[0], indent=4, sort_keys=True))
