@@ -379,7 +379,7 @@ class ProductTrendMapper:
             )
             return result
 
-    async def generate_trend_image(self, product: Product, tool_context: ToolContext) -> str:
+    async def generate_trend_image_prompt(self, product: Product, tool_context: ToolContext) -> str:
         """
         Generates an image based on the matching trends stored in the tool_context's session state.
         """
@@ -390,27 +390,123 @@ class ProductTrendMapper:
 
         # Assuming matching_trends is a list of strings (trend names/descriptions)
         prompt_description = f"""
-            Prompt: Modular Trend Profile Series
+            Your role is to generate a prompt describing an infographic which consistently contains six distinct fashion "flat lay" or "invisible mannequin" zones radiating from the center, each styling the same product differently. Use the provided trend input below for the six regions.
+
+            * Input:
+                * Product:{product}
+                * Trends:{matching_trends}
+
+            * Steps:
+                1) Determine visual aspects to pair with the product based on the trend information provided.
+
+                2) Based on tone, target market of the trend, determine typography to use that would be suitable to the trend. 
+
+                3) Using trend data, determine the best palette and texture.
+
+                4) Identify the label to use for target market
+
+
+            * Example output for zones is included below:
+
+                **ZONE 1 (Top Left - Trend: The Lady Jacket):**
+
+                * **Visuals:** The Pink Tweed Jacket is styled with **High-Waisted Wide-Leg Dark Wash Denim Jeans**. The look is polished and editorial.
+
+                * **Typography:** The text "The Lady Jacket" in a **bold, high-contrast Didot or Bodoni-style serif font** (reminiscent of Vogue).
+
+                * **Data Label:** Text overlay reading: "Demographic: Women 25-50".
+
+                * **Palette/Texture:** Crisp Navy and White background elements.
+
+
+                **ZONE 2 (Top Center - Trend: Barbiecore):**
+
+                * **Visuals:** The Pink Tweed Jacket is paired with a **Matching Pink Satin Mini Skirt** and **White Platform Heels**.
+
+                * **Typography:** The text "Barbiecore" in a **retro, bubbly, bold cursive script** in hot pink.
+
+                * **Data Label:** Text overlay reading: "Demographic: Gen Z, Millennials".
+
+                * **Palette/Texture:** Glossy plastic textures and sparkle accents.
+
+
+                **ZONE 3 (Top Right - Trend: Modern Preppy):**
+
+                * **Visuals:** The Pink Tweed Jacket is draped over a **White Pleated Tennis Skirt** and styled with **Chunky Loafers with Slouchy White Socks**.
+
+                * **Typography:** The text "Modern Preppy" in a **collegiate Slab-Serif font** (varsity style).
+
+                * **Data Label:** Text overlay reading: "Demographic: Gen Z, Young Professionals".
+
+                * **Palette/Texture:** Navy and Forest Green argyle accents.
+
+
+                **ZONE 4 (Bottom Left - Trend: Quiet Luxury):**
+
+                * **Visuals:** The Pink Tweed Jacket is styled tonally with **Tailored Cream Silk Trousers** and a **Cashmere Crewneck**. Minimalist and expensive looking.
+
+                * **Typography:** The text "Quiet Luxury" in a **ultra-thin, minimalist Sans-Serif font** with wide kerning.
+
+                * **Data Label:** Text overlay reading: "Demographic: Affluent Consumers".
+
+                * **Palette/Texture:** Matte beige and linen textures.
+
+
+                **ZONE 5 (Bottom Center - Trend: Heritage Revival):**
+
+                * **Visuals:** The Pink Tweed Jacket is layered over a **Chunky Cable Knit Sweater** with **Corduroy Trousers**.
+
+                * **Typography:** The text "Heritage Revival" in a **traditional, weathered Book Serif font**.
+
+                * **Data Label:** Text overlay reading: "Demographic: Broad Appeal".
+
+                * **Palette/Texture:** Earth tones, wood grain, and wool textures.
+
+
+                **ZONE 6 (Bottom Right - Trend: Hyper-Femininity):**
+
+                * **Visuals:** The Pink Tweed Jacket is styled over a **White Lace Slip Dress** with **Pink Satin Ribbon Bows** tied onto the jacket buttons.
+
+                * **Typography:** The text "Hyper-Femininity" in a **delicate, swirling romantic calligraphy script**.
+
+                * **Data Label:** Text overlay reading: "Demographic: Gen Z".
+
+                * **Palette/Texture:** Soft tulle, lace, and pearls.
+            """
+
+        # prompt_template = prompt_template.replace("{product_description}", product_description)
+        # prompt_template = prompt_template.replace("{trend_name}", trend_data.trend_name)
+        # prompt_template = prompt_template.replace("{primary_aesthetic}", attrs.primary_aesthetic)
+        # prompt_template = prompt_template.replace("{secondary_aesthetic}", attrs.secondary_aesthetic)
+        # prompt_template = prompt_template.replace("{mood_keywords}", ', '.join(attrs.mood_keywords))
+        # prompt_template = prompt_template.replace("{font_choice}", font_choice)
+        # prompt_template = prompt_template.replace("{colors}", ', '.join(colors))
+        # print(f"Prompt template is {prompt_template}")
+        print(f"prompt_description is {prompt_description}")
         
-            Role: Fashion Trend Analyst & UI Designer Objective: Create a clean, modular infographic titled "Trend Report." The design must visualize 6 distinct Trend Profiles (3 Micro, 3 Macro) derived from the provided dataset.
+        config = genai_types.GenerateContentConfig(
+            **STANDARD_GENERATION_CONFIG,
+        )
+        
+        client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
+        
+        response = client.models.generate_content(
+            model=GEMINI_MODEL_NAME,
+            contents=prompt_description,
+            config=config,
+        )
+        print(response.text)
+        return response.text
 
-            Input Data: 
-            {matching_trends}
-
-            Constraint:
-
-            NO Product Data: Ignore all specific product details (price, SKU, images).
-
-            NO Connections: Do not draw arrows or lines between trends. Treat each trend as an independent data point.
-
-            Design Layout Strategy: "The Grid System" (Card-based layout).
-
-            Top Section: "Micro Trends" (3 Cards horizontally).
-
-            Bottom Section: "Macro Trends" (3 Cards horizontally).
-
-            Style: Clean, editorial, highly readable. Like a high-end fashion forecast PDF.
+    async def generate_trend_image(self, product: Product, tool_context: ToolContext) -> str:
         """
+        Generates an image based on the matching trends stored in the tool_context's session state.
+        """
+        # Use the loop variable 'trend' here
+        prompt_contents = await self.generate_trend_image_prompt(product, tool_context)
+        print(f"prompt_contents is {prompt_contents}")
+                    
+        # try:
         IMAGE_MODEL = "gemini-3-pro-image-preview"
         use_global = "gemini-3" in IMAGE_MODEL
         location_used = "global" if use_global else LOCATION
@@ -433,60 +529,64 @@ class ProductTrendMapper:
                 threshold=HarmBlockThreshold.OFF,
             ),
         ]
-        contents = [prompt_description]
+        contents = [prompt_contents]
         trend_board_url = ""
-        print(f"sending prompt: {prompt_description}")
-        try:
-            # Assuming the client has an async method `generate_image` that takes a prompt
-            # and returns a URL or path to the generated image.
-            response = client.models.generate_content(
-                model=IMAGE_MODEL,
-                contents=contents,
-                config=genai_types.GenerateContentConfig(
-                    image_config=genai_types.ImageConfig(aspect_ratio="16:9"),
-                    safety_settings=safety_settings,
-                ),
-            )
-            storage_client = storage.Client()
-            bucket_name = "creative-content"
-            bucket = storage_client.bucket(bucket_name)
-            # Unique name for each moodboard
-            product_trend_file_name = f"{product['core_identifiers']['sku']}_trends.png"
-            destination_blob_name = f"trends/{product_trend_file_name}"
+        print(f"sending prompt: {prompt_contents}")
+        # Assuming the client has an async method `generate_image` that takes a prompt
+        # and returns a URL or path to the generated image.
+        response = client.models.generate_content(
+            model=IMAGE_MODEL,
+            contents=contents,
+            config=genai_types.GenerateContentConfig(
+                image_config=genai_types.ImageConfig(aspect_ratio="16:9"),
+                safety_settings=safety_settings,
+            ),
+        )
+        storage_client = storage.Client()
+        bucket_name = "creative-content"
+        bucket = storage_client.bucket(bucket_name)
+        # Unique name for each moodboard
+        product_trend_file_name = f"{product['core_identifiers']['sku']}_trends.png"
+        destination_blob_name = f"trends/{product_trend_file_name}"
 
-            for part in response.parts:
-                if part.inline_data and part.inline_data.data:
-                    image_bytes_out = part.inline_data.data
-                    blob = bucket.blob(destination_blob_name)
-                    blob.upload_from_string(image_bytes_out, content_type="image/png")
+        for part in response.parts:
+            if part.inline_data and part.inline_data.data:
+                image_bytes_out = part.inline_data.data
+                blob = bucket.blob(destination_blob_name)
+                blob.upload_from_string(image_bytes_out, content_type="image/png")
 
-                    # Generate and upload thumbnail
-                    try:
-                        thumb_img = Image.open(io.BytesIO(image_bytes_out))
-                        # Target height of 500, allowing width to scale accordingly (assuming aspect ratio < 4:1)
-                        thumb_img.thumbnail((2000, 500))
-                        thumb_io = io.BytesIO()
-                        thumb_img.save(thumb_io, format="PNG")
-                        thumb_bytes = thumb_io.getvalue()
-                        
-                        min_blob_name = destination_blob_name.replace(".png", "_min.png")
-                        min_blob = bucket.blob(min_blob_name)
-                        min_blob.upload_from_string(thumb_bytes, content_type="image/png")
-                        print(f"Thumbnail '{min_blob_name}' successfully saved.")
-                    except Exception as e:
-                        logging.error(f"Failed to create/upload thumbnail: {e}")
+                # Generate and upload thumbnail
+                try:
+                    thumb_img = Image.open(io.BytesIO(image_bytes_out))
+                    # Target height of 500, allowing width to scale accordingly (assuming aspect ratio < 4:1)
+                    thumb_img.thumbnail((2000, 500))
+                    thumb_io = io.BytesIO()
+                    thumb_img.save(thumb_io, format="PNG")
+                    thumb_bytes = thumb_io.getvalue()
+                    
+                    min_blob_name = destination_blob_name.replace(".png", "_min.png")
+                    min_blob = bucket.blob(min_blob_name)
+                    min_blob.upload_from_string(thumb_bytes, content_type="image/png")
+                    print(f"Thumbnail '{min_blob_name}' successfully saved.")
+                except Exception as e:
+                    logging.error(f"Failed to create/upload thumbnail: {e}")
 
-                    
-                    print(f"Image '{destination_blob_name}' successfully saved to GCS bucket '{bucket_name}'.")
-                    
-                    public_url = f"https://storage.cloud.google.com/{bucket_name}/{min_blob_name}"
-                    trend_board_url = public_url
-                    logging.info(f"Generated Trend Sheet: {public_url}")
-                    
-            return trend_board_url
-        except Exception as e:
-            logging.error(f"Failed to generate image for trends '{matching_trends}': {e}")
-            return ""
+                
+                print(f"Image '{destination_blob_name}' successfully saved to GCS bucket '{bucket_name}'.")
+                
+                public_url = f"https://storage.cloud.google.com/{bucket_name}/{min_blob_name}"
+                trend_board_url = public_url
+                logging.info(f"Generated Trend Sheet: {public_url}")
+                
+        return trend_board_url
+        # except Exception as e:
+        #     logging.error(f"Failed to generate image for trends '{product}': {e}")
+        #     return ""
+
+
+
+
+        
 
     async def map_product_to_trends_demo(self, static_mapping_data: dict) -> ProductTrendMapping:
         """

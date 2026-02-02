@@ -67,7 +67,6 @@
 
 
 import logging
-
 from fashion.config import PROJECT_ID, LOCATION, GEMINI_MODEL_NAME
 from fashion.tools.inventory import InventoryTool
 from fashion.tools.sales import SalesTool
@@ -94,7 +93,12 @@ from PIL import Image, ImageDraw, ImageFont
 import uuid
 import io
 from google.adk.tools import VertexAiSearchTool
-
+import json
+import os
+from typing import Tuple, Any, Dict 
+from fashion.data.products import retrieve_products
+from google.cloud import storage
+from fashion.config import AgentSettings
 
 session_service = InMemorySessionService()
 
@@ -128,7 +132,7 @@ sales_tool = SalesTool()
 # trend_agent = TrendAgent()
 trend_spotter_agent = TrendSpotter()
 fashion_photographer_agent = FashionPhotographer()
-# art_director_agent = ArtDirector()
+art_director_agent = ArtDirector()
 creative_director_agent = CreativeDirector()
 product_trend_mapper_agent = ProductTrendMapper()
 campaign_manager_agent = CampaignManager()
@@ -151,19 +155,16 @@ campaign_manager_agent = CampaignManager()
     
 # Define Tool Functions for the Agent (wrapper for tools)
 
+# TODO: enhance the logic around determining velocity
+# TODO: include sales plan information
 def identify_inventory_opportunities(tool_context: InvocationContext) -> List[Product]:
-    print('here1')
     """Identifies high-stock, low-velocity inventory items."""
     high_stock_products = inventory_tool.find_high_stock()
-    print('here2')
     low_velocity_products = sales_tool.find_low_velocity()
-    print('here3')
     # Map SKU to Product for low velocity items
     low_velocity_map = {p.core_identifiers.sku: p for p in low_velocity_products}
-    print('here4')
     opportunities = []
     opportunities_as_dict = []
-    print('here5')
     for product in high_stock_products:
         # Access SKU via core_identifiers
         sku = product.core_identifiers.sku
@@ -179,10 +180,7 @@ def identify_inventory_opportunities(tool_context: InvocationContext) -> List[Pr
       
     # TODO look at putting this back, but serilization was an issue        
     tool_context.state["opportunities"] = opportunities_as_dict
-    print('here6')
     return opportunities_as_dict    
-
-from fashion.data.products import retrieve_products
 
 def to_dict_recursive(obj):
     # If the object is not a custom object (e.g., int, str, None, etc.), return it directly
@@ -202,7 +200,7 @@ def to_dict_recursive(obj):
         
     return result
 
-from google.cloud import storage
+
 
 def generate_min_image(source_blob_name:str):
     print(f"source_blob_name: {source_blob_name}")
@@ -248,14 +246,11 @@ def generate_min_image(source_blob_name:str):
     print(f"min_blob_name: {min_blob_name}")
     return min_blob_name
 
-import json
-import os
 
+# TODO: read from BQ instead of JSON
 def load_brand_data(tool_context: InvocationContext):
     """Loads brand data from brands.json into the tool_context state."""
     try:
-        # Assuming brands.json is in the same directory or a 'data' subdirectory
-        # Adjust path as necessary based on actual file location
         file_path = os.path.join(os.path.dirname(__file__), "data", "brands.json")
         if not os.path.exists(file_path):
             # Fallback to current directory if not found in data
@@ -276,30 +271,23 @@ def load_brand_data(tool_context: InvocationContext):
         logger.error(f"An unexpected error occurred while loading brand data: {e}")
         tool_context.state["brand_data"] = {}
 
-from typing import Tuple, Any, Dict 
-
 
 # def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict[str, any]:
 # def get_product_by_sku(tool_context: InvocationContext, sku: str) -> Tuple[dict[str, Any], dict[str, Any]]:
+# TODO: move products to a database instead of json file
 def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict:
     products = retrieve_products()
-    print(f"products: {products}")
     for product in products:
         if product.core_identifiers.sku == sku:
             tool_context.state['product'] = to_dict_recursive(product)
             min_image = generate_min_image(product.media.main_image_url)
-
             brand_name = product.core_identifiers.brand
-            print(f"state brand data: {tool_context.state['brand_data']}")
-            print(f"brand_name: {brand_name}")
             brand_info = next((brand for brand in tool_context.state.get("brand_data", []) if brand.get("name") == brand_name), None)
             if brand_info:
                 tool_context.state['brand_info'] = brand_info
                 logger.info(f"Brand info for {brand_name} loaded successfully into state.")
             else:
                 logger.warning(f"Brand info for {brand_name} not found in loaded data.")
-            print(f"brand_info: {tool_context.state['brand_info']}")
-            
             return to_dict_recursive(product), to_dict_recursive(tool_context.state['brand_info'])
 
     return to_dict_recursive(Product()),to_dict_recursive(Brand())
@@ -681,21 +669,26 @@ def create_davos_fashion_agent() -> Agent:
         tools=[
             # AgentTool(agent=sales_plan_agent),
             # create_session_example,
-            identify_inventory_opportunities,
             load_brand_data,
+            identify_inventory_opportunities,
             get_product_by_sku,
             # get_product_assets,
             # analyze_market_trends,
+            
+            # USED FOR DEMO
             AgentTool(agent=product_trend_mapper_agent.agent),
             # product_trend_mapper_agent.retrieve_image_from_gcs,
             # product_trend_mapper_agent.identify_product_from_image,
             # product_trend_mapper_agent.map_product_to_trends,
+            
             # AgentTool(agent=ProductTrendMapperAgent().agent),
 
             AgentTool(agent=trend_spotter_agent.agent),
-            AgentTool(agent=ArtDirector().agent),
+            # USED FOR DEMO
+            AgentTool(agent=art_director_agent.agent),
             # art_director_agent.create_moodboards,
             # art_director_agent.create_campaign_directive,
+
             fashion_photographer_agent.generate_campaign_image,
             # creative_director_agent.create_video_scenes_demo,
             creative_director_agent.create_video_scenes,
@@ -742,7 +735,7 @@ def create_davos_fashion_agent_demo() -> Agent:
     #     raise RuntimeError(f"Failed to create agent: {str(e)}")
 
 
-from fashion.config import AgentSettings
+
 
 # try:
 # Try to load settings from environment

@@ -28,7 +28,9 @@
       "in_stock": true,
       "stock_quantity": 315,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/185932.png",
@@ -70,7 +72,9 @@
       "in_stock": true,
       "stock_quantity": 352,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/192833.png",
@@ -112,7 +116,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "150 (-9%)",
+      "q1_2026": "60 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/194821.png",
@@ -154,7 +160,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/234444.jpeg",
@@ -196,7 +204,9 @@
       "in_stock": true,
       "stock_quantity": 342,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/238444.png",
@@ -237,8 +247,10 @@
       "cost_price": 95.5,
       "in_stock": true,
       "stock_quantity": 188,
-      "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_velocity": "average",
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/294832.png",
@@ -280,7 +292,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/295883.png",
@@ -322,7 +336,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/394055.jpeg",
@@ -364,7 +380,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/394855.jpeg",
@@ -406,7 +424,9 @@
       "in_stock": true,
       "stock_quantity": 158,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/554345.png",
@@ -448,7 +468,9 @@
       "in_stock": true,
       "stock_quantity": 342,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/583944.png",
@@ -490,7 +512,9 @@
       "in_stock": true,
       "stock_quantity": 245,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/598345.png",
@@ -532,7 +556,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/839185.png",
@@ -574,7 +600,9 @@
       "in_stock": true,
       "stock_quantity": 341,
       "sales_velocity": "high",
-      "sales_reasoning": "Consistent top-seller in the denim category."
+      "sales_reasoning": "Consistent top-seller in the denim category.",
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/90802.png",
@@ -615,8 +643,10 @@
       "cost_price": 85.5,
       "in_stock": true,
       "stock_quantity": 125,
-      "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_velocity": "average",
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/119283.png",
@@ -658,7 +688,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/119928.jpeg",
@@ -700,7 +732,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192838.jpeg",
@@ -742,7 +776,9 @@
       "in_stock": true,
       "stock_quantity": 342,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192841.png",
@@ -784,7 +820,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192844.png",
@@ -826,7 +864,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/229384.jpeg",
@@ -868,7 +908,9 @@
       "in_stock": true,
       "stock_quantity": 185,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/293852.png",
@@ -910,7 +952,9 @@
       "in_stock": true,
       "stock_quantity": 85,
       "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "130 (-9%)",
+      "q1_2026": "25 (-8%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/343485.png",
@@ -952,7 +996,9 @@
       "in_stock": true,
       "stock_quantity": 158,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/443323.png",
@@ -994,7 +1040,9 @@
       "in_stock": true,
       "stock_quantity": 178,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/492834.png",
@@ -1036,7 +1084,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/524146.jpeg",
@@ -1078,7 +1128,9 @@
       "in_stock": true,
       "stock_quantity": 178,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/543444.jpeg",
@@ -1120,7 +1172,9 @@
       "in_stock": true,
       "stock_quantity": 287,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/555734.jpeg",
@@ -1162,7 +1216,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/593844.jpeg",
@@ -1203,8 +1259,10 @@
       "cost_price": 90.0,
       "in_stock": true,
       "stock_quantity": 158,
-      "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_velocity": "average",
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/634234.png",
@@ -1246,7 +1304,9 @@
       "in_stock": true,
       "stock_quantity": 234,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/634544.png",
@@ -1288,7 +1348,9 @@
       "in_stock": true,
       "stock_quantity": 288,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/643575.png",
@@ -1330,7 +1392,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "96 (-6%)",
+      "q1_2026": "30 (-4%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/653444.png",
@@ -1372,7 +1436,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/654567.jpeg",
@@ -1414,7 +1480,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/735634.jpeg",
@@ -1456,7 +1524,9 @@
       "in_stock": true,
       "stock_quantity": 342,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/745624.png",
@@ -1497,8 +1567,10 @@
       "cost_price": 180.0,
       "in_stock": true,
       "stock_quantity": 85,
-      "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_velocity": "average",
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/982349.png",
@@ -1540,7 +1612,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/999039.jpeg",
@@ -1582,7 +1656,9 @@
       "in_stock": true,
       "stock_quantity": 342,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/129037.png",
@@ -1624,7 +1700,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/190222.png",
@@ -1666,7 +1744,9 @@
       "in_stock": true,
       "stock_quantity": 88,
       "sales_velocity": "average",
-      "sales_reasoning": "Classic style with a trendy embellishment, appealing to the formal and evening wear market."
+      "sales_reasoning": "Classic style with a trendy embellishment, appealing to the formal and evening wear market.",
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/191921.png",
@@ -1708,7 +1788,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/192223.png",
@@ -1750,7 +1832,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/192831.png",
@@ -1792,7 +1876,9 @@
       "in_stock": true,
       "stock_quantity": 287,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/222333.png",
@@ -1834,7 +1920,9 @@
       "in_stock": true,
       "stock_quantity": 245,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/345745.jpeg",
@@ -1876,7 +1964,9 @@
       "in_stock": true,
       "stock_quantity": 248,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/39288.png",
@@ -1918,7 +2008,9 @@
       "in_stock": true,
       "stock_quantity": 345,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/473843.png",
@@ -1959,8 +2051,10 @@
       "cost_price": 145.5,
       "in_stock": true,
       "stock_quantity": 182,
-      "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_velocity": "average",
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/555877.png",
@@ -2002,7 +2096,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/584922.png",
@@ -2044,7 +2140,9 @@
       "in_stock": true,
       "stock_quantity": 315,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/632567.png",
@@ -2086,7 +2184,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/634522.jpeg",
@@ -2128,7 +2228,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/663452.jpeg",
@@ -2170,7 +2272,9 @@
       "in_stock": true,
       "stock_quantity": 315,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/724354.jpeg",
@@ -2212,7 +2316,9 @@
       "in_stock": true,
       "stock_quantity": 245,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/725345.jpeg",
@@ -2254,7 +2360,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734222.png",
@@ -2296,7 +2404,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734522.jpeg",
@@ -2338,7 +2448,9 @@
       "in_stock": true,
       "stock_quantity": 342,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734555.png",
@@ -2380,7 +2492,9 @@
       "in_stock": true,
       "stock_quantity": 352,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/109244.png",
@@ -2422,7 +2536,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/199902.png",
@@ -2463,8 +2579,10 @@
       "cost_price": 180.0,
       "in_stock": true,
       "stock_quantity": 8,
-      "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_velocity": "average",
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/234893.png",
@@ -2506,7 +2624,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/239944.png",
@@ -2546,9 +2666,11 @@
       "current_price": 450.0,
       "cost_price": 180.0,
       "in_stock": true,
-      "stock_quantity": 85,
+      "stock_quantity": 300,
       "sales_velocity": "low",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "50 (-16%)",
+      "q1_2026": "10 (-20%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/292929.png",
@@ -2590,7 +2712,9 @@
       "in_stock": true,
       "stock_quantity": 188,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/335234.png",
@@ -2632,7 +2756,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/349022.png",
@@ -2674,7 +2800,9 @@
       "in_stock": true,
       "stock_quantity": 312,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/394855.png",
@@ -2716,7 +2844,9 @@
       "in_stock": true,
       "stock_quantity": 345,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/595544.png",
@@ -2758,7 +2888,9 @@
       "in_stock": true,
       "stock_quantity": 215,
       "sales_velocity": "high",
-      "sales_reasoning": "Popular item for parties and evening events."
+      "sales_reasoning": "Popular item for parties and evening events.",
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/634523.png",
@@ -2800,7 +2932,9 @@
       "in_stock": true,
       "stock_quantity": 288,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/667734.png",
@@ -2842,7 +2976,9 @@
       "in_stock": true,
       "stock_quantity": 287,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/684321.png",
@@ -2884,7 +3020,9 @@
       "in_stock": true,
       "stock_quantity": 237,
       "sales_velocity": "average",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/733344.png",
@@ -2926,7 +3064,9 @@
       "in_stock": true,
       "stock_quantity": 287,
       "sales_velocity": "high",
-      "sales_reasoning": null
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
     },
     "media": {
       "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/734222.png",
