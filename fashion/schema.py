@@ -183,6 +183,28 @@ class VoiceAndTone(BaseModel):
     dont: Optional[str] = None
     sample_copy: Optional[List[str]] = None
 
+class SocialMediaModelSetting(BaseModel):
+    setting_name: str
+    setting_description: str
+    setting_image_url: str
+
+class SocialMediaPlatform(BaseModel):
+    platform_name: str
+
+class SocialMediaStyle(BaseModel):
+    style_name: str
+    style_description: str 
+    style_prompt_template: str
+
+class SocialAIModel(BaseModel):
+    model_name: str
+    model_influencer_type: str
+    model_consistency_desciption: str 
+    model_images: List[str]
+    model_settings: List[SocialMediaModelSetting]
+    model_social_media_platforms: List[SocialMediaPlatform]
+    model_social_media_styles: List[SocialMediaStyle]
+
 class Brand(BaseModel):
     brand_identifier: str
     name: str
@@ -191,4 +213,5 @@ class Brand(BaseModel):
     visual_identity: VisualIdentity
     photography_and_art_direction: PhotographyAndArtDirection
     voice_and_tone: VoiceAndTone
+    social_media_model: Optional[SocialAIModel] = None
 

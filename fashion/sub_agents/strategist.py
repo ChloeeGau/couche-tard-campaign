@@ -1,4 +1,5 @@
 from fashion.schema import Trend, TrendStrategy
+from fashion.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
 from fashion.config import GEMINI_MODEL_NAME, PROJECT_ID, LOCATION, STANDARD_GENERATION_CONFIG
 from google.adk.agents.llm_agent import Agent
 import logging
@@ -6,6 +7,7 @@ import json
 from typing import List
 
 class Strategist:
+    @log_function_call
     def __init__(self):
         try:
             with open("fashion/prompts/strategist.md", "r") as f:
@@ -20,6 +22,7 @@ class Strategist:
             instruction=self.prompt_template,
         )
 
+    @log_function_call
     def generate_strategies(self, trends: List[Trend]) -> List[TrendStrategy]:
         """
         Generates strategy directives for a list of trends.

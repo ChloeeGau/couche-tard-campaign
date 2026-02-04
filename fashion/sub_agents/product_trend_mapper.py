@@ -1,6 +1,7 @@
 from fashion.schema import Product, ProductTrendMapping, TrendMatch, Trend
+from fashion.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
 from typing import Optional
-from fashion.config import GEMINI_MODEL_NAME, PROJECT_ID, LOCATION, STANDARD_GENERATION_CONFIG
+from fashion.config import GEMINI_MODEL_NAME, IMAGE_MODEL_NAME, PROJECT_ID, LOCATION, STANDARD_GENERATION_CONFIG, PROTOTYPE_SAFETY_SETTINGS
 from google.adk.agents.llm_agent import Agent
 import json
 import logging
@@ -9,7 +10,7 @@ from google.genai import types as genai_types
 from google.cloud import storage
 import io
 from PIL import Image
-from urllib.parse import urlparse, unquote
+from fashion.adk_common.utils.utils_gcs import normalize_bucket_uri
 from google.adk.tools import ToolContext
 from google.adk.agents.callback_context import CallbackContext
 from google.adk.sessions import InMemorySessionService
@@ -17,41 +18,15 @@ from google.adk.models import LlmResponse, LlmRequest
 from typing import Optional
 from typing import List
 from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
+from fashion.adk_common.utils.utils_agents import get_genai_client
 from google.adk.agents.invocation_context import InvocationContext
 from fashion.data.products import retrieve_products
-_genai_client = None
-_genai_client_global = None  # For gemini-3 models that require global location
-_storage_client = None
 from google.genai.types import HarmBlockThreshold, HarmCategory
-
-def get_genai_client(use_global: bool = False):
-    """Get or create the GenAI client.
-    
-    Args:
-        use_global: If True, use 'global' location for gemini-3 models
-    """
-    global _genai_client, _genai_client_global
-    
-    if use_global:
-        if _genai_client_global is None:
-            _genai_client_global = genai.Client(
-                vertexai=True,
-                project=PROJECT_ID,
-                location="global",  # gemini-3 models require global location
-            )
-        return _genai_client_global
-    else:
-        if _genai_client is None:
-            _genai_client = genai.Client(
-                vertexai=True,
-                project=PROJECT_ID,
-                location=LOCATION,
-            )
-        return _genai_client
 
 class ProductTrendMapper:
     trendlist = None
 
+    @log_function_call
     def __init__(self):
         # self.agent = Agent(
         #     name="product_trend_mapper",
@@ -80,6 +55,7 @@ class ProductTrendMapper:
 
 
 
+    @log_function_call
     def _get_product_by_sku(self, tool_context: ToolContext, sku: str) -> dict[str, any]:
         # def _get_product_by_sku(self, tool_context: InvocationContext, sku: str) -> Optional[Product]:
         print(f"calling _get_product_by_sku with sku: {sku}")
@@ -96,6 +72,7 @@ class ProductTrendMapper:
                 return product_listing
         return Product().__dict__
 
+    @log_function_call
     def _before_model_callback(
         self,
         callback_context: CallbackContext, llm_request: LlmRequest
@@ -111,6 +88,7 @@ class ProductTrendMapper:
         #         i += 1
         return None
 
+    @log_function_call
     def _after_model_callback(
         self,
         callback_context: CallbackContext, llm_response: LlmResponse
@@ -122,11 +100,12 @@ class ProductTrendMapper:
         print("PLLPLEASE WORK")
         print(f"trendlist: {self.trendlist}")
         i = 0
-        for part in llm_response.content.parts:
-            if part.text:
-                print(f"Response Part {i}: {part.text}")
-                # if "Product Attributes" in part.text:
-                #     callback_context.state['matching_trends'] = part.text
+        if llm_response.content:
+            for part in llm_response.content.parts:
+                if part.text:
+                    print(f"Response Part {i}: {part.text}")
+                    # if "Product Attributes" in part.text:
+                    #     callback_context.state['matching_trends'] = part.text
                 #     print("Product Attributes found")
                 # elif "core_identifiers" in part.text:
                 #     cleaned_json_string = part.text.replace("```json\n", "").replace("\n```", "")
@@ -161,6 +140,7 @@ class ProductTrendMapper:
         return None  # Allow the model call to proceed
 
 
+    @log_function_call
     async def _load_gcs_image(self, gcs_uri: str, storage_client: storage.Client) -> Optional[genai_types.Part]:
         """Loads an image from GCS and returns it as a Part object.
 
@@ -180,35 +160,10 @@ class ProductTrendMapper:
             logging.error(f"Failed to load image from '{gcs_uri}': {e}")
             return None
 
-    async def normalize_bucket_uri(self, url: str) -> Optional[str]:
-        """Normalizes GCS URLs to gs:// format."""
-        print(f"normalize_bucket_uri: {url}")
-        if not url:
-            return None
-        if url.startswith("gs://"):
-            print("ALREADY GS")
-            return url
 
-        parsed = urlparse(url)
-        path = unquote(parsed.path)
-
-        # Handle virtual hosted style: bucket.storage.googleapis.com
-        if parsed.netloc.endswith(".storage.googleapis.com") and parsed.netloc != "storage.googleapis.com":
-            bucket = parsed.netloc.replace(".storage.googleapis.com", "")
-            obj = path.lstrip("/")
-            return f"gs://{bucket}/{obj}"
-
-        # Handle path style: storage.googleapis.com or storage.cloud.google.com
-        if parsed.netloc in ["storage.googleapis.com", "storage.cloud.google.com"]:
-            # Path is /bucket/object...
-            clean_path = path.lstrip("/")
-            if "/" in clean_path:
-                bucket, obj = clean_path.split("/", 1)
-                return f"gs://{bucket}/{obj}"
-
-        return None
 
     # TODO move this to a shared utils file 
+    @log_function_call
     async def load_image_into_artifact(self, product: str, tool_context: ToolContext, image_gcs_file_path: str) -> Optional[str]:
         """Ensures the product photo artifact exists, creating it if necessary.
 
@@ -227,7 +182,7 @@ class ProductTrendMapper:
         """
         logging.info(f"loading image from gcs: {image_gcs_file_path}")
 
-        normalized_uri = await self.normalize_bucket_uri(image_gcs_file_path)
+        normalized_uri = normalize_bucket_uri(image_gcs_file_path)
         if normalized_uri:
             try:
                 storage_client = storage.Client()
@@ -259,6 +214,7 @@ class ProductTrendMapper:
                 " Will attempt to fetch from BigQuery."
             )
 
+    @log_function_call
     async def retrieve_image_from_gcs(self, product: Product, image_path: str, tool_context: ToolContext) -> str:
         print(f"image_path: {image_path}")
         # try:
@@ -315,6 +271,7 @@ class ProductTrendMapper:
         #     )
         #     return "https://storage.cloud.google.com/" + source_blob_name
 
+    @log_function_call
     async def identify_product_from_image(self, image_path: str) -> Product:
         """
         Analyzes an image to identify the product and maps it to the Product schema.
@@ -379,6 +336,7 @@ class ProductTrendMapper:
             )
             return result
 
+    @log_function_call
     async def generate_trend_image_prompt(self, product: Product, tool_context: ToolContext) -> str:
         """
         Generates an image based on the matching trends stored in the tool_context's session state.
@@ -498,6 +456,7 @@ class ProductTrendMapper:
         print(response.text)
         return response.text
 
+    @log_function_call
     async def generate_trend_image(self, product: Product, tool_context: ToolContext) -> str:
         """
         Generates an image based on the matching trends stored in the tool_context's session state.
@@ -507,35 +466,17 @@ class ProductTrendMapper:
         print(f"prompt_contents is {prompt_contents}")
                     
         # try:
-        IMAGE_MODEL = "gemini-3-pro-image-preview"
-        use_global = "gemini-3" in IMAGE_MODEL
+        use_global = "gemini-3" in IMAGE_MODEL_NAME
         location_used = "global" if use_global else LOCATION
         client = get_genai_client(use_global=use_global)
-        safety_settings: list = [
-            genai_types.SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-                threshold=HarmBlockThreshold.OFF,
-            ),
-            genai_types.SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-                threshold=HarmBlockThreshold.OFF,
-            ),
-            genai_types.SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-                threshold=HarmBlockThreshold.OFF,
-            ),
-            genai_types.SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_HARASSMENT,
-                threshold=HarmBlockThreshold.OFF,
-            ),
-        ]
+        safety_settings = PROTOTYPE_SAFETY_SETTINGS
         contents = [prompt_contents]
         trend_board_url = ""
         print(f"sending prompt: {prompt_contents}")
         # Assuming the client has an async method `generate_image` that takes a prompt
         # and returns a URL or path to the generated image.
         response = client.models.generate_content(
-            model=IMAGE_MODEL,
+            model=IMAGE_MODEL_NAME,
             contents=contents,
             config=genai_types.GenerateContentConfig(
                 image_config=genai_types.ImageConfig(aspect_ratio="16:9"),
@@ -588,6 +529,7 @@ class ProductTrendMapper:
 
         
 
+    @log_function_call
     async def map_product_to_trends_demo(self, static_mapping_data: dict) -> ProductTrendMapping:
         """
         Creates a ProductTrendMapping object from static data.
@@ -618,12 +560,13 @@ class ProductTrendMapper:
 
         return ProductTrendMapping(**static_mapping_data)
     
+    @log_function_call
     async def map_product_to_trends(self, product: Product, image_path: str, tool_context: ToolContext) -> ProductTrendMapping:
         """
         Maps a product to relevant micro and macro trends using Gemini.
         """
         # try:
-        image_path = await self.normalize_bucket_uri(image_path)
+        image_path = normalize_bucket_uri(image_path)
         print(f"Mapping product to trends: {product} {image_path}")
         
         prompt_content = [

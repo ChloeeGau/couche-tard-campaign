@@ -1,4 +1,5 @@
 from fashion.schema import Trend, Scene, CreativeDirection, FinalAd
+from fashion.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
 from fashion.config import GEMINI_MODEL_NAME, PROJECT_ID, LOCATION, STANDARD_GENERATION_CONFIG
 import logging
 from google import genai
@@ -86,6 +87,7 @@ class CampaignManager:
         ]
     }
 
+    @log_function_call
     def __init__(self):
         # self.agent = Agent(
         #     name="product_trend_mapper",
@@ -109,6 +111,7 @@ class CampaignManager:
           # after_model_callback=self._after_model_callback,
       )
 
+    @log_function_call
     async def map_scenes(self, static_mapping_data: dict) -> CreativeDirection:    
         """
         Creates a CreativeDirection object from static data.
@@ -135,6 +138,7 @@ class CampaignManager:
             scenes=scenes
         )
 
+    @log_function_call
     async def generate_video_scenes(self) -> FinalAd:
         print(f"calling generate_video_scenes")
         # return ["https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_1_1768084736.mp4", "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_2_1768084729.mp4", "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_3_1768084986.mp4"]
@@ -144,6 +148,7 @@ class CampaignManager:
         return final_ad
       
 
+    @log_function_call
     async def generate_combined_video(self) -> FinalAd:
         print(f"calling generate_combined_video")
         mapped_scenes = await self.map_scenes(self.scene_dict)
@@ -152,6 +157,7 @@ class CampaignManager:
         final_ad.final_ad_url = "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/combined_video_1768085105.mp4"
         return final_ad
 
+    @log_function_call
     async def generate_social_post(self) -> FinalAd:
         print(f"calling generate_social_post")
         mapped_scenes = await self.map_scenes(self.scene_dict)

@@ -1,164 +1,88 @@
-# import logging
+import json
+from fashion.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
+import os
+from typing import List
 
-# from fashion.config import PROJECT_ID, LOCATION, GEMINI_MODEL_NAME
-# from fashion.tools.inventory import InventoryTool
-# from fashion.tools.sales import SalesTool
-# # from fashion.tools.asset import AssetTool
-# # from fashion.sub_agents.trend import TrendAgent
-# from fashion.sub_agents.trend_spotter import TrendSpotter
-# from fashion.sub_agents.fashion_photographer import FashionPhotographer
-# from fashion.sub_agents.art_director import ArtDirector
-# from fashion.sub_agents.creative_director import CreativeDirector
-# from fashion.sub_agents.product_trend_mapper import ProductTrendMapper
-# # from fashion.tools.campaign import CampaignTool
-# from google.adk.agents import Agent
-# from google.adk.tools import AgentTool
-# from fashion.tools.video_generation_prompt import generate_video_prompt
-# from google.adk.sessions import InMemorySessionService
-# from typing import List
-# from fashion.schema import Product, ProductTrendMapping, TrendMatch, Trend, ProductList
-# from google.adk.agents.callback_context import CallbackContext
-# # from google.adk.caching import InvocationContext
-# from google.adk.agents.invocation_context import InvocationContext
+from google.adk.agents import Agent
+from google.adk.agents.invocation_context import InvocationContext
+from google.adk.sessions import InMemorySessionService
+from google.adk.tools import AgentTool, VertexAiSearchTool
 
-# import uuid
-
-# session_service = InMemorySessionService()
-# logger = logging.getLogger(__name__)
-
-
-
-# def create_davos_fashion_agent() -> Agent:
-#     agent = Agent(
-#         name=agent_settings.agent_name,
-#         model="gemini-2.5-flash", # Defaulting to a capable model
-#         instruction="greet the user",
-#         description="a fashion agent",
-#     )
-
-#     return agent
-
-#     # except Exception as e:
-#     #     logger.error(f"Failed to create {agent_settings.agent_name}: {e}")
-#     #     raise RuntimeError(f"Failed to create agent: {str(e)}")
-
-
-# from fashion.config import AgentSettings
-
-# # try:
-# # Try to load settings from environment
-# agent_settings = AgentSettings()
-# agent = create_davos_fashion_agent()
-# logger.info(f"{agent_settings.agent_name} initialized successfully")
-# # except Exception as e:
-# #     logger.error(f"Failed to create agent: {e}")
-# #     raise RuntimeError(f"Failed to create agent: {str(e)}")
-
-# # Export with both names for ADK and AgentSpace compatibility
-# root_agent = agent
-# __all__ = ["agent", "root_agent", "create_davos_fashion_agent"]
-
-
-
-
-
-
-
-
-
-import logging
-from fashion.config import PROJECT_ID, LOCATION, GEMINI_MODEL_NAME
+from fashion.adk_common.utils.utils_agents import to_dict_recursive
+from fashion.adk_common.utils.utils_gcs import generate_min_image
+from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
+from fashion.config import GEMINI_MODEL_NAME, LOCATION, PROJECT_ID, AgentSettings
+from fashion.data.products import retrieve_products
+from fashion.schema import (
+    Attributes,
+    Brand,
+    Categorization,
+    CommercialStatus,
+    CoreIdentifiers,
+    Description,
+    Media,
+    Product,
+    ProductTrendMapping,
+    TaxonomyAttributes,
+    Trend,
+    TrendMatch,
+    VisualAssets,
+)
+from fashion.sub_agents.art_director import ArtDirector
+# from fashion.sub_agents.campaign_manager import CampaignManager
+from fashion.sub_agents.creative_director import CreativeDirector
+from fashion.sub_agents.fashion_photographer import FashionPhotographer
+from fashion.sub_agents.product_trend_mapper import ProductTrendMapper
+from fashion.sub_agents.trend_spotter import TrendSpotter
+from fashion.sub_agents.social_media_director import SocialMediaDirector
 from fashion.tools.inventory import InventoryTool
 from fashion.tools.sales import SalesTool
-# from fashion.tools.asset import AssetTool
-# from fashion.sub_agents.trend import TrendAgent
-from fashion.sub_agents.trend_spotter import TrendSpotter
-from fashion.sub_agents.fashion_photographer import FashionPhotographer
-from fashion.sub_agents.art_director import ArtDirector
-from fashion.sub_agents.creative_director import CreativeDirector
-from fashion.sub_agents.product_trend_mapper import ProductTrendMapper
-from fashion.sub_agents.campaign_manager import CampaignManager
-# from fashion.tools.campaign import CampaignTool
-from google.adk.agents import Agent
-from google.adk.tools import AgentTool
-from fashion.tools.video_generation_prompt import generate_video_prompt
-from google.adk.sessions import InMemorySessionService
-from typing import List
-from fashion.schema import *
-from google.adk.agents.callback_context import CallbackContext
-# from google.adk.caching import InvocationContext
-from google.adk.agents.invocation_context import InvocationContext
-from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
-from PIL import Image, ImageDraw, ImageFont
-import uuid
-import io
-from google.adk.tools import VertexAiSearchTool
-import json
-import os
-from typing import Tuple, Any, Dict 
-from fashion.data.products import retrieve_products
-from google.cloud import storage
-from fashion.config import AgentSettings
 
-session_service = InMemorySessionService()
 
-logger = logging.getLogger(__name__)
 
-# async def create_session_example():
-#     print("hiya")
+
+# TODO: session
+# Initialize the session immediately so it's ready
+# session_service = InMemorySessionService()
+# async def create_session():
+#     """Creates a sample session for testing purposes.
+
+#     Returns:
+#         Session: A newly created in-memory session.
+#     """
 #     session = await session_service.create_session(
 #         app_name="my_app", user_id="test_user", session_id="123"
 #     )
-#     print(f"new session is {session}")
-#     print(session.id)
+#     log_message(f"new session is {session.id}", Severity.INFO)
 #     return session
 
-# # Initialize the session immediately so it's ready
-# Generate a UUID object (Version 4, random)
-
-async def create_session_example():
-    session = await session_service.create_session(
-        app_name="my_app", user_id="test_user", session_id="123"
-    )
-    print(f"new session is {session}")
-    print(session.id)
-    return session
-
-# from fashion.sub_agents.product_trend_mapper_agent import ProductTrendMapperAgent
 # Initialize Tools
+# TODO: should the inventory and sales tools for BQ be brought in differently?
 inventory_tool = InventoryTool()
 sales_tool = SalesTool()
-# asset_tool = AssetTool()
-# trend_agent = TrendAgent()
 trend_spotter_agent = TrendSpotter()
 fashion_photographer_agent = FashionPhotographer()
 art_director_agent = ArtDirector()
 creative_director_agent = CreativeDirector()
 product_trend_mapper_agent = ProductTrendMapper()
-campaign_manager_agent = CampaignManager()
-
-# async def _dynamic_instruction_provider(
-#     context: ReadonlyContext,
-# ) -> str:
-#     """Dynamically provides instructions to the agent by loading and formatting a prompt."""
-
-#     prompt = utils_prompts.load_prompt_file_from_calling_agent(
-#         {
-#             "DEMO_COMPANY_NAME": DEMO_COMPANY_NAME,
-#             "STORYTELLING_INSTRUCTIONS": STORYTELLING_INSTRUCTIONS,
-#             "GCS_AUTHENTICATED_DOMAIN": utils_gcs.GCS_AUTHENTICATED_DOMAIN,
-#             "GCS_AUTHENTICATED_DOMAIN_SANS_PROTOCOL": utils_gcs.GCS_AUTHENTICATED_DOMAIN_SANS_PROTOCOL,
-#             "SESSION_ARTIFACTS_STATE": json.dumps(context.state.get(SESSION_ARTIFACTS_STATE_KEY, "{}"))
-#         }
-#     )
-#     return prompt
+social_media_director_agent = SocialMediaDirector()
+# campaign_manager_agent = CampaignManager()
     
-# Define Tool Functions for the Agent (wrapper for tools)
-
 # TODO: enhance the logic around determining velocity
 # TODO: include sales plan information
+@log_function_call
 def identify_inventory_opportunities(tool_context: InvocationContext) -> List[Product]:
-    """Identifies high-stock, low-velocity inventory items."""
+    """Identifies high-stock, low-velocity inventory items by cross-referencing inventory and sales data.
+
+    This function finds products that have high stock levels but low sales velocity.
+    It enriches the product data with sales velocity reasoning if available.
+
+    Args:
+        tool_context (InvocationContext): The context for the tool execution.
+
+    Returns:
+        List[dict]: A list of dictionary representations of the identified opportunity products.
+    """
     high_stock_products = inventory_tool.find_high_stock()
     low_velocity_products = sales_tool.find_low_velocity()
     # Map SKU to Product for low velocity items
@@ -182,72 +106,9 @@ def identify_inventory_opportunities(tool_context: InvocationContext) -> List[Pr
     tool_context.state["opportunities"] = opportunities_as_dict
     return opportunities_as_dict    
 
-def to_dict_recursive(obj):
-    # If the object is not a custom object (e.g., int, str, None, etc.), return it directly
-    if not hasattr(obj, "__dict__"):
-        return obj
-    
-    # If the object is a custom object, create a new dictionary
-    result = {}
-    for key, value in obj.__dict__.items():
-        # Skip private attributes starting with '_' (optional, but good practice)
-        if key.startswith("_"):
-            continue
-        
-        # Recursively convert the value
-        element = to_dict_recursive(value)
-        result[key] = element
-        
-    return result
-
-
-
-def generate_min_image(source_blob_name:str):
-    print(f"source_blob_name: {source_blob_name}")
-    storage_client = storage.Client()
-    image_path = source_blob_name.strip()
-    # Extract bucket and blob name from gs:// path
-    bucket_name = image_path.replace("gs://", "").replace("https://storage.cloud.google.com/", "").split("/")[0]
-    source_blob_name = image_path.replace(f"gs://{bucket_name}/", "").replace(f"https://storage.cloud.google.com/{bucket_name}/", "")
-    bucket = storage_client.bucket(bucket_name)
-
-    # If product image doesn't exist, fail
-    blob = bucket.blob(source_blob_name)
-    if not blob.exists():
-        logging.error(f"Image not found in GCS: {image_path}")
-        return None
-        
-    # Check for _min file
-    min_blob_name = source_blob_name.replace(".png", "_min.png").replace(".jpg", "_min.jpg")
-    min_blob = bucket.blob(min_blob_name)
-    
-    # Create min image if it doesn't exist
-    if not min_blob.exists():
-        logging.warning(f"Min image not found in GCS. Creating {min_blob_name}")
-    
-        image_bytes = blob.download_as_bytes()
-        original_img = Image.open(io.BytesIO(image_bytes))
-        
-        # Resize logic (max height 500)
-        target_height = 200
-        aspect_ratio = original_img.width / original_img.height
-        target_width = int(target_height * aspect_ratio)
-        thumbnail_img = original_img.resize((target_width, target_height), Image.Resampling.LANCZOS)
-        
-        # Save thumbnail to bytes
-        min_img_byte_arr = io.BytesIO()
-        # Preserve format if possible, default to PNG
-        fmt = original_img.format if original_img.format else 'PNG'
-        thumbnail_img.save(min_img_byte_arr, format=fmt)
-        min_img_bytes = min_img_byte_arr.getvalue()
-        
-        # Upload _min blob
-        min_blob.upload_from_string(min_img_bytes, content_type=blob.content_type or 'image/png')
-    print(f"min_blob_name: {min_blob_name}")
-    return min_blob_name
-
 
 # TODO: read from BQ instead of JSON
+@log_function_call
 def load_brand_data(tool_context: InvocationContext):
     """Loads brand data from brands.json into the tool_context state."""
     try:
@@ -259,23 +120,31 @@ def load_brand_data(tool_context: InvocationContext):
         with open(file_path, "r") as f:
             brand_data = json.load(f)
             tool_context.state["brand_data"] = brand_data
-            logger.info("Brand data loaded successfully into state.")
-            logger.info(f"Brand data: {tool_context.state['brand_data']}")
+            log_message("Brand data loaded successfully into state.", Severity.INFO)
+            log_message(f"Brand data: {tool_context.state['brand_data']}", Severity.INFO)
     except FileNotFoundError:
-        logger.error(f"brands.json not found at {file_path}")
+        log_message(f"brands.json not found at {file_path}", Severity.ERROR)
         tool_context.state["brand_data"] = {}
     except json.JSONDecodeError:
-        logger.error(f"Error decoding JSON from brands.json at {file_path}")
+        log_message(f"Error decoding JSON from brands.json at {file_path}", Severity.ERROR)
         tool_context.state["brand_data"] = {}
     except Exception as e:
-        logger.error(f"An unexpected error occurred while loading brand data: {e}")
+        log_message(f"An unexpected error occurred while loading brand data: {e}", Severity.ERROR)
         tool_context.state["brand_data"] = {}
 
 
-# def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict[str, any]:
-# def get_product_by_sku(tool_context: InvocationContext, sku: str) -> Tuple[dict[str, Any], dict[str, Any]]:
 # TODO: move products to a database instead of json file
+@log_function_call
 def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict:
+    """Retrieves a product and its associated brand information by SKU.
+
+    Args:
+        tool_context (InvocationContext): The context for the tool execution.
+        sku (str): The SKU of the product to retrieve.
+
+    Returns:
+        tuple[dict, dict]: A tuple containing the product dictionary and the brand info dictionary.
+    """
     products = retrieve_products()
     for product in products:
         if product.core_identifiers.sku == sku:
@@ -285,136 +154,79 @@ def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict:
             brand_info = next((brand for brand in tool_context.state.get("brand_data", []) if brand.get("name") == brand_name), None)
             if brand_info:
                 tool_context.state['brand_info'] = brand_info
-                logger.info(f"Brand info for {brand_name} loaded successfully into state.")
+                log_message(f"Brand info for {brand_name} loaded successfully into state.", Severity.INFO)
             else:
-                logger.warning(f"Brand info for {brand_name} not found in loaded data.")
+                log_message(f"Brand info for {brand_name} not found in loaded data.", Severity.WARNING)
             return to_dict_recursive(product), to_dict_recursive(tool_context.state['brand_info'])
 
     return to_dict_recursive(Product()),to_dict_recursive(Brand())
     
-# def get_product_assets(sku: str):
-#     """Retrieves catalog specs and imagery for a generic product."""
-#     return asset_tool.get_catalog_specs(sku)
 
-# def analyze_market_trends(product_context: str, image_path: str):
-#     """
-#     Analyzes current social media trends for the given product.
-#     
-#     Args:
-#         product_context: Description or context of the product.
-#         image_path: Optional path to an image of the product.
-#     """
-#     return trend_agent.analyze_social_trends(product_context, image_path)
-
+@log_function_call
 def analyze_market_trends():
-    """
-    Analyzes current social media trends for the given product.
-    
+    """Analyzes current social media trends using the Trend Spotter agent.
+
+    Returns:
+        str: The analysis result from the Trend Spotter agent.
     """
     return trend_spotter_agent.spot_trends()
 
 
-# def create_campaign_draft(product_name: str, trend_micro: str, trend_macro: str, audience: str):
-#     """
-#     Drafts a campaign based on the product and trend data.
-#     """
-#     # reconstruct trend object for internal tool use
-#     from fashion.schema import TrendAnalysis
-#     trend_obj = TrendAnalysis(
-#         micro_trend=trend_micro,
-#         macro_trend=trend_macro,
-#         target_audience=audience,
-#         keywords=[]
-#     )
-#     return campaign_tool.draft_campaign(product_name, trend_obj)
-
-# def generate_campaign_video(campaign_name: str):
-#     """Generates a video for the campaign."""
-#     # This is a simplification; in reality we'd pass the full draft object or ID
-#     return f"Video generation started for {campaign_name}..."
-
-# Load Prompts
-def load_prompt(filename: str) -> str:
-    try:
-        with open(f"fashion/prompts/{filename}", "r") as f:
-            return f.read()
-    except Exception as e:
-        logging.error(f"Failed to load prompt {filename}: {e}")
-        return ""
-
-system_instruction = load_prompt("instructions.md")
+system_instruction = load_prompt_file_from_calling_agent(prompt_filename="prompts/instructions.md")
 # system_instruction = load_prompt_file_from_calling_agent(prompt_filename="prompts/instructions_demo.md")
-# Create Agent
-# Note: In a real ADK app, you'd likely use a specific Model implementation (e.g., VertexAIModel)
-# For this demo, we assume the environment is set up for the default model provider or use a placeholder.
-# If ADK requires a specific model instance, we would instantiate it here.
 
-# def retrieve_campaign():
-    
+@log_function_call
+def create_davos_fashion_agent() -> Agent:
+    """Create and configure the primary Davos Fashion Agent.
 
-# campaign_agent = Agent(
-#     name='campaign_agent',
-#     model="gemini-2.5-flash", # Defaulting to a capable model
-#     instruction="greet the user",
-#     description="Campaign Agent"
-# )
-
-#     return agent
-# def create_davos_fashion_agent() -> Agent:
-#     agent = Agent(
-#         name=agent_settings.agent_name,
-#         model="gemini-2.5-flash", # Defaulting to a capable model
-#         instruction="greet the user",
-#         description=agent_settings.agent_description
-#     )
-#     return agent
-
-# def create_davos_fashion_agent_demo() -> Agent:
-#     """Create and configure the primary cap compliance agent."""
-
-#     # Create the main compliance agent
-#     # try:
-#     agent = Agent(
-#         name=agent_settings.agent_name,
-#         model=GEMINI_MODEL_NAME, # Defaulting to a capable model
-#         instruction=system_instruction,
-#         description=agent_settings.agent_description,
-#         tools=[
-#             # create_session_example,
-#             identify_inventory_opportunities,
-#             load_brand_data,
-#             get_product_by_sku,
-#             product_lifestyle_image_generator
-#             # get_product_assets,
-#             # analyze_market_trends,
-#             AgentTool(agent=product_trend_mapper_agent.agent),
-#             # product_trend_mapper_agent.retrieve_image_from_gcs,
-#             # product_trend_mapper_agent.identify_product_from_image,
-#             # product_trend_mapper_agent.map_product_to_trends,
-#             # AgentTool(agent=ProductTrendMapperAgent().agent),
-
-#             AgentTool(agent=trend_spotter_agent.agent),
-#             AgentTool(agent=ArtDirector().agent),
-#             # art_director_agent.create_moodboards,
-#             # art_director_agent.create_campaign_directive,
-#             fashion_photographer_agent.generate_campaign_image,
-#             # creative_director_agent.create_video_scenes_demo,
-#             creative_director_agent.create_video_scenes,
-#             creative_director_agent.generate_scene_image,
-#             # generate_video_prompt,
-#             AgentTool(agent=campaign_manager_agent.agent),
-#             # create_campaign_draft,
-#             # generate_campaign_video
-#         ]
-#     )
-
-#     logger.info(f"Successfully created {agent_settings.agent_name}")
-#     return agent
-
-
-def map_product_to_trends_demo() -> ProductTrendMapping:
+    Returns:
+        Agent: The configured Google ADK Agent instance.
     """
-    Creates a ProductTrendMapping object from static data.
+
+    # Create the main agent
+    try:
+        agent = Agent(
+            name=agent_settings.agent_name,
+            model=GEMINI_MODEL_NAME, # Defaulting to a capable model
+            instruction=system_instruction,
+            description=agent_settings.agent_description,
+            tools=[
+                # AgentTool(agent=sales_plan_agent),
+                # create_session,
+                load_brand_data,
+                identify_inventory_opportunities,
+                get_product_by_sku,
+                # get_product_assets,
+                analyze_market_trends,
+                AgentTool(agent=product_trend_mapper_agent.agent),
+                # product_trend_mapper_agent.retrieve_image_from_gcs,
+                # product_trend_mapper_agent.identify_product_from_image,
+                # product_trend_mapper_agent.map_product_to_trends,
+                AgentTool(agent=trend_spotter_agent.agent),
+                AgentTool(agent=art_director_agent.agent),
+                # art_director_agent.create_moodboards,
+                # art_director_agent.create_campaign_directive,
+                fashion_photographer_agent.generate_campaign_image,
+                creative_director_agent.create_video_scenes,
+                creative_director_agent.generate_scene_image,
+                # generate_video_prompt,
+                AgentTool(agent=social_media_director_agent.agent)
+            ]
+        )
+
+        log_message(f"Successfully created {agent_settings.agent_name}", Severity.INFO)
+        return agent
+    except Exception as e:
+        log_message(f"Failed to create {agent_settings.agent_name}: {e}", Severity.ERROR)
+        return None
+
+
+@log_function_call
+def map_product_to_trends_demo() -> ProductTrendMapping:
+    """Creates a ProductTrendMapping object from static data.
+
+    Returns:
+        ProductTrendMapping: A static mapping of products to trends for demo purposes.
     """
 
     micro_trends_data=[
@@ -656,105 +468,58 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
     
     return ProductTrendMapping(**static_mapping_data)
 
-def create_davos_fashion_agent() -> Agent:
-    """Create and configure the primary cap compliance agent."""
-
-    # Create the main compliance agent
-    # try:
-    agent = Agent(
-        name=agent_settings.agent_name,
-        model=GEMINI_MODEL_NAME, # Defaulting to a capable model
-        instruction=system_instruction,
-        description=agent_settings.agent_description,
-        tools=[
-            # AgentTool(agent=sales_plan_agent),
-            # create_session_example,
-            load_brand_data,
-            identify_inventory_opportunities,
-            get_product_by_sku,
-            # get_product_assets,
-            # analyze_market_trends,
-            
-            # USED FOR DEMO
-            AgentTool(agent=product_trend_mapper_agent.agent),
-            # product_trend_mapper_agent.retrieve_image_from_gcs,
-            # product_trend_mapper_agent.identify_product_from_image,
-            # product_trend_mapper_agent.map_product_to_trends,
-            
-            # AgentTool(agent=ProductTrendMapperAgent().agent),
-
-            AgentTool(agent=trend_spotter_agent.agent),
-            # USED FOR DEMO
-            AgentTool(agent=art_director_agent.agent),
-            # art_director_agent.create_moodboards,
-            # art_director_agent.create_campaign_directive,
-
-            fashion_photographer_agent.generate_campaign_image,
-            # creative_director_agent.create_video_scenes_demo,
-            creative_director_agent.create_video_scenes,
-            creative_director_agent.generate_scene_image,
-            # generate_video_prompt,
-            # AgentTool(agent=campaign_manager_agent.agent),
-            # create_campaign_draft,
-            # generate_campaign_video
-        ]
-    )
-
-    logger.info(f"Successfully created {agent_settings.agent_name}")
-    return agent
-
+@log_function_call
 def create_davos_fashion_agent_demo() -> Agent:
-    """Create and configure the primary cap compliance agent."""
-    print(f"model is {GEMINI_MODEL_NAME}")
-    # Create the main compliance agent
-    # try:
-    agent = Agent(
-        name=agent_settings.agent_name,
-        model=GEMINI_MODEL_NAME, # Defaulting to a capable model
-        instruction=system_instruction,
-        description=agent_settings.agent_description,
-        tools=[
-            # AgentTool(agent=sales_plan_agent),
-            identify_inventory_opportunities,
-            load_brand_data,
-            get_product_by_sku,
-            map_product_to_trends_demo,
-            AgentTool(agent=ArtDirector().agent),
-            fashion_photographer_agent.generate_campaign_image,
-            creative_director_agent.create_video_scenes,
-            creative_director_agent.generate_scene_image,
-            AgentTool(agent=campaign_manager_agent.agent),
-        ]
+    """Create and configure the primary Davos Fashion Agent for deterministic demo purposes.
+
+    Returns:
+        Agent: The configured Google ADK Agent instance for the demo.
+    """
+    log_message(f"model is {GEMINI_MODEL_NAME}", Severity.INFO)
+
+    try:
+        agent = Agent(
+            name=agent_settings.agent_name,
+            model=GEMINI_MODEL_NAME, # Defaulting to a capable model
+            instruction=system_instruction,
+            description=agent_settings.agent_description,
+            tools=[
+                identify_inventory_opportunities,
+                load_brand_data,
+                get_product_by_sku,
+                map_product_to_trends_demo,
+                AgentTool(agent=ArtDirector().agent),
+                fashion_photographer_agent.generate_campaign_image,
+                creative_director_agent.create_video_scenes,
+                creative_director_agent.generate_scene_image,
+                AgentTool(agent=campaign_manager_agent.agent),
+            ]
+        )
+
+        log_message(f"Successfully created {agent_settings.agent_name}", Severity.INFO)
+        return agent
+    except Exception as e:
+        log_message(f"Failed to create {agent_settings.agent_name}: {e}", Severity.ERROR)
+        raise RuntimeError(f"Failed to create agent: {str(e)}")
+
+
+try:
+    # Try to load settings from environment
+    agent_settings = AgentSettings()
+
+    sales_plan_agent = Agent(
+        name="sales_plan_agent",
+        model=GEMINI_MODEL_NAME,
+        tools=[VertexAiSearchTool(data_store_id=agent_settings.sharepoint_datastore_id)],
+        instruction="Retrieve data from the sales plan document. Return it in a human readable format.",
     )
 
-    logger.info(f"Successfully created {agent_settings.agent_name}")
-    return agent
-
-    # except Exception as e:
-    #     logger.error(f"Failed to create {agent_settings.agent_name}: {e}")
-    #     raise RuntimeError(f"Failed to create agent: {str(e)}")
-
-
-
-
-# try:
-# Try to load settings from environment
-agent_settings = AgentSettings()
-
-
-sales_plan_agent = Agent(
-    name="sales_plan_agent",
-    model='gemini-2.5-flash',
-    tools=[VertexAiSearchTool(data_store_id=agent_settings.sharepoint_datastore_id)],
-    instruction="Retrieve data from the sales plan document. Return it in a human readable format.",
-)
-
-# agent = create_davos_fashion_agent_demo()
-agent = create_davos_fashion_agent()
-logger.info(f"{agent_settings.agent_name} initialized successfully")
-# except Exception as e:
-#     logger.error(f"Failed to create agent: {e}")
-#     raise RuntimeError(f"Failed to create agent: {str(e)}")
+    # agent = create_davos_fashion_agent_demo()
+    agent = create_davos_fashion_agent()
+    log_message(f"{agent_settings.agent_name} initialized successfully", Severity.INFO)
+except Exception as e:
+    log_message(f"Failed to create agent: {e}", Severity.ERROR)
+    raise RuntimeError(f"Failed to create agent: {str(e)}")
 
 # Export with both names for ADK and AgentSpace compatibility
 root_agent = agent

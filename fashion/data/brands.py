@@ -3,6 +3,7 @@ import json
 from typing import List
 
 # Raw brand data loaded from JSON
+
 brand_data = """[
   {
     "brand_identifier": "maison_onyx",
@@ -32,6 +33,33 @@ brand_data = """[
       "lighting": "Flash Editorial. High-contrast, direct flash photography that mimics paparazzi shots or late-night party photos. Shadows are hard and dramatic.",
       "environment": "Luxury interiors. Marble staircases, the back of a black car, velvet hotel lobbies, or mirrored elevators.",
       "styling": "More is More. The quilted shorts shouldn't be worn with a t-shirt. Style them with sheer black tights, sky-high stilettos or patent leather knee-high boots, a matching structured blazer or a silk corset top, and heavy gold jewelry."
+    },
+    "social_media_model": {
+      "model_name": "Jenna",
+      "model_influencer_type": "trendy fashion influencer",
+      "model_consistency_desciption": "Jenna is a young woman with warm tan skin and voluminous shoulder-length 3B curly hair. Her hair has dark roots fading into honey-blonde tips. She has a wide, radiant smile, dark almond eyes, and a slender build. She is wearing a thin gold necklace and a small tattoo on her inner forearm.",
+      "model_images": [
+        "https://storage.cloud.google.com/creative-content/brands/modern_muse/Jenna.png"
+      ],
+      "model_settings": [
+        {
+          "setting_name": "chic, well lit room",
+          "setting_description": "A small rack of clothing in the corner of the room where Jenna is filming a social media video highlighting items features and trends.",
+          "setting_image_url": "https://storage.cloud.google.com/creative-content/brands/modern_muse/jenna_home_studio.png"
+        }
+      ],
+      "model_social_media_platforms": [
+        {
+          "platform_name": "Instagram"
+        }
+      ],
+      "model_social_media_styles": [
+        {
+          "style_name": "GRWM",
+          "style_description": "The imagery must feel expensive, cinematic, and slightly voyeuristic.",
+          "style_prompt_template": "The imagery must feel expensive, cinematic, and slightly voyeuristic."
+        }
+      ]
     },
     "voice_and_tone": {
       "tone": "Exclusive, Seductive, Confident, Concise.",

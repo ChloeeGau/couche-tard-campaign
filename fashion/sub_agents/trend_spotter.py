@@ -1,4 +1,5 @@
 from fashion.schema import TrendSpotterOutput, Trend, TaxonomyAttributes
+from fashion.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
 from fashion.config import GEMINI_MODEL_NAME, PROJECT_ID, LOCATION, STANDARD_GENERATION_CONFIG
 from google.adk.agents.llm_agent import Agent
 import json
@@ -11,6 +12,7 @@ import sys
 from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
 
 class TrendSpotter:
+    @log_function_call
     def __init__(self):
         self.prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/trend_spotter.md")
         

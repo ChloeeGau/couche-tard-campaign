@@ -1,5 +1,6 @@
 from fashion.schema import Trend, TaxonomyAttributes, VisualAssets, MarketingAttributes, TargetAudienceProfile
-from fashion.config import GEMINI_MODEL_NAME, IMAGEN_MODEL_NAME, PROJECT_ID, LOCATION, NANO_BANANA_PRO_MODEL_NAME, STANDARD_GENERATION_CONFIG
+from fashion.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
+from fashion.config import GEMINI_MODEL_NAME, IMAGEN_MODEL_NAME, PROJECT_ID, LOCATION, NANO_BANANA_PRO_MODEL_NAME, STANDARD_GENERATION_CONFIG, PROTOTYPE_SAFETY_SETTINGS
 import logging
 from google import genai
 from google.genai import types as genai_types
@@ -10,6 +11,7 @@ from google.cloud import storage
 from PIL import Image
 import io
 from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
+from fashion.adk_common.utils.utils_gcs import download_blob_to_bytes
 
 image_path_example_1 = "gs://vto-demo/cropped_flatlay/outerwear/84511-flyweight-flex-blazer?utm_source=Standard%20-%20Order%20Confirmation&utm_medium=email&utm_campaign=orderconfirmation_noteligible3%20(XWFDTK)&utm_id=Ux6pzz&term=flow&uid=01J1P79F4DDCS83FFTXMY86NBR&_kx=qZnD_aogIJ_ircLHGjZEU9O4lo5bmBWBQdlyG10kghQ.bVvvBe.png"
 trend_data_example_1 = Trend(
@@ -177,27 +179,13 @@ trend_data_example_2 = Trend(
 )
 
 class FashionPhotographer:
+    @log_function_call
     def __init__(self):
         self.prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/fashion_photographer.md")
 
-    def download_blob_to_bytes(self, bucket_name, source_blob_name):
-      """Downloads a blob from the bucket to bytes."""
 
-      # Initialize the client
-      # (Client looks for credentials in the GOOGLE_APPLICATION_CREDENTIALS env var)
-      storage_client = storage.Client()
-
-      # Get the bucket and the blob
-      bucket = storage_client.bucket(bucket_name)
-      blob = bucket.blob(source_blob_name)
-
-      # Download content as bytes
-      blob_data = blob.download_as_bytes()
-
-      print(f"Downloaded blob {source_blob_name} ({len(blob_data)} bytes).")
-
-      return blob_data
     
+    @log_function_call
     def generate_campaign_image(self, product_image_path: str, art_direction: str) -> str:
         """
         Generates a fashion campaign image for a product based on a trend.
@@ -354,7 +342,7 @@ class FashionPhotographer:
                   .replace(f"{bucket_name}/", "")
               )
               print(f"bucket_name is {bucket_name}, source_blob_name is {source_blob_name}")
-              image_bytes = self.download_blob_to_bytes(bucket_name, source_blob_name)
+              image_bytes = download_blob_to_bytes(bucket_name, source_blob_name)
               print(f"image_bytes length is {len(image_bytes)}")
               # contents.append(Image.open(io.BytesIO(image_bytes)))
               images.append(image_bytes)
@@ -365,24 +353,7 @@ class FashionPhotographer:
                 Image.open(io.BytesIO(images[0])),
                 # Image.open(io.BytesIO(images[1])),
             ]
-            safety_settings: list = [
-                genai_types.SafetySetting(
-                    category=HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-                    threshold=HarmBlockThreshold.OFF,
-                ),
-                genai_types.SafetySetting(
-                    category=HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-                    threshold=HarmBlockThreshold.OFF,
-                ),
-                genai_types.SafetySetting(
-                    category=HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-                    threshold=HarmBlockThreshold.OFF,
-                ),
-                genai_types.SafetySetting(
-                    category=HarmCategory.HARM_CATEGORY_HARASSMENT,
-                    threshold=HarmBlockThreshold.OFF,
-                ),
-            ]
+            safety_settings = PROTOTYPE_SAFETY_SETTINGS
             
               
             response = client.models.generate_content(

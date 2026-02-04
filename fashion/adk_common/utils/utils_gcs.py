@@ -13,8 +13,12 @@
 # limitations under the License.
 
 import io
+import logging
 import os
 from urllib.parse import unquote, urlparse, urlunparse
+from typing import Optional
+
+from PIL import Image
 
 from dotenv import load_dotenv
 from google.api_core.client_info import ClientInfo
@@ -139,6 +143,23 @@ def download_from_gcs(uri: str) -> bytes:
     print(f"File gs://{bucket_name}/{path} downloaded as bytes.")
     return file_bytes
 
+def download_blob_to_bytes(bucket_name: str, source_blob_name: str) -> bytes:
+    """Downloads a blob from the bucket to bytes."""
+
+    # Initialize the client
+    # (Client looks for credentials in the GOOGLE_APPLICATION_CREDENTIALS env var)
+    storage_client = storage.Client()
+
+    # Get the bucket and the blob
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(source_blob_name)
+
+    # Download content as bytes
+    blob_data = blob.download_as_bytes()
+
+    print(f"Downloaded blob {source_blob_name} ({len(blob_data)} bytes).")
+
+    return blob_data
 
 def get_gcs_uri_from_bucket_name(bucket_name) -> str:
     """Returns a GCS URI for a given bucket name.
@@ -244,3 +265,85 @@ def download_bytes_from_gcs(uri: str) -> bytes:
 
     print(f"File gs://{bucket_name}/{path} downloaded as bytes.")
     return file_bytes
+
+
+def generate_min_image(source_blob_name: str) -> str | None:
+    """Generates a thumbnail (minified) version of a GCS image if it doesn't exist.
+
+    Args:
+        source_blob_name (str): The GCS path or URL of the source image.
+
+    Returns:
+        str | None: The name of the minified blob, or None if the source image is not found.
+    """
+    print(f"source_blob_name: {source_blob_name}")
+    storage_client = storage.Client()
+    image_path = source_blob_name.strip()
+    # Extract bucket and blob name from gs:// path
+    bucket_name = image_path.replace("gs://", "").replace("https://storage.cloud.google.com/", "").split("/")[0]
+    source_blob_name = image_path.replace(f"gs://{bucket_name}/", "").replace(f"https://storage.cloud.google.com/{bucket_name}/", "")
+    bucket = storage_client.bucket(bucket_name)
+
+    # If product image doesn't exist, fail
+    blob = bucket.blob(source_blob_name)
+    if not blob.exists():
+        logging.error(f"Image not found in GCS: {image_path}")
+        return None
+        
+    # Check for _min file
+    min_blob_name = source_blob_name.replace(".png", "_min.png").replace(".jpg", "_min.jpg")
+    min_blob = bucket.blob(min_blob_name)
+    
+    # Create min image if it doesn't exist
+    if not min_blob.exists():
+        logging.warning(f"Min image not found in GCS. Creating {min_blob_name}")
+    
+        image_bytes = blob.download_as_bytes()
+        original_img = Image.open(io.BytesIO(image_bytes))
+        
+        # Resize logic (max height 500)
+        target_height = 200
+        aspect_ratio = original_img.width / original_img.height
+        target_width = int(target_height * aspect_ratio)
+        thumbnail_img = original_img.resize((target_width, target_height), Image.Resampling.LANCZOS)
+        
+        # Save thumbnail to bytes
+        min_img_byte_arr = io.BytesIO()
+        # Preserve format if possible, default to PNG
+        fmt = original_img.format if original_img.format else 'PNG'
+        thumbnail_img.save(min_img_byte_arr, format=fmt)
+        min_img_bytes = min_img_byte_arr.getvalue()
+        
+        # Upload _min blob
+        min_blob.upload_from_string(min_img_bytes, content_type=blob.content_type or 'image/png')
+    print(f"min_blob_name: {min_blob_name}")
+    return min_blob_name
+
+
+def normalize_bucket_uri(url: str) -> Optional[str]:
+    """Normalizes GCS URLs to gs:// format."""
+    logging.info(f"normalize_bucket_uri: {url}")
+    if not url:
+        return None
+    if url.startswith("gs://"):
+        logging.info("ALREADY GS")
+        return url
+
+    parsed = urlparse(url)
+    path = unquote(parsed.path)
+
+    # Handle virtual hosted style: bucket.storage.googleapis.com
+    if parsed.netloc.endswith(".storage.googleapis.com") and parsed.netloc != "storage.googleapis.com":
+        bucket = parsed.netloc.replace(".storage.googleapis.com", "")
+        obj = path.lstrip("/")
+        return f"gs://{bucket}/{obj}"
+
+    # Handle path style: storage.googleapis.com or storage.cloud.google.com
+    if parsed.netloc in ["storage.googleapis.com", "storage.cloud.google.com"]:
+        # Path is /bucket/object...
+        clean_path = path.lstrip("/")
+        if "/" in clean_path:
+            bucket, obj = clean_path.split("/", 1)
+            return f"gs://{bucket}/{obj}"
+
+    return None

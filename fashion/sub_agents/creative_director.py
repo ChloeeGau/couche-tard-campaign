@@ -1,5 +1,6 @@
 from fashion.schema import Trend, Scene, CreativeDirection
-from fashion.config import GEMINI_MODEL_NAME, PROJECT_ID, LOCATION, STANDARD_GENERATION_CONFIG
+from fashion.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
+from fashion.config import GEMINI_MODEL_NAME, IMAGE_MODEL_NAME, PROJECT_ID, LOCATION, STANDARD_GENERATION_CONFIG, PROTOTYPE_SAFETY_SETTINGS
 import logging
 from google import genai
 from google.genai import types as genai_types
@@ -10,78 +11,26 @@ from PIL import Image, ImageDraw, ImageFont
 import io
 import base64
 from typing import List
+from typing import List
 from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
+from fashion.adk_common.utils.utils_agents import get_genai_client
+from fashion.adk_common.utils.utils_gcs import download_blob_to_bytes
 
 
-_genai_client = None
-_genai_client_global = None  # For gemini-3 models that require global location
-_storage_client = None
-def get_genai_client(use_global: bool = False):
-    """Get or create the GenAI client.
-    
-    Args:
-        use_global: If True, use 'global' location for gemini-3 models
-    """
-    global _genai_client, _genai_client_global
-    
-    if use_global:
-        if _genai_client_global is None:
-            _genai_client_global = genai.Client(
-                vertexai=True,
-                project=PROJECT_ID,
-                location="global",  # gemini-3 models require global location
-            )
-        return _genai_client_global
-    else:
-        if _genai_client is None:
-            _genai_client = genai.Client(
-                vertexai=True,
-                project=PROJECT_ID,
-                location=LOCATION,
-            )
-        return _genai_client
 from typing import Optional
-from urllib.parse import urlparse, unquote 
+from fashion.adk_common.utils.utils_gcs import normalize_bucket_uri 
 
 class CreativeDirector:
+    @log_function_call
     def __init__(self):
         self.prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/creative_director.md")
     
-    def download_blob_to_bytes(self, bucket_name, source_blob_name):
-      """Downloads a blob from the bucket to bytes."""
-      storage_client = storage.Client()
-      bucket = storage_client.bucket(bucket_name)
-      blob = bucket.blob(source_blob_name)
-      blob_data = blob.download_as_bytes()
-      return blob_data
-
-    def normalize_bucket_uri(self, url: str) -> Optional[str]:
-        """Normalizes GCS URLs to gs:// format."""
-        print(f"normalize_bucket_uri: {url}")
-        if not url:
-            return None
-        if url.startswith("gs://"):
-            print("ALREADY GS")
-            return url
-
-        parsed = urlparse(url)
-        path = unquote(parsed.path)
-
-        # Handle virtual hosted style: bucket.storage.googleapis.com
-        if parsed.netloc.endswith(".storage.googleapis.com") and parsed.netloc != "storage.googleapis.com":
-            bucket = parsed.netloc.replace(".storage.googleapis.com", "")
-            obj = path.lstrip("/")
-            return f"gs://{bucket}/{obj}"
-
-        # Handle path style: storage.googleapis.com or storage.cloud.google.com
-        if parsed.netloc in ["storage.googleapis.com", "storage.cloud.google.com"]:
-            # Path is /bucket/object...
-            clean_path = path.lstrip("/")
-            if "/" in clean_path:
-                bucket, obj = clean_path.split("/", 1)
-                return f"gs://{bucket}/{obj}"
 
 
+
+
+
+    @log_function_call
     def create_video_scenes(self, product_image_path: str, trend_data: dict) -> CreativeDirection:
         """
         Generates video scene concepts based on product and trend.
@@ -99,7 +48,7 @@ class CreativeDirector:
             
             # Load product image bytes for Gemini
             try:
-                product_image_path = self.normalize_bucket_uri(product_image_path)
+                product_image_path = normalize_bucket_uri(product_image_path)
                 if product_image_path:
                     image_part = genai_types.Part.from_uri(
                         file_uri=product_image_path, mime_type="image/png"
@@ -130,33 +79,8 @@ class CreativeDirector:
             logging.error(f"Creative Director Failed: {e}")
             return None
 
-    def create_video_scenes_demo(self, static_mapping_data: dict) -> CreativeDirection:    
-        """
-        Creates a CreativeDirection object from static data.
-        """
-        creative_direction_summary = static_mapping_data.get("creative_direction_summary", "")
-        scenes_data = static_mapping_data.get("scenes", [])
 
-        scenes = []
-        for scene_dict in scenes_data:
-            scene = Scene(
-                scene_id=scene_dict.get("scene_id"),
-                scene_url=scene_dict.get("scene_url"),
-                setting=scene_dict.get("setting"),
-                lighting_style=scene_dict.get("lighting_style"),
-                camera_movement=scene_dict.get("camera_movement"),
-                styling_details=scene_dict.get("styling_details"),
-                action=scene_dict.get("action"),
-            )
-            scenes.append(scene)
-
-        return CreativeDirection(
-            creative_direction_summary=creative_direction_summary,
-            scenes=scenes
-        )
-        
-
-
+    @log_function_call
     def generate_scene_image(self, product_image_path: str, scenes: List[Scene]) -> List[str]:
         """
         Generates visualizations for scenes based on the product and scene descriptions.
@@ -165,16 +89,15 @@ class CreativeDirector:
         print(f"scenes: {scenes}")
         generated_paths = []
         # try:
-        client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
         
         # Download product image (once)
         images = []
-        product_image_path = self.normalize_bucket_uri(product_image_path)
+        product_image_path = normalize_bucket_uri(product_image_path)
         print(f"product_image_path: {product_image_path}")
         if product_image_path.startswith("gs://"):
             bucket_name = product_image_path.replace("gs://", "").split("/")[0]
             source_blob_name = product_image_path.replace(f"gs://{bucket_name}/", "")
-            image_bytes = self.download_blob_to_bytes(bucket_name, source_blob_name)
+            image_bytes = download_blob_to_bytes(bucket_name, source_blob_name)
             images.append(image_bytes)
         else:
               logging.warning("Product image path is not likely a GCS URI (gs://), attempting to use as is provided it is local or generic.")
@@ -205,27 +128,13 @@ class CreativeDirector:
                   product_image,
               ]
               
-              safety_settings = [
-                  genai_types.SafetySetting(
-                      category=HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-                      threshold=HarmBlockThreshold.OFF,
-                  ),
-                  genai_types.SafetySetting(
-                      category=HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-                      threshold=HarmBlockThreshold.OFF,
-                  ),
-                  genai_types.SafetySetting(
-                      category=HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-                      threshold=HarmBlockThreshold.OFF,
-                  ),
-                  genai_types.SafetySetting(
-                      category=HarmCategory.HARM_CATEGORY_HARASSMENT,
-                      threshold=HarmBlockThreshold.OFF,
-                  ),
-              ]
+              safety_settings = PROTOTYPE_SAFETY_SETTINGS
+              use_global = "gemini-3" in IMAGE_MODEL_NAME
+              location_used = "global" if use_global else LOCATION
+              client = get_genai_client(use_global=use_global)
 
               response = client.models.generate_content(
-                  model="gemini-2.5-flash-image",
+                  model=IMAGE_MODEL_NAME,
                   contents=contents,
                   config=genai_types.GenerateContentConfig(
                       safety_settings=safety_settings,

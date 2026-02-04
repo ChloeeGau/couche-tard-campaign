@@ -141,3 +141,17 @@ class TrendStrategy(BaseModel):
     strategy_directive: str
     target_audience: str
 
+class SocialModelSetting(BaseModel):
+    setting_name: str
+    setting_description: str
+    setting_image_url: str
+class SocialModelSetting(BaseModel):
+    setting_name: str
+    setting_description: str
+    setting_image_url: str
+class SocialAIModel(BaseModel):
+    model_name: str
+    model_consistency_desciption: 
+    model_images: List[str]
+    model_settings: List[ModelSetting]
+    model_social_media_platforms: List[str]

@@ -1,3 +1,4 @@
+<!-- TODO UPDATE WITH LATEST SCRIPT -->
 # **Agentic Retail: Concept. Click. Campaign.**
 
 **Date:** January 2026

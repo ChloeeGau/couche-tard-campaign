@@ -1,4 +1,10 @@
 import os
+from google.genai import types as genai_types
+from google.genai.types import HarmBlockThreshold, HarmCategory
+from pydantic import Field
+from pydantic_settings import BaseSettings
+
+
 # GOOGLE_API_KEY: str
 # PROJECT_ID: str | None = None
 # LOCATION: str = "us-central1"
@@ -15,15 +21,32 @@ WITH_MOCKED_DATA: bool = True # Set to True to force use of mocked data
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "your-project-id")
 LOCATION = os.getenv("GOOGLE_CLOUD_REGION", "us-central1")
 GEMINI_MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.5-flash")
+IMAGE_MODEL_NAME = os.getenv("IMAGE_MODEL_NAME", "gemini-3-pro-image-preview")
 # GEMINI_MODEL_NAME = os.getenv("MODEL_NAME", "gemini-3-flash-preview")
 
 STANDARD_GENERATION_CONFIG = {
     "response_mime_type": "application/json",
     "temperature": 0.2,
 }
-from pydantic import Field
-from pydantic_settings import BaseSettings
 
+PROTOTYPE_SAFETY_SETTINGS: list = [
+    genai_types.SafetySetting(
+        category=HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold=HarmBlockThreshold.OFF,
+    ),
+    genai_types.SafetySetting(
+        category=HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+        threshold=HarmBlockThreshold.OFF,
+    ),
+    genai_types.SafetySetting(
+        category=HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+        threshold=HarmBlockThreshold.OFF,
+    ),
+    genai_types.SafetySetting(
+        category=HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold=HarmBlockThreshold.OFF,
+    ),
+]
 
 class AgentSettings(BaseSettings):
     """Agent configuration settings."""
