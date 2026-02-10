@@ -33,14 +33,58 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/185932.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/185932_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/185932.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/185932_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a women's black satin midi skirt with an asymmetrical draped front and a flowing A-line silhouette."
     },
     "description": {
       "short": "An elegant black satin midi skirt featuring a sophisticated draped design and a flowing, asymmetrical hem.",
       "long": "Crafted from lustrous black satin, this midi skirt offers a touch of timeless elegance. The design features a flattering high-waist and an artfully gathered drape at the side, which flows into an asymmetrical wrap-style front. The A-line silhouette provides graceful movement, making it a perfect choice for special occasions, dinners, or creating a polished, chic look. Its versatile design pairs beautifully with both casual and formal tops."
+    }
+  },
+  {
+    "core_identifiers": {
+      "sku": "192834",
+      "upc": "840364192834",
+      "brand": "Modern Muse",
+      "product_name": "Relaxed Fit Cargo Pants"
+    },
+    "attributes": {
+      "size": "Medium",
+      "color_name": "Olive Green",
+      "color_hex": "#7A755A",
+      "material": "Cotton Twill",
+      "fit_type": "Relaxed Fit",
+      "care_instructions": "Machine wash cold with like colors. Tumble dry low. Do not bleach. Warm iron if needed."
+    },
+    "categorization": {
+      "department": "Unisex",
+      "category": "Apparel",
+      "sub_category": "Bottom",
+      "collection": "Core Essentials 2024"
+    },
+    "commercial_status": {
+      "currency": "USD",
+      "msrp": 78.0,
+      "current_price": 65.0,
+      "cost_price": 29.5,
+      "in_stock": true,
+      "stock_quantity": 352,
+      "sales_velocity": "low",
+      "sales_reasoning": null,
+      "q4_2025": "10 (-5%)",
+      "q1_2026": "10 (-5%)"
+    },
+    "media": {
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/192833.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/192833_min.png",
+      "gallery_urls": [],
+      "alt_text": "Front view of olive green relaxed fit cargo pants with multiple pockets, on a white background."
+    },
+    "description": {
+      "short": "Durable and functional cargo pants crafted from sturdy cotton twill, featuring a relaxed fit and ample pocket space for everyday utility.",
+      "long": "Meet your new go-to pants for any occasion. The Urban Expedition Relaxed Fit Cargo Pants are designed for durability, comfort, and timeless style. Made from a high-quality cotton twill fabric, these pants can withstand daily wear while maintaining a comfortable feel. The relaxed fit provides ease of movement, and the multiple large cargo pockets on the legs offer practical storage for all your essentials. The classic olive green color makes them incredibly versatile, easy to pair with anything from a simple t-shirt to a button-down shirt. Finished with a zip fly and button closure, these pants blend utilitarian design with modern aesthetics."
     }
   },
   {
@@ -71,14 +115,14 @@
       "cost_price": 29.5,
       "in_stock": true,
       "stock_quantity": 352,
-      "sales_velocity": "high",
+      "sales_velocity": "low",
       "sales_reasoning": null,
       "q4_2025": "10 (-5%)",
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/192833.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/192833_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/192833.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/192833_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of olive green relaxed fit cargo pants with multiple pockets, on a white background."
     },
@@ -121,8 +165,8 @@
       "q1_2026": "60 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/194821.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/194821_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/194821.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/194821_min.png",
       "gallery_urls": [],
       "alt_text": "Women's black high-waisted quilted faux leather shorts with an integrated belt featuring a gold chain detail."
     },
@@ -165,8 +209,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/234444.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/234444_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/234444.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/234444_min.jpeg",
       "gallery_urls": [],
       "alt_text": "Front view of black faux leather straight-leg pants with five-pocket styling, isolated on a white background."
     },
@@ -209,8 +253,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/238444.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/238444_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/238444.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/238444_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a women's A-line maxi skirt in a cream color with a ditsy floral pattern of small blue and yellow flowers."
     },
@@ -253,8 +297,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/294832.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/294832_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/294832.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/294832_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of women's oatmeal colored high-waisted pleated wide-leg culottes with a single button closure."
     },
@@ -297,8 +341,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/295883.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/295883_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/295883.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/295883_min.png",
       "gallery_urls": [],
       "alt_text": "A pair of men's straight-leg jeans in a vintage indigo wash, shown flat on a white background."
     },
@@ -341,8 +385,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/394055.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/394055_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/394055.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/394055_min.jpeg",
       "gallery_urls": [],
       "alt_text": "Women's light wash blue straight-leg jeans with significant distressing and large rips at both knees, featuring a high-rise waist and a raw hem."
     },
@@ -385,8 +429,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/394855.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/394855_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/394855.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/394855_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A women's pleated mini skirt with a red, black, and white plaid pattern on a white background."
     },
@@ -429,8 +473,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/554345.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/554345_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/554345.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/554345_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a high-waisted tweed pencil skirt in a cream and beige pattern."
     },
@@ -473,8 +517,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/583944.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/583944_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/583944.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/583944_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of charcoal gray fleece jogger sweatpants with a drawstring waist and elastic cuffs."
     },
@@ -517,8 +561,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/598345.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/598345_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/598345.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/598345_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a cream-colored A-line maxi skirt with a ditsy pastel floral print."
     },
@@ -561,8 +605,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/839185.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/839185_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/839185.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/839185_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of women's high-waisted wide-leg trousers in a black and white houndstooth pattern."
     },
@@ -605,8 +649,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/90802.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/bottom/90802_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/90802.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/bottom/90802_min.png",
       "gallery_urls": [],
       "alt_text": "A pair of men's straight fit jeans in a medium blue wash, shown flat on a white background."
     },
@@ -649,8 +693,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/119283.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/119283_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/119283.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/119283_min.png",
       "gallery_urls": [],
       "alt_text": "Sleeveless black sheath dress with a pearl-embellished jewel neckline, front view."
     },
@@ -693,8 +737,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/119928.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/119928_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/119928.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/119928_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A woman's black V-neck, cap sleeve, button-front midi dress with a pink and white rose floral print."
     },
@@ -737,8 +781,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192838.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192838_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/192838.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/192838_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A sleeveless cream tweed mini dress with black contrast trim on the neckline, armholes, and four front patch pockets with silver buttons."
     },
@@ -781,8 +825,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192841.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192841_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/192841.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/192841_min.png",
       "gallery_urls": [],
       "alt_text": "Women's long sleeve high-neck maxi dress with a vibrant symmetrical geometric and paisley print in green, yellow, and blue."
     },
@@ -825,8 +869,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192844.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/192844_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/192844.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/192844_min.png",
       "gallery_urls": [],
       "alt_text": "Women's long-sleeve collared shirtdress in a cream and grey geometric pattern with a matching belt."
     },
@@ -869,8 +913,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/229384.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/229384_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/229384.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/229384_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A black long-sleeve rib-knit midi dress with an asymmetrical one-shoulder neckline and a thigh-high slit."
     },
@@ -913,8 +957,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/293852.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/293852_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/293852.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/293852_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a women's navy blue satin jacquard long-sleeve wrap midi dress on a white background."
     },
@@ -957,8 +1001,8 @@
       "q1_2026": "25 (-8%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/343485.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/343485_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/343485.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/343485_min.png",
       "gallery_urls": [],
       "alt_text": "A short-sleeved tweed mini dress in black and white with embellished trim along the crew neck, cuffs, waist, and faux pocket details."
     },
@@ -1001,8 +1045,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/443323.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/443323_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/443323.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/443323_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a ruby red silk slip dress with a cowl neckline and spaghetti straps on a white background."
     },
@@ -1045,8 +1089,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/492834.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/492834_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/492834.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/492834_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a pink geometric print midi dress with a high mock neck, long bishop sleeves with buttoned cuffs, and an A-line silhouette."
     },
@@ -1089,8 +1133,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/524146.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/524146_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/524146.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/524146_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A women's chocolate brown faux leather mini dress with a corset-style bodice and thick straps, shown on a white background."
     },
@@ -1133,8 +1177,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/543444.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/543444_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/543444.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/543444_min.jpeg",
       "gallery_urls": [],
       "alt_text": "Women's black floral print mini dress with a deep V-neckline and black lace trim on the neckline, sleeves, and waist."
     },
@@ -1177,8 +1221,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/555734.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/555734_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/555734.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/555734_min.jpeg",
       "gallery_urls": [],
       "alt_text": "Front view of a bodycon spaghetti strap mini dress in a shimmering rainbow glitter fabric."
     },
@@ -1221,8 +1265,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/593844.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/593844_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/593844.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/593844_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A women's long-sleeve, royal blue bodycon dress with a high collar, full front zipper, and white piping detail along the shoulders and sleeves."
     },
@@ -1265,8 +1309,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/634234.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/634234_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/634234.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/634234_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a women's pink floral mini dress with short puff sleeves."
     },
@@ -1309,8 +1353,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/634544.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/634544_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/634544.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/634544_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a white long-sleeve ribbed bodycon mini dress with a square neckline and chest cutout."
     },
@@ -1353,8 +1397,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/643575.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/643575_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/643575.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/643575_min.png",
       "gallery_urls": [],
       "alt_text": "A women's mini slip dress with a colorful psychedelic swirl pattern, cowl neckline, and thin spaghetti straps."
     },
@@ -1397,8 +1441,8 @@
       "q1_2026": "30 (-4%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/653444.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/653444_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/653444.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/653444_min.png",
       "gallery_urls": [],
       "alt_text": "Women's white t-shirt dress with a colorful graffiti logo print on the chest and an asymmetric ruched hem."
     },
@@ -1441,8 +1485,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/654567.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/654567_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/654567.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/654567_min.jpeg",
       "gallery_urls": [],
       "alt_text": "Front view of a lavender strapless bodycon mini dress with ruched sides and adjustable drawstrings."
     },
@@ -1485,8 +1529,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/735634.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/735634_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/735634.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/735634_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A women's gunmetal metallic midi dress with a halter neckline and a draped cowl front, shown on a white background."
     },
@@ -1529,8 +1573,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/745624.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/745624_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/745624.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/745624_min.png",
       "gallery_urls": [],
       "alt_text": "A women's long-sleeve, crew neck, ribbed knit maxi dress in heather taupe with a high side slit on the left leg."
     },
@@ -1573,8 +1617,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/982349.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/982349_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/982349.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/982349_min.png",
       "gallery_urls": [],
       "alt_text": "White and black tweed sleeveless mini dress with button details."
     },
@@ -1617,8 +1661,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/999039.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/dress/999039_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/999039.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/dress/999039_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A multi-colored slip dress with a cowl neck and spaghetti straps, featuring a vibrant abstract geometric pattern."
     },
@@ -1661,8 +1705,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/129037.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/129037_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/129037.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/129037_min.png",
       "gallery_urls": [],
       "alt_text": "A black leather women's Chelsea boot with a quilted pattern on the heel, elastic side panel, and a small gold logo accent, shown from the side on a white background."
     },
@@ -1705,8 +1749,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/190222.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/190222_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/190222.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/190222_min.png",
       "gallery_urls": [],
       "alt_text": "A pair of women's brown leather knee-high riding boots, shown from the front on a white background."
     },
@@ -1749,8 +1793,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/191921.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/191921_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/191921.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/191921_min.png",
       "gallery_urls": [],
       "alt_text": "A black satin pointed-toe slingback pump with a stiletto heel and a decorative strap across the instep embellished with white pearls of various sizes."
     },
@@ -1793,8 +1837,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/192223.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/192223_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/192223.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/192223_min.png",
       "gallery_urls": [],
       "alt_text": "A side view of a women's slingback pump made of multicolor tweed fabric, featuring a low block heel, a square toe, and frayed edges along the topline and strap."
     },
@@ -1837,8 +1881,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/192831.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/192831_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/192831.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/192831_min.png",
       "gallery_urls": [],
       "alt_text": "A pair of women's beige leather ballet flats with a contrasting black cap toe, shown on a white background."
     },
@@ -1881,8 +1925,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/222333.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/222333_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/222333.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/222333_min.png",
       "gallery_urls": [],
       "alt_text": "A women's taupe suede platform sandal with a stacked wooden block heel and an ankle strap with a gold buckle, shown from the side against a white background."
     },
@@ -1925,8 +1969,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/345745.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/345745_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/345745.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/345745_min.jpeg",
       "gallery_urls": [],
       "alt_text": "Side view of a lilac strappy kitten heel sandal with a square toe and adjustable ankle straps."
     },
@@ -1969,8 +2013,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/39288.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/39288_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/39288.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/39288_min.png",
       "gallery_urls": [],
       "alt_text": "Side view of a women's cream quilted leather espadrille with a jute sole."
     },
@@ -2013,8 +2057,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/473843.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/473843_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/473843.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/473843_min.png",
       "gallery_urls": [],
       "alt_text": "A single classic black patent leather stiletto pump with a pointed toe, viewed from the side against a white background."
     },
@@ -2057,8 +2101,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/555877.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/555877_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/555877.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/555877_min.png",
       "gallery_urls": [],
       "alt_text": "Profile view of a women's knee-high riding boot in cognac brown leather with a low heel, against a white background."
     },
@@ -2101,8 +2145,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/584922.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/584922_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/584922.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/584922_min.png",
       "gallery_urls": [],
       "alt_text": "A side profile of a women's black suede pump with a block heel and a thin ankle strap with a silver buckle, on a white background."
     },
@@ -2145,8 +2189,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/632567.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/632567_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/632567.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/632567_min.png",
       "gallery_urls": [],
       "alt_text": "A side view of a retro-style running shoe with a red and teal upper, white stripes, white laces, and a gum sole."
     },
@@ -2189,8 +2233,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/634522.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/634522_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/634522.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/634522_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A pair of women's lavender leather ballet flats with a round toe and a delicate bow detail, on a white background."
     },
@@ -2233,8 +2277,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/663452.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/663452_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/663452.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/663452_min.jpeg",
       "gallery_urls": [],
       "alt_text": "Side view of a women's all-white chunky platform sneaker with a thick, sculpted sole and classic lace-up front."
     },
@@ -2277,8 +2321,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/724354.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/724354_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/724354.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/724354_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A pair of women's black platform Chelsea boots with a chunky lug sole and block heel, viewed from the side on a white background."
     },
@@ -2321,8 +2365,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/725345.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/725345_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/725345.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/725345_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A pair of sand-colored ventilated foam clogs shown at a three-quarter angle on a white background."
     },
@@ -2365,8 +2409,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734222.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734222_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/734222.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/734222_min.png",
       "gallery_urls": [],
       "alt_text": "A black platform fisherman sandal with a chunky lug sole and a woven caged upper, shown from the side against a white background."
     },
@@ -2409,8 +2453,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734522.jpeg",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734522_min.jpeg",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/734522.jpeg",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/734522_min.jpeg",
       "gallery_urls": [],
       "alt_text": "A side profile of a women's knee-high boot with a metallic silver finish, a high stiletto heel, and a pointed toe, set against a white background."
     },
@@ -2453,8 +2497,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734555.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/shoes/734555_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/734555.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/shoes/734555_min.png",
       "gallery_urls": [],
       "alt_text": "A pair of white high-top sneakers with black accents and a geometric logo on the side, set against a white background."
     },
@@ -2497,8 +2541,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/109244.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/109244_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/109244.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/109244_min.png",
       "gallery_urls": [],
       "alt_text": "Women's navy and cream striped long-sleeve top with gold button details on the cuffs, viewed from the front."
     },
@@ -2541,8 +2585,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/199902.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/199902_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/199902.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/199902_min.png",
       "gallery_urls": [],
       "alt_text": "A champagne-colored silk camisole with delicate lace trim along the v-neckline and hem, featuring thin adjustable straps."
     },
@@ -2585,8 +2629,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/234893.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/234893_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/234893.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/234893_min.png",
       "gallery_urls": [],
       "alt_text": "Black and white tweed jacket with pearl and gold button embellishments."
     },
@@ -2629,8 +2673,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/239944.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/239944_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/239944.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/239944_min.png",
       "gallery_urls": [],
       "alt_text": "A black and cream checkered v-neck knit sweater vest laid flat on a white surface."
     },
@@ -2673,8 +2717,8 @@
       "q1_2026": "10 (-20%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/292929.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/292929_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/292929.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/292929_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a  light pink tweed jacket with a collarless design, braided trim, and four patch pockets with gold logo buttons."
     },
@@ -2717,8 +2761,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/335234.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/335234_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/335234.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/335234_min.png",
       "gallery_urls": [],
       "alt_text": "Men's long-sleeve button-down shirt with a colorful geometric diamond pattern in red, blue, and yellow."
     },
@@ -2761,8 +2805,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/349022.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/349022_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/349022.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/349022_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of an emerald green satin long-sleeve blouse with a high mock neck and button details."
     },
@@ -2805,8 +2849,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/394855.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/394855_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/394855.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/394855_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a white relaxed fit long-sleeve button-down shirt with rolled-up cuffs."
     },
@@ -2849,8 +2893,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/595544.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/595544_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/595544.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/595544_min.png",
       "gallery_urls": [],
       "alt_text": "A women's long-sleeve sweater with navy and cream horizontal stripes, a crew neck, and solid navy cuffs with three gold buttons."
     },
@@ -2893,8 +2937,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/634523.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/634523_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/634523.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/634523_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a royal blue satin halter neck crop top with a high neckline and fitted silhouette, shown on a white background."
     },
@@ -2937,8 +2981,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/667734.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/667734_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/667734.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/667734_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a beige relaxed-fit hoodie with tonal embroidery on the chest, a drawstring hood, and a kangaroo pocket."
     },
@@ -2981,8 +3025,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/684321.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/684321_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/684321.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/684321_min.png",
       "gallery_urls": [],
       "alt_text": "Women's black and white striped bateau neck crop top with three-quarter sleeves, shown on a white background."
     },
@@ -3025,8 +3069,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/733344.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/733344_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/733344.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/733344_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of a women's long-sleeve mesh top with a colorful, abstract swirl and geometric pattern."
     },
@@ -3069,8 +3113,8 @@
       "q1_2026": "10 (-5%)"
     },
     "media": {
-      "main_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/734222.png",
-      "web_image_url": "https://storage.cloud.google.com/creative-content/catalog/top/734222_min.png",
+      "main_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/734222.png",
+      "web_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/catalog/top/734222_min.png",
       "gallery_urls": [],
       "alt_text": "Front view of an oversized, washed grey graphic t-shirt with a vintage 'BALCONT' print."
     },

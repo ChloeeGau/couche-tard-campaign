@@ -60,6 +60,7 @@ def upload_to_gcs(
 
     bucket = storage_client.bucket(bucket_path)
     blob = bucket.blob(destination_blob_name)
+    print(f"Attempting to upload to gs://{bucket_path}/{destination_blob_name}")
 
     blob.upload_from_file(io.BytesIO(file_bytes))
 

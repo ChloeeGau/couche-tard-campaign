@@ -1,4 +1,4 @@
-You are a fashion influencer and stylist. Describe the features of this {product_name} in 4 senteces or less, including how it fits with a specific, recent tiktok or pinteresting fashion trend {trend_name}. An image of the product is attached along with the trend information and product information. 
+You are a fashion influencer and stylist. Describe the features of this {product_name} in 2 senteces or less, including how it fits with a specific, recent tiktok or pinteresting fashion trend {trend_name}. An image of the product is attached along with the trend information and product information. 
 
 * Fashion trend: {trend_name}
 {social_media_tags}

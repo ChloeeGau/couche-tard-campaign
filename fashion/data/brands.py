@@ -8,7 +8,7 @@ brand_data = """[
   {
     "brand_identifier": "maison_onyx",
     "name": "Maison Onyx",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/maison_onyx/style_guide_maison_onyx.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/maison_onyx/style_guide_maison_onyx.pdf",
     "brand_core": {
       "archetype": "The Ruler / The Magician",
       "mantra": "Own the night.",
@@ -39,13 +39,13 @@ brand_data = """[
       "model_influencer_type": "trendy fashion influencer",
       "model_consistency_desciption": "Jenna is a young woman with warm tan skin and voluminous shoulder-length 3B curly hair. Her hair has dark roots fading into honey-blonde tips. She has a wide, radiant smile, dark almond eyes, and a slender build. She is wearing a thin gold necklace and a small tattoo on her inner forearm.",
       "model_images": [
-        "https://storage.cloud.google.com/creative-content/brands/modern_muse/Jenna.png"
+        "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/modern_muse/Jenna.png"
       ],
       "model_settings": [
         {
           "setting_name": "chic, well lit room",
           "setting_description": "A small rack of clothing in the corner of the room where Jenna is filming a social media video highlighting items features and trends.",
-          "setting_image_url": "https://storage.cloud.google.com/creative-content/brands/modern_muse/jenna_home_studio.png"
+          "setting_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/modern_muse/jenna_home_studio.png"
         }
       ],
       "model_social_media_platforms": [
@@ -81,7 +81,7 @@ brand_data = """[
   {
     "brand_identifier": "modern_muse",
     "name": "Modern Muse",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/modern_muse/style_guide_modern_muse.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/modern_muse/style_guide_modern_muse.pdf",
     "brand_core": {
       "archetype": "The Lover / The Everyman",
       "mantra": "Effortless elegance for the everyday.",
@@ -128,7 +128,7 @@ brand_data = """[
   {
     "brand_identifier": "neon_and_co",
     "name": "Neon & Co.",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/neon_and_co/style_guide_neon_and_co.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/neon_and_co/style_guide_neon_and_co.pdf",
     "brand_core": {
       "archetype": "The Jester / The Best Friend",
       "promise": "Style that doesn't take itself too seriously.",
@@ -172,7 +172,7 @@ brand_data = """[
   {
     "brand_identifier": "volt",
     "name": "Volt",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/volt/style_guide_volt.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/volt/style_guide_volt.pdf",
     "brand_core": {
       "archetype": "The Rebel / The Jester",
       "vibe": "'Volt' is fast, loud, and digital-first. It draws inspiration from gaming, rave culture, and brutalism. The guide emphasizes energy, chaos, and irony."
@@ -194,6 +194,33 @@ brand_data = """[
       "environment": "Urban decay, subway stations, convenience stores, or green-screen digital backgrounds.",
       "casting": "'Anti-model' casting. Real people with unique modifications (tattoos, piercings, dyed hair). Attitude is more important than conventional beauty."
     },
+    "social_media_model": {
+      "model_name": "Jax",
+      "model_influencer_type": "edgy genz influencer",
+      "model_consistency_desciption": "Jax's face is sharp, angular bone structure with a direct, raw expression. His hair is a short, neon Acid Green buzz cut. He has a silver bridge piercing (horizontal bar between the eyes) and a black septum ring. His body is lean and athletic build, conveying a fast and loud energy. His skin is clear, with no visible tattoos on the face, neck, or hands.",
+      "model_images": [
+        "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/volt/jax.png"
+      ],
+      "model_settings": [
+        {
+          "setting_name": "urban concrete jungle",
+          "setting_description": "Gritty, urban environments such as subway stations, convenience stores, or brutalist concrete structures.",
+          "setting_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/volt/jax_concrete_jungle.png"
+        }
+      ],
+      "model_social_media_platforms": [
+        {
+          "platform_name": "Instagram"
+        }
+      ],
+      "model_social_media_styles": [
+        {
+          "style_name": "brutalism",
+          "style_description": "The imagery must feel expensive, cinematic, and slightly voyeuristic.",
+          "style_prompt_template": "The imagery must feel expensive, cinematic, and slightly voyeuristic."
+        }
+      ]
+    },
     "voice_and_tone": {
       "keywords": [
         "Hype",
@@ -208,7 +235,7 @@ brand_data = """[
   {
     "brand_identifier": "aurum",
     "name": "Aurum",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/aurum/style_guide_aurum.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/aurum/style_guide_aurum.pdf",
     "brand_core": {
       "archetype": "The Caregiver / The Sage",
       "vibe": "'Aurum' is about slow fashion, organic materials, and timeless silhouettes. The guide emphasizes calmness, texture, and silence."

@@ -21,6 +21,8 @@ WITH_MOCKED_DATA: bool = True # Set to True to force use of mocked data
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "your-project-id")
 LOCATION = os.getenv("GOOGLE_CLOUD_REGION", "us-central1")
 GEMINI_MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.5-flash")
+# LOCATION = os.getenv("GOOGLE_CLOUD_REGION", "global")
+# GEMINI_MODEL_NAME = os.getenv("MODEL_NAME", "gemini-3-flash-preview")
 IMAGE_MODEL_NAME = os.getenv("IMAGE_MODEL_NAME", "gemini-3-pro-image-preview")
 # GEMINI_MODEL_NAME = os.getenv("MODEL_NAME", "gemini-3-flash-preview")
 

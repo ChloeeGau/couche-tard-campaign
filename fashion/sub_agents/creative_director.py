@@ -209,7 +209,7 @@ class CreativeDirector:
 
                           print("valid repsonse checkpoint 2")
                           storage_client = storage.Client()
-                          bucket_name = "creative-content"
+                          bucket_name = f"creative-content_{PROJECT_ID}"
                           bucket = storage_client.bucket(bucket_name)
                           destination_blob_name = f"scenes/{file_name}"
 

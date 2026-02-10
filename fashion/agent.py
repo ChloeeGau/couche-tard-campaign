@@ -90,17 +90,19 @@ def identify_inventory_opportunities(tool_context: InvocationContext) -> List[Pr
     opportunities = []
     opportunities_as_dict = []
     for product in high_stock_products:
-        # Access SKU via core_identifiers
-        sku = product.core_identifiers.sku
-        if sku in low_velocity_map:
-            # Merge sales data into the high stock product
-            sales_product = low_velocity_map[sku]
-            # Assumes commercial_status exists on both
-            if product.commercial_status and sales_product.commercial_status:
-                product.commercial_status.sales_velocity = sales_product.commercial_status.sales_velocity
-                product.commercial_status.sales_reasoning = sales_product.commercial_status.sales_reasoning
-            opportunities.append(product)
-            opportunities_as_dict.append(to_dict_recursive(product))
+        opportunities.append(product)
+        opportunities_as_dict.append(to_dict_recursive(product))
+        # # Access SKU via core_identifiers
+        # sku = product.core_identifiers.sku
+        # if sku in low_velocity_map:
+        #     # Merge sales data into the high stock product
+        #     sales_product = low_velocity_map[sku]
+        #     # Assumes commercial_status exists on both
+        #     if product.commercial_status and sales_product.commercial_status:
+        #         product.commercial_status.sales_velocity = sales_product.commercial_status.sales_velocity
+        #         product.commercial_status.sales_reasoning = sales_product.commercial_status.sales_reasoning
+        #     opportunities.append(product)
+        #     opportunities_as_dict.append(to_dict_recursive(product))
       
     # TODO look at putting this back, but serilization was an issue        
     tool_context.state["opportunities"] = opportunities_as_dict
@@ -233,7 +235,7 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
         TrendMatch(
             trend=Trend(
                 trend_name='The Lady Jacket',
-                moodboard_url="https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
+                moodboard_url=f"https://storage.cloud.google.com/creative-content_{PROJECT_ID}/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
                 executive_summary='A specific outerwear trend focusing on collarless, structured, often cropped jackets with decorative buttons and trim, bridging the gap between a cardigan and a blazer.',
                 trend_start_date='2023-09-01',
                 trend_scope='Global Fashion',
@@ -268,7 +270,7 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
         TrendMatch(
             trend=Trend(
                 trend_name='Barbiecore',
-                moodboard_url="https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
+                moodboard_url=f"https://storage.cloud.google.com/creative-content_{PROJECT_ID}/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
                 executive_summary='A vibrant, pink-centric aesthetic celebrating hyper-femininity and nostalgia, popularized by the Barbie movie and high-fashion runway collections.',
                 trend_start_date='2022-06-01',
                 trend_scope='Pop Culture & Fashion',
@@ -298,7 +300,7 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
         TrendMatch(
             trend=Trend(
                 trend_name='Modern Preppy',
-                moodboard_url="https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
+                moodboard_url=f"https://storage.cloud.google.com/creative-content_{PROJECT_ID}/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
                 executive_summary='A contemporary update to traditional collegiate and country club styles, blending classic silhouettes with modern colors and relaxed styling.',
                 trend_start_date='2023-01-01',
                 trend_scope='Youth & Professional Fashion',
@@ -330,7 +332,7 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
         TrendMatch(
             trend=Trend(
                 trend_name='Quiet Luxury / Old Money',
-                moodboard_url="https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
+                moodboard_url=f"https://storage.cloud.google.com/creative-content_{PROJECT_ID}/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
                 executive_summary='A shift towards understated elegance, high-quality craftsmanship, and timeless pieces that signal wealth through texture and fit rather than overt logos.',
                 trend_start_date='2023-03-01',
                 trend_scope='Global Luxury Market',
@@ -360,7 +362,7 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
         TrendMatch(
             trend=Trend(
                 trend_name='Heritage Revival',
-                moodboard_url="https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
+                moodboard_url=f"https://storage.cloud.google.com/creative-content_{PROJECT_ID}/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
                 executive_summary="A broad movement where consumers seek out items with historical significance, traditional craftsmanship, and 'investment piece' status.",
                 trend_start_date='2022-10-01',
                 trend_scope='Consumer Behavior',
@@ -390,7 +392,7 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
         TrendMatch(
             trend=Trend(
                 trend_name='Hyper-Femininity',
-                moodboard_url="https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
+                moodboard_url=f"https://storage.cloud.google.com/creative-content_{PROJECT_ID}/20260110173415814531_2v7h/moodboard_Heritage_Revival.png",
                 executive_summary='A cultural shift reclaiming traditionally feminine symbols, colors, and silhouettes as a form of empowerment and self-expression.',
                 trend_start_date='2023-05-01',
                 trend_scope='Social & Fashion',
@@ -450,8 +452,8 @@ def map_product_to_trends_demo() -> ProductTrendMapping:
             sales_reasoning='High price point and niche aesthetic may lead to slower turnover compared to basics.'
         ),
         media=Media(
-            main_image_url='https://storage.cloud.google.com/creative-content/catalog/top/292929.png',
-            web_image_url='https://storage.cloud.google.com/creative-content/catalog/top/292929_min.png',
+            main_image_url=f'https://storage.cloud.google.com/creative-content_{PROJECT_ID}/catalog/top/292929.png',
+            web_image_url=f'https://storage.cloud.google.com/creative-content_{PROJECT_ID}/catalog/top/292929_min.png',
             gallery_urls=[],
             alt_text='Front view of a light pink tweed jacket with a collarless design, braided trim, and four patch pockets with gold logo buttons.'
         ),

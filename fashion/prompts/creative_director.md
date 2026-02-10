@@ -37,4 +37,4 @@ Return the result as a JSON object with the following structure:
 *   Output MUST be valid JSON.
 *   Escape double quotes in strings.
 *   Ensure all fields are filled based on the logic above.
-*   The path for scene_url must follow the format "https://storage.cloud.google.com/creative-content/campaign_{campaign_number}scene_{scene_number}.png", where {campaign_number} is the campaign number and {scene_number} is the scene number.
+*   The path for scene_url must follow the format "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/campaign_{campaign_number}scene_{scene_number}.png", where {campaign_number} is the campaign number and {scene_number} is the scene number.

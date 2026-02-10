@@ -2,7 +2,7 @@
   {
     "brand_identifier": "maison_onyx",
     "name": "Maison Onyx",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/maison_onyx/style_guide_maison_onyx.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/maison_onyx/style_guide_maison_onyx.pdf",
     "brand_core": {
       "archetype": "The Ruler / The Magician",
       "mantra": "Own the night.",
@@ -33,13 +33,13 @@
       "model_influencer_type": "trendy fashion influencer",
       "model_consistency_desciption": "Jenna is a young woman with warm tan skin and voluminous shoulder-length 3B curly hair. Her hair has dark roots fading into honey-blonde tips. She has a wide, radiant smile, dark almond eyes, and a slender build. She is wearing a thin gold necklace and a small tattoo on her inner forearm.",
       "model_images": [
-        "https://storage.cloud.google.com/creative-content/brands/modern_muse/Jenna.png"
+        "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/modern_muse/Jenna.png"
       ],
       "model_settings": [
         {
           "setting_name": "chic, well lit room",
           "setting_description": "A small rack of clothing in the corner of the room where Jenna is filming a social media video highlighting items features and trends.",
-          "setting_image_url": "https://storage.cloud.google.com/creative-content/brands/modern_muse/jenna_home_studio.png"
+          "setting_image_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/modern_muse/jenna_home_studio.png"
         }
       ],
       "model_social_media_platforms": [
@@ -75,7 +75,7 @@
   {
     "brand_identifier": "modern_muse",
     "name": "Modern Muse",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/modern_muse/style_guide_modern_muse.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/modern_muse/style_guide_modern_muse.pdf",
     "brand_core": {
       "archetype": "The Lover / The Everyman",
       "mantra": "Effortless elegance for the everyday.",
@@ -122,7 +122,7 @@
   {
     "brand_identifier": "neon_and_co",
     "name": "Neon & Co.",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/neon_and_co/style_guide_neon_and_co.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/neon_and_co/style_guide_neon_and_co.pdf",
     "brand_core": {
       "archetype": "The Jester / The Best Friend",
       "promise": "Style that doesn't take itself too seriously.",
@@ -166,7 +166,7 @@
   {
     "brand_identifier": "volt",
     "name": "Volt",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/volt/style_guide_volt.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/volt/style_guide_volt.pdf",
     "brand_core": {
       "archetype": "The Rebel / The Jester",
       "vibe": "'Volt' is fast, loud, and digital-first. It draws inspiration from gaming, rave culture, and brutalism. The guide emphasizes energy, chaos, and irony."
@@ -202,7 +202,7 @@
   {
     "brand_identifier": "aurum",
     "name": "Aurum",
-    "brand_guide_url": "https://storage.cloud.google.com/creative-content/brands/aurum/style_guide_aurum.pdf",
+    "brand_guide_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/aurum/style_guide_aurum.pdf",
     "brand_core": {
       "archetype": "The Caregiver / The Sage",
       "vibe": "'Aurum' is about slow fashion, organic materials, and timeless silhouettes. The guide emphasizes calmness, texture, and silence."

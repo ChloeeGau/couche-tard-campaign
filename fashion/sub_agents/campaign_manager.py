@@ -56,8 +56,8 @@ class CampaignManager:
         "scenes": [
             {
                 "scene_id": 1,
-                "scene_url": "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_image_1_1768084528.png",
-                "scene_video_url": "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_1_1768084736.mp4",
+                "scene_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_image_1_1768084528.png",
+                "scene_video_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_video_1_1768084736.mp4",
                 "setting": "A bright, airy Parisian apartment with high ceilings, large windows, and minimalist decor. The 'Heritage Revival' trend is reflected in the classic herringbone wood floors and ornate crown molding, set against modern furniture.",
                 "lighting_style": "Soft, diffused morning light inspired by classic Chanel campaigns. The light pours through the windows, creating an ethereal glow that beautifully illuminates the soft pink texture of the tweed jacket.",
                 "camera_movement": "Reflecting an 'Elegant' mood, the camera uses slow, graceful tracking shots. A gentle push-in focuses on the intricate braided trim and the texture of the tweed as the model moves her arm.",
@@ -66,8 +66,8 @@ class CampaignManager:
             },
             {
                 "scene_id": 2,
-                "scene_url": "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_image_2_1768084530.png",
-                "scene_video_url": "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_2_1768084729.mp4",
+                "scene_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_image_2_1768084530.png",
+                "scene_video_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_video_2_1768084729.mp4",
                 "setting": "A chic, bustling city street in a gallery district for a 'Day-to-Night' occasion. The backdrop features modern architecture and stylish pedestrians, contrasting the jacket's classic design with a contemporary urban environment.",
                 "lighting_style": "Crisp, natural daylight with dynamic shadows, reminiscent of Karl Lagerfeld's high-energy street-style shoots for Chanel. The bright sun makes the pink of the jacket pop and creates sharp, fashionable shadows.",
                 "camera_movement": "A confident, 'Polished' Steadicam shot follows the model as she walks. The movement is fluid and energetic, capturing the life and swing of the jacket as she navigates the city sidewalk.",
@@ -76,8 +76,8 @@ class CampaignManager:
             },
             {
                 "scene_id": 3,
-                "scene_url": "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_image_3_1768084907.png",
-                "scene_video_url": "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_3_1768084986.mp4",
+                "scene_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_image_3_1768084907.png",
+                "scene_video_url": "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_video_3_1768084986.mp4",
                 "setting": "A charming European street cafe at golden hour. The setting is romantic and picturesque, with cobblestone streets, and tables adorned with fresh flowers, embodying the \"Heritage Revival\" trend in a real-world context.",
                 "lighting_style": "Warm, golden hour sunlight filtering through the leaves of nearby trees, creating a soft, dappled light effect. This natural lighting enhances the jacket's pink hue and gives the scene a dreamy, cinematic quality.",
                 "camera_movement": "A gentle, handheld camera movement that feels intimate and observational, as if capturing a candid moment. A slow pan follows the model as she brings a cup of coffee to her lips.",
@@ -141,7 +141,7 @@ class CampaignManager:
     @log_function_call
     async def generate_video_scenes(self) -> FinalAd:
         print(f"calling generate_video_scenes")
-        # return ["https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_1_1768084736.mp4", "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_2_1768084729.mp4", "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/scene_video_3_1768084986.mp4"]
+        # return ["https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_video_1_1768084736.mp4", "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_video_2_1768084729.mp4", "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/scene_video_3_1768084986.mp4"]
         mapped_scenes = await self.map_scenes(self.scene_dict)
         final_ad = FinalAd()
         final_ad.creative_direction = mapped_scenes
@@ -154,7 +154,7 @@ class CampaignManager:
         mapped_scenes = await self.map_scenes(self.scene_dict)
         final_ad = FinalAd()
         final_ad.creative_direction = mapped_scenes
-        final_ad.final_ad_url = "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/combined_video_1768085105.mp4"
+        final_ad.final_ad_url = "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/combined_video_1768085105.mp4"
         return final_ad
 
     @log_function_call
@@ -163,7 +163,7 @@ class CampaignManager:
         mapped_scenes = await self.map_scenes(self.scene_dict)
         final_ad = FinalAd()
         final_ad.creative_direction = mapped_scenes
-        final_ad.final_ad_url = "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/combined_video_1768085105.mp4"
-        final_ad.final_social_ad_url = "https://storage.cloud.google.com/creative-content/20260110173415814531_2v7h/jenna_styles_live.mp4"
+        final_ad.final_ad_url = "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/combined_video_1768085105.mp4"
+        final_ad.final_social_ad_url = "https://storage.cloud.google.com/creative-content_orionfire-launch-1511/20260110173415814531_2v7h/jenna_styles_live.mp4"
         return final_ad
   

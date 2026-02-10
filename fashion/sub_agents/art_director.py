@@ -80,8 +80,8 @@ class ArtDirector:
 
 
         # Constructing the message to the LLM
-        example_moodboard_location = f"gs://creative-content/brands/{brand_data.brand_identifier}/moodboard_{brand_data.brand_identifier}.png"
-        logo_location = f"gs://creative-content/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
+        example_moodboard_location = f"gs://creative-content_{PROJECT_ID}/brands/{brand_data.brand_identifier}/moodboard_{brand_data.brand_identifier}.png"
+        logo_location = f"gs://creative-content_{PROJECT_ID}/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
         llm_instruction = f"""
             Please write an Image Generation Prompt for a Brand Board, for the specified fashion trend, highlighting the product provided in the image.
 
@@ -219,7 +219,7 @@ class ArtDirector:
             
             # Use the loop variable 'trend' here
             prompt_contents = await self._generate_style_guide_prompt(brand_data, trend, product_image_path)
-            logo_location = f"gs://creative-content/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
+            logo_location = f"gs://creative-content_{PROJECT_ID}/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
             prompt_contents += (
                 f"""
 
@@ -253,7 +253,7 @@ class ArtDirector:
                 logger.info(response.text)
                 
                 storage_client = storage.Client()
-                bucket_name = "creative-content"
+                bucket_name = f"creative-content_{PROJECT_ID}"
                 bucket = storage_client.bucket(bucket_name)
                 # Unique name for each moodboard
                 moodboard_file_name = f"moodboard_{trend['trend_name'].replace(' ', '_')}_{base64.urlsafe_b64encode(os.urandom(6)).decode()}.png"

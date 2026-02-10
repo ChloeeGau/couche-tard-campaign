@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def get_required_env_var(var_name: str) -> str:
     """Gets a required environment variable or raises a clear exception."""
     value = os.getenv(var_name)

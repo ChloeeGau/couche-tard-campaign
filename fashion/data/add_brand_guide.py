@@ -14,7 +14,7 @@ def add_brand_guide_url():
     for b in brands:
         if "brand_identifier" in b:
             bid = b["brand_identifier"]
-            url = f"https://storage.cloud.google.com/creative-content/brands/{bid}/style_guide_{bid}.docx"
+            url = f"https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/{bid}/style_guide_{bid}.docx"
             
             # Insert brand_guide_url generally after name or brand_identifier
             # We recreate the dict to control order somewhat, though mostly for readability
@@ -40,7 +40,7 @@ def add_brand_guide_url():
     for b in brands:
         if "brand_identifier" in b:
             bid = b["brand_identifier"]
-            url = f"https://storage.cloud.google.com/creative-content/brands/{bid}/style_guide_{bid}.docx"
+            url = f"https://storage.cloud.google.com/creative-content_orionfire-launch-1511/brands/{bid}/style_guide_{bid}.docx"
             new_b = {}
             # order: identifier, name, brand_guide_url, then rest
             new_b["brand_identifier"] = b.get("brand_identifier")

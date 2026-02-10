@@ -14,7 +14,7 @@ Analyze the user's request and route to the appropriate tool:
       | **Maison Onyx**<br />Quilted Faux Leather Chain Belt Shorts<br />`SKU: 194821` | **188** units<br />🔴 Low Velocity | **$99.99**<br />~~$125.00~~ | **Q4 '25:** 150 🔻9%<br />**Q1 '26:** 60 🔻5% |
       | **Maison Onyx**<br />Embellished Tweed Sheath Dress<br />`SKU: 343485` | **85** units<br />🔴 Low Velocity | **$450.00**<br />~~$495.00~~ | **Q4 '25:** 130 🔻9%<br />**Q1 '26:** 25 🔻8% |
       | **Neon & Co.**<br />Graffiti Print T-Shirt Dress<br />`SKU: 3444` | **188** units<br />🔴 Low Velocity | **$149.99**<br />~~$195.00~~ | **Q4 '25:** 96 🔻6%<br />**Q1 '26:** 30 🔻4% |
-      | **Modern Muse**<br />Pink Tweed Jacket<br />`SKU: 292929` | **300** units<br />🔴 Low Velocity | **$450.00**<br />~~$495.00~~ | **Q4 '25:** 50 🔻16%<br />**Q1 '26:** 10 🔻20% |
+      | **Modern Muse**<br />Pink Tweed Jacket<br />`SKU: 292929` | **300** units<br />🔴 Low Velocity | **$450.00**<br />~~$495.00~~ | **Q4 '25:** 50 🔻16%<br />**Q1 '26:** 10 🔻22% |
 
       * Crucial: ensure that msrp and current price are formatted as currency with two decimal places. 
       * Crucial: always return the table above as described and NEVER request additional information or ask additional questions.

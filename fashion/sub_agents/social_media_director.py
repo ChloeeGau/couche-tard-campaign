@@ -19,9 +19,11 @@ from fashion.schema import Product, Trend, Brand
 from fashion.data.brands import retrieve_brands
 from fashion.data.brands import retrieve_brands
 from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
-from fashion.adk_common.utils.utils_agents import get_genai_client
+from fashion.adk_common.utils.utils_agents import get_genai_client, get_or_create_unique_session_id
 from fashion.adk_common.utils.utils_gcs import download_blob_to_bytes
 from fashion.adk_common.utils.utils_gcs import normalize_bucket_uri
+from fashion.tools.generate_video import generate_video
+from fashion.tools.combine_video import combine_video
 
 logger = logging.getLogger(__name__)
 class SocialMediaDirector:
@@ -37,6 +39,8 @@ class SocialMediaDirector:
           tools=[
             self.product_research,
             self.generate_keyframe_image_prompt,
+            generate_video,
+            combine_video,
           ],
           after_model_callback=self._after_model_callback,
           before_model_callback=self._before_model_callback          
@@ -59,7 +63,8 @@ class SocialMediaDirector:
         invocation_id = callback_context.invocation_id
         logger.info(f"After Model Callback")
         logger.info(f"Exiting Agent: {agent_name} (Inv: {invocation_id})")
-        logger.info(llm_response)
+        if llm_response:
+            logger.info(f"Response: {llm_response.content}")
         return None  # Allow the model call to proceed
 
     @log_function_call
@@ -74,15 +79,15 @@ class SocialMediaDirector:
             if brand.name == brand_name_str:
                 return brand
     
+    # TODO add intermediary step to generate the prompt, provide to the user before generating the image
     @log_function_call
-    async def generate_keyframe_image_prompt(self, product_data: Product, trend_data: Trend, product_research: str, tool_context: ToolContext) -> str:
+    async def generate_keyframe_image_prompt(self, product_data: Product, trend_data: Trend, product_research: str, tool_context: ToolContext) -> List[str]:
         logger.info(f"generate_keyframe_image_prompt {product_data}")
         logger.info(f"trend_data {trend_data}")
         selected_product = tool_context._invocation_context.session.state.get('product')
         product_image_path = selected_product['media']['main_image_url']
         brand_data: Brand = await self._load_brand_data_from_json(selected_product)
-        logger.info(f"brand_data is {brand_data}")
-        prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/social_grwm_image.md")
+        logger.info(f"brand_data is {brand_data}")        
         
         # Extract Social Media Model Data
         social_media_model = brand_data.social_media_model
@@ -93,6 +98,7 @@ class SocialMediaDirector:
 
         setting_name = "N/A"
         setting_image_url = "N/A"
+            
         if social_media_model:
             if social_media_model.model_images:
                 model_images = ", ".join(social_media_model.model_images)
@@ -103,7 +109,16 @@ class SocialMediaDirector:
             if social_media_model.model_settings:
                 setting_name = social_media_model.model_settings[0].setting_name
                 setting_image_url = social_media_model.model_settings[0].setting_image_url
+        
+        
+        style_name = "N/A"
+        if brand_data.social_media_model.model_social_media_styles and len(brand_data.social_media_model.model_social_media_styles) > 0:
+            style_name = brand_data.social_media_model.model_social_media_styles[0].style_name
 
+        formatted_style_name = style_name.lower().replace(" ", "_").lower()
+        prompt_template = load_prompt_file_from_calling_agent(prompt_filename=f"../prompts/social_{formatted_style_name}_image.md")
+        video_prompt_template = load_prompt_file_from_calling_agent(prompt_filename=f"../prompts/social_{formatted_style_name}_video.md")
+        
         # Helper to join lists safely
         def format_list(item_list):
             return ", ".join(item_list) if item_list else "N/A"
@@ -127,22 +142,27 @@ class SocialMediaDirector:
 
         social_media_urls = []
         # Format the prompt
-        formatted_prompt = prompt_template.format(**prompt_mapping)
-
+        formatted_image_prompt = prompt_template.format(**prompt_mapping)
+        formatted_video_prompt = video_prompt_template.format(**prompt_mapping)
+        logger.info(f"formatted_image_prompt is {formatted_image_prompt}")
+        contents = [formatted_image_prompt]
         image_part = genai_types.Part.from_uri(
             file_uri=normalize_bucket_uri(setting_image_url), mime_type="image/png"
         )        
-        contents = [formatted_prompt, "setting image:", image_part]
+        contents.append("setting image:")
+        contents.append(image_part)
 
         image_part = genai_types.Part.from_uri(
-            file_uri=normalize_bucket_uri(model_images[0]), mime_type="image/png"
+            file_uri=normalize_bucket_uri(model_images), mime_type="image/png"
         )        
-        contents = [formatted_prompt, "model image:", image_part]
+        contents.append("model image:")
+        contents.append(image_part)
 
         image_part = genai_types.Part.from_uri(
             file_uri=normalize_bucket_uri(product_image_path), mime_type="image/png"
         )        
-        contents = [formatted_prompt, "product image:", image_part]
+        contents.append("product image:")
+        contents.append(image_part)
 
         images = []
         if images:
@@ -168,11 +188,13 @@ class SocialMediaDirector:
           logger.info(response.text)
           
           storage_client = storage.Client()
-          bucket_name = "creative-content"
+          bucket_name = f"creative-content_{PROJECT_ID}"
+          gcs_folder=get_or_create_unique_session_id(tool_context)
+
           bucket = storage_client.bucket(bucket_name)
           # Unique name for each moodboard
           social_file_name = f"social_{model_name}_{base64.urlsafe_b64encode(os.urandom(6)).decode()}.png"
-          destination_blob_name = f"social_media/{social_file_name}"
+          destination_blob_name = f"{gcs_folder}/social_media/{social_file_name}"
 
           for part in response.parts:
               if part.inline_data and part.inline_data.data:
@@ -205,7 +227,7 @@ class SocialMediaDirector:
         except Exception as e:
             logger.error(f"Social Media Image generation failed for model {model_name}: {e}")
               
-        return formatted_prompt
+        return formatted_image_prompt, formatted_video_prompt, social_media_urls[0]
 
     @log_function_call
     async def product_research(self, product_data: Product, trend_data: Trend, tool_context: ToolContext) -> str:
@@ -214,9 +236,15 @@ class SocialMediaDirector:
         selected_product = tool_context._invocation_context.session.state.get('product')
         product_image_path = selected_product['media']['main_image_url']
             
-        brand_data: Brand = await self._load_brand_data_from_json(selected_product)
         
-        prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/social_grwm_product_research.md")
+        
+        brand_data: Brand = await self._load_brand_data_from_json(selected_product)
+        logger.info(f"brand_data is {brand_data}")        
+        style_name = "N/A"
+        if brand_data.social_media_model.model_social_media_styles and len(brand_data.social_media_model.model_social_media_styles) > 0:
+            style_name = brand_data.social_media_model.model_social_media_styles[0].style_name
+        formatted_style_name = style_name.lower().replace(" ", "_").lower()
+        prompt_template = load_prompt_file_from_calling_agent(prompt_filename=f"../prompts/social_{formatted_style_name}_product_research.md")        
         
         # Helper to join lists safely
         def format_list(item_list):
@@ -228,7 +256,14 @@ class SocialMediaDirector:
 
         # Map Attributes
         prompt_mapping = {
+            # PRODUCT
             "product_name": product_data['core_identifiers']['product_name'],
+            "color_name": product_data['attributes']['color_name'] or "N/A",
+            "material": product_data['attributes']['material'] or "N/A",
+            "fit_type": product_data['attributes']['fit_type'] or "N/A",
+            "short": product_data['description']['short'] or "N/A",
+            "long": product_data['description']['long'] or "N/A",
+            # TREND
             "trend_name": trend_data['trend_name'],
             # "trend_scope": trend_data['trend_scope'] if trend_data['trend_scope'] else "N/A",
             "social_media_tags": format_list(trend_data['social_media_tags']) if trend_data['social_media_tags'] else "N/A",
@@ -241,12 +276,8 @@ class SocialMediaDirector:
             "color_palette": format_list(trend_data['taxonomy_attributes']['color_palette']) if trend_data['taxonomy_attributes']['color_palette'] else "N/A",
             "target_occasion": format_list(trend_data['taxonomy_attributes']['target_occasion']) if trend_data['taxonomy_attributes']['target_occasion'] else "N/A",
             # "marketing_attributes": trend_data['marketing_attributes'].model_dump_json(indent=2) if trend_data['marketing_attributes'] else "N/A",
+            # BRAND
             "brand": brand_data.name,
-            "color_name": product_data['attributes']['color_name'] or "N/A",
-            "material": product_data['attributes']['material'] or "N/A",
-            "fit_type": product_data['attributes']['fit_type'] or "N/A",
-            "short": product_data['description']['short'] or "N/A",
-            "long": product_data['description']['long'] or "N/A",
         }
 
         filled_prompt = prompt_template.format(**prompt_mapping)
