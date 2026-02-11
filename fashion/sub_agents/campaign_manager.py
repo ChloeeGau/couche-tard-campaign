@@ -37,7 +37,8 @@ _genai_client = None
 _genai_client_global = None  # For gemini-3 models that require global location
 _storage_client = None
 from google.genai.types import HarmBlockThreshold, HarmCategory
-
+from fashion.tools.generate_video import generate_video
+from fashion.tools.combine_video import combine_video
 
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict
@@ -104,9 +105,11 @@ class CampaignManager:
           model=GEMINI_MODEL_NAME,
           instruction=self.prompt_template,
           tools=[
-            self.generate_video_scenes,
-            self.generate_combined_video,
-            self.generate_social_post,
+            # self.generate_video_scenes,
+            # self.generate_combined_video,
+            # self.generate_social_post,
+            generate_video,
+            combine_video,
           ],
           # after_model_callback=self._after_model_callback,
       )

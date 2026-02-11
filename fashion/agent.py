@@ -209,9 +209,10 @@ def create_davos_fashion_agent() -> Agent:
                 # art_director_agent.create_moodboards,
                 # art_director_agent.create_campaign_directive,
                 fashion_photographer_agent.generate_campaign_image,
-                creative_director_agent.create_video_scenes,
-                creative_director_agent.generate_scene_image,
-                # generate_video_prompt,
+                AgentTool(agent=creative_director_agent.agent),
+                # creative_director_agent.create_video_scenes,
+                # creative_director_agent.generate_scene_image,
+                # # generate_video_prompt,
                 AgentTool(agent=social_media_director_agent.agent)
             ]
         )

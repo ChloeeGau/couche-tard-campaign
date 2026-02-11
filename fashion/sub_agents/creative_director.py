@@ -11,20 +11,39 @@ from PIL import Image, ImageDraw, ImageFont
 import io
 import base64
 from typing import List
-from typing import List
 from fashion.adk_common.utils.utils_prompts import load_prompt_file_from_calling_agent
 from fashion.adk_common.utils.utils_agents import get_genai_client
 from fashion.adk_common.utils.utils_gcs import download_blob_to_bytes
-
-
 from typing import Optional
 from fashion.adk_common.utils.utils_gcs import normalize_bucket_uri 
+from google.adk.agents.llm_agent import Agent
+from google.adk.agents.callback_context import CallbackContext
+from google.adk.models import LlmResponse, LlmRequest
+
+
+
+
 
 class CreativeDirector:
+    creative_direction = None
+
     @log_function_call
     def __init__(self):
         self.prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/creative_director.md")
-    
+        print(self.prompt_template)
+        #   except Exception as e:
+        #       logging.error(f"Failed to load product_trend_mapper prompt: {e}")
+        self.agent = Agent(
+          name="creative_director",
+          model=GEMINI_MODEL_NAME,
+          instruction=self.prompt_template,
+          tools=[
+            self.create_video_scenes,
+            self.generate_scene_image,
+          ],
+          after_model_callback=self._after_model_callback,
+          before_model_callback=self._before_model_callback
+      )
 
 
 
@@ -37,11 +56,14 @@ class CreativeDirector:
         Returns a JSON string containing the creative direction and scenes.
         """
         try:
+            print(f"Creative Director: Creating video scenes for product: {product_image_path}, trend data: {trend_data}")
             client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
+
+            scene_prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/creative_director_scenes.md")
 
             # Step 1: Generate the Scene Concepts using Gemini
             prompt_content = [
-                self.prompt_template,
+                scene_prompt_template,
                 f"\n\nTrend Data: {trend_data}",
                 "Product Image:"
             ]
@@ -73,13 +95,48 @@ class CreativeDirector:
             
             creative_direction = response.text.strip()
             logging.info(f"Generated Creative Direction: {creative_direction}")
+            self.creative_direction = creative_direction
             return creative_direction
 
         except Exception as e:
             logging.error(f"Creative Director Failed: {e}")
             return None
 
+    @log_function_call
+    def _before_model_callback(
+        self,
+        callback_context: CallbackContext, llm_request: LlmRequest
+    ) -> Optional[LlmResponse]:
+        print("BEFORE MODEL CALLBACK")  
+        return None
 
+    @log_function_call
+    def _after_model_callback(
+        self,
+        callback_context: CallbackContext, llm_response: LlmResponse
+    ) -> Optional[LlmResponse]:
+        print("AFTER MODEL CALLBACK")
+        agent_name = callback_context.agent_name
+        invocation_id = callback_context.invocation_id
+        print(f"creative_direction: {self.creative_direction}")
+        i = 0
+        if llm_response.content:
+            for part in llm_response.content.parts:
+                if part.text:
+                    print(f"Response Part {i}: {part.text}")
+                    # if "Product Attributes" in part.text:
+                    #     callback_context.state['matching_trends'] = part.text
+                #     print("Product Attributes found")
+                # elif "core_identifiers" in part.text:
+                #     cleaned_json_string = part.text.replace("```json\n", "").replace("\n```", "")
+                #     print(f"cleaned_json_string: {cleaned_json_string}")
+                #     # callback_context.state['product'] = json.loads(cleaned_json_string)
+                #     print("Product found")
+                i += 1
+        if i > 0:
+            callback_context.state['creative_direction'] = self.creative_direction
+
+        return None  # Allow the model call to proceed
     @log_function_call
     def generate_scene_image(self, product_image_path: str, scenes: List[Scene]) -> List[str]:
         """
