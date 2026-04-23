@@ -1,0 +1,102 @@
+[
+  {
+    "brand_identifier": "couche_tard_flagship",
+    "name": "Couche-Tard (Quebec)",
+    "brand_guide_url": "https://storage.cloud.google.com/couche-tard-assets/brands/couche_tard/style_guide_core.pdf",
+    "brand_core": {
+      "archetype": "The Caregiver / The Neighbor",
+      "mantra": "Place aux moments qui comptent.",
+      "target_audience": "The Daily Commuter (25–55). The person stopping for gas at 7 AM or grabbing milk on the way home. They value local familiarity and the iconic winking owl.",
+      "key_differentiator": "We are part of the Quebec neighborhood fabric. We provide convenience that feels like home."
+    },
+    "visual_identity": {
+      "logo": "The iconic Red Winking Owl. Friendly, inviting, and localized.",
+      "color_palette": [
+        "Owl Red (#E31837)",
+        "Bright White (#FFFFFF)",
+        "Midnight Blue (#002D62)",
+        "Asphalt Grey"
+      ],
+      "typography": {
+        "headlines": "Bold Geometric Sans-Serif (e.g., Gotham or Montserrat). High visibility for roadside signage.",
+        "body_copy": "Clean Sans-Serif (e.g., Roboto). Optimized for mobile loyalty app readability."
+      }
+    },
+    "photography_and_art_direction": {
+      "style": "Bright, energetic, and clean. Imagery must look 'fast' and 'fresh'.",
+      "lighting": "Bright daylight or high-key interior LED lighting. No dramatic shadows; the product (coffee/pizza) must be the hero.",
+      "environment": "Store forecourts, bright aisles, or the interior of a clean vehicle. Focus on the 'Pit-stop' moment.",
+      "styling": "The 'Morning Rush'. Hot steam rising from a cup of coffee, the cheese pull on a slice of breakfast pizza, and the crisp condensation on a Sloche cup."
+    },
+    "loyalty_integration": {
+      "program_name": "Inner Circle",
+      "focus": "Fuel-to-food conversion. Every visit earns points toward free 'Fresh Food Fast' items.",
+      "sample_copy": [
+        "Un arrêt, plein de récompenses. Passez du réservoir au comptoir.",
+        "Votre café matinal est à 500 points. Échangez-les maintenant !"
+      ]
+    },
+    "voice_and_tone": {
+      "tone": "Friendly, Energetic, Helpful, and Fast.",
+      "keywords": [
+        "Frais",
+        "Rapide",
+        "Local",
+        "Récompenses",
+        "Voisinage"
+      ],
+      "do": "Focus on convenience. Use 'Vous'. Keep it bilingual where necessary. Emphasize value.",
+      "dont": "Be overly corporate or distant. Avoid luxury language. We are a neighbor, not a boutique.",
+      "sample_copy": [
+        "Le duo parfait pour votre matinée : Café Premium et Pizza déjeuner. Prêt en 2 minutes.",
+        "Faites le plein et profitez d'une Sloche à moitié prix avec l'appli !"
+      ]
+    }
+  },
+  {
+    "brand_identifier": "circle_k_global",
+    "name": "Circle K (Global/Rest of Canada)",
+    "brand_guide_url": "https://storage.cloud.google.com/couche-tard-assets/brands/circle_k/global_style_guide.pdf",
+    "brand_core": {
+      "archetype": "The Everyman / The Explorer",
+      "mantra": "Take it easy.",
+      "target_audience": "The Road-Tripper and the Busy Parent. They are looking for 'Easy to Visit, Easy to Buy' solutions to keep their day moving.",
+      "key_differentiator": "Global scale with local speed. We are the pit-stop for the world on the go."
+    },
+    "visual_identity": {
+      "logo": "The Circle K red and orange 'K' mark. Modern, bold, and synonymous with speed.",
+      "color_palette": [
+        "Circle K Red (#CF122D)",
+        "Sunrise Orange (#FF8200)",
+        "White",
+        "Concrete"
+      ],
+      "typography": {
+        "headlines": "Extra Bold Impact Sans (e.g., Futura Extra Bold). Shouts energy and convenience.",
+        "body_copy": "Rounded Sans-Serif for a friendly, approachable digital feel."
+      }
+    },
+    "photography_and_art_direction": {
+      "style": "Action-oriented and social. Groups of friends at the Polar Pop station or a driver pumping gas with a smile.",
+      "lighting": "Natural 'Golden Hour' for forecourt shots; vibrant, saturated 'Pop' lighting for in-store beverage stations.",
+      "environment": "Modern Circle K storefronts, EV charging stations, and snack aisles.",
+      "styling": "Vibrant and refreshing. Focus on the 'Polar Pop' experience: ice cubes clinking, bright colors, and 'Fresh Food Fast' packaging."
+    },
+    "voice_and_tone": {
+      "tone": "Witty, Inclusive, and Assured. The 'Stylish Older Brother' of convenience.",
+      "keywords": [
+        "Easy",
+        "Refresh",
+        "Fuel Up",
+        "Grab & Go",
+        "Inner Circle"
+      ],
+      "do": "Use exclamation points! Focus on the 'Feel Good' moment of a snack break.",
+      "dont": "Be too serious. Avoid slow or poetic language. Speed is our friend.",
+      "sample_copy": [
+        "Fuel your tank, feed your soul. Grab a $1 Polar Pop and get back on the road.",
+        "Your commute just got an upgrade. Pizza + Coffee = The ultimate power couple."
+      ]
+    }
+  }
+]

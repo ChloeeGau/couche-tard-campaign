@@ -31,7 +31,7 @@ from google.api_core import exceptions as google_exceptions
 from vertexai import agent_engines
 from vertexai.preview.reasoning_engines import AdkApp
 
-from fashion.adk_common.utils import utils_gcs
+from retail_ops.adk_common.utils import utils_gcs
 
 PROD_AGENT_WHL_FILEPATH = "dist/davos_fashion_campaign-0.1.1-py3-none-any.whl"
 STAGING_AGENT_WHL_FILEPATH = "dist/davos_fashion_campaign-0.1.1-py3-none-any.whl"
@@ -117,8 +117,8 @@ def get_artifact_service():
 
 def _create() -> None:
     # Import here so that it does not try to initialize config before load_dotenv called
-    # from fashion.agent import root_agent
-    from fashion.agent import root_agent
+    # from retail_ops.agent import root_agent
+    from retail_ops.agent import root_agent
     # from app import agent
 
     deep_copy_env_vars = copy.deepcopy(_get_env_vars())

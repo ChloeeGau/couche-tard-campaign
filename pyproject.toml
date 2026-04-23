@@ -1,7 +1,7 @@
 [project]
-name = "davos-fashion-campaign"
+name = "couche-tard-campaign-strategist"
 version = "0.1.1"
-description = "Davos Fashion Campaign"
+description = "Couche-Tard Campaign Strategist"
 authors = [
     {name = "Andrew Turner",email = "andrewturner@google.com"}
 ]

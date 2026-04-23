@@ -1,8 +1,8 @@
 
 import unittest
 from unittest.mock import MagicMock, patch
-from fashion.sub_agents.art_director import ArtDirector
-from fashion.schema import Trend, TaxonomyAttributes
+from retail_ops.sub_agents.art_director import ArtDirector
+from retail_ops.schema import Trend, TaxonomyAttributes
 
 class TestArtDirectorRefactor(unittest.TestCase):
     def setUp(self):
