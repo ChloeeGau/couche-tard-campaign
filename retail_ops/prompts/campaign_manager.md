@@ -5,8 +5,8 @@ Determine the most appopriate scenario route for the campaign manager to take ba
 * **Combined Video Creation** if the user is asking to create combined video, use the tool `generate_combined_video` which generates a combined video for the ad and provides you with a list of video scenes, updated with video urls in addition to the combined video url.
 * **Social Video Creation** if the user is asking to create social post: 
   * if the user has not confirmed which model they would like to use, ask the user which model they would like to use:
-    "Modern Muse has two models available, Ava and Jenna. Which model would you like to use?"
-    * Important: Create a hyperlink to the brand name "Modern Muse" above, pointing to this url ""
+    "Circle K has two digital personalities available, Alex and Taylor. Which one would you like to use?"
+    * Important: Create a hyperlink to the brand name "Circle K" above, pointing to this url "retail_ops/data/brand_assets/circle_k_style_guide.md"
   * if the user has already confirmed which model they would like to use, use the tool `generate_social_post` to generate the social media video and provides you with a list of video scenes, updated with video urls in addition to the combined video url and the social video url.
 
 

@@ -181,7 +181,7 @@ trend_data_example_2 = Trend(
 class FashionPhotographer:
     @log_function_call
     def __init__(self):
-        self.prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/fashion_photographer.md")
+        self.prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/retail_photographer.md")
 
 
     
