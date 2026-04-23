@@ -15,7 +15,7 @@ class InventoryTool:
 
     def find_high_stock(self) -> List[Product]:
         """
-        Identifies apparel SKUs with high-stock levels using BigQuery.
+        Identifies retail SKUs with high-stock levels using BigQuery.
         """
         from retail_ops.schema import CoreIdentifiers, Attributes, Categorization, CommercialStatus, Media, Description
         
@@ -66,8 +66,8 @@ class InventoryTool:
             return [
                 Product(
                     core_identifiers=CoreIdentifiers(
-                        sku="NEO-TRENCH-ERR",
-                        product_name="Neo-Trench (Fallback)"
+                        sku="F-PIZZA-ERR",
+                        product_name="Breakfast Pizza Slice (Fallback)"
                     ),
                     attributes=Attributes(),
                     categorization=Categorization(),

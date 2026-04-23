@@ -13,9 +13,9 @@ class CampaignTool:
             trend=trend.micro_trend,
             target_audience=trend.target_audience,
             keyframes=[
-                "Keyframe 1: Model walking in financial district.",
-                "Keyframe 2: Close up of fabric texture.",
-                "Keyframe 3: Model entering modern office."
+                "Keyframe 1: Commuter grabbing a fresh cup of coffee.",
+                "Keyframe 2: Close up of hot breakfast pizza slice.",
+                "Keyframe 3: Happy customer swiping Inner Circle loyalty card."
             ],
             video_url=f"https://storage.googleapis.com/{GCS_BUCKET_NAME or 'demo-bucket'}/campaigns/{product_name}_final.mp4"
         )
