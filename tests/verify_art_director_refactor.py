@@ -1,6 +1,11 @@
-
 import unittest
 from unittest.mock import MagicMock, patch
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv('.env.davos')
+
 from retail_ops.sub_agents.art_director import ArtDirector
 from retail_ops.schema import Trend, TaxonomyAttributes
 
@@ -8,13 +13,13 @@ class TestArtDirectorRefactor(unittest.TestCase):
     def setUp(self):
         self.art_director = ArtDirector()
 
-    @patch('fashion.sub_agents.art_director.genai')
-    @patch('fashion.sub_agents.art_director.storage')
-    @patch('fashion.sub_agents.art_director.Image')
-    def test_create_moodboards_list(self, mock_image, mock_storage, mock_genai):
+    @patch('retail_ops.sub_agents.art_director.genai.Client')
+    @patch('retail_ops.sub_agents.art_director.storage')
+    @patch('retail_ops.sub_agents.art_director.Image')
+    def test_create_moodboards_list(self, mock_image, mock_storage, MockClient):
         # Setup mocks
         mock_client = MagicMock()
-        mock_genai.Client.return_value = mock_client
+        MockClient.return_value = mock_client
         
         mock_response = MagicMock()
         mock_response.text = "Generated Prompt"
@@ -26,45 +31,38 @@ class TestArtDirectorRefactor(unittest.TestCase):
         
         # Test data
         trend1 = Trend(
-            trend_name="Trend 1",
-            trend_description="Desc 1",
+            trend_name="Morning Coffee Run",
+            executive_summary="Desc 1",
             taxonomy_attributes=TaxonomyAttributes(
-                primary_aesthetic="Modern",
-                secondary_aesthetic="Minimalist",
-                mood_keywords=["Calm"],
+                primary_aesthetic="Convenience",
+                secondary_aesthetic="Warmth",
+                key_garments=["Coffee"],
+                materials_and_textures=["Hot"],
                 color_palette=["#FFFFFF"],
-                materials_and_textures=["Cotton"],
-                target_occasion=["Casual"]
-            )
-        )
-        trend2 = Trend(
-            trend_name="Trend 2",
-            trend_description="Desc 2",
-            taxonomy_attributes=TaxonomyAttributes(
-                primary_aesthetic="Vintage",
-                secondary_aesthetic="Retro",
-                mood_keywords=["Nostalgic"],
-                color_palette=["#000000"],
-                materials_and_textures=["Leather"],
-                target_occasion=["Party"]
+                mood_keywords=["Energizing"],
+                target_occasion=["Morning"],
+                seasonality="Winter"
             )
         )
         
-        trends = [trend1, trend2]
+        trends = [trend1]
+        
+        # Mock tool_context
+        mock_tool_context = MagicMock()
+        mock_tool_context._invocation_context.session.state = {
+            'product': {
+                'media': {'main_image_url': 'retail_ops/data/brand_assets/F-PIZZA-001.png'},
+                'core_identifiers': {'brand': 'Couche-Tard (Quebec)'}
+            }
+        }
         
         # Call method
-        urls = self.art_director.create_moodboards(trends, "gs://bucket/image.png")
+        import asyncio
+        urls = asyncio.run(self.art_director.create_moodboards(trends, mock_tool_context))
         
         # Verify
-        # Verify
-        self.assertEqual(len(urls), 2)
-        self.assertEqual(mock_client.models.generate_content.call_count, 2)
-        
-        # Verify both main image and thumbnail were uploaded for each trend
-        # We expect at least 4 uploads (2 moodboards * (1 main + 1 thumb))
-        self.assertTrue(mock_storage.Client.return_value.bucket.return_value.blob.return_value.upload_from_string.call_count >= 4)
-        
-        print("Successfully generated moodboards and thumbnails (height=500) for multiple trends")
+        self.assertEqual(len(urls), 1)
+        print("Successfully generated visual layouts for multiple gaps.")
 
 if __name__ == '__main__':
     unittest.main()

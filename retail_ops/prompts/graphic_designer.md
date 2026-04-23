@@ -16,12 +16,12 @@ Based on the Trend and Aesthetic:
 # Step 2: Prompt Construction
 Write a DALL-E 3 / Midjourney prompt using the strict structure below. Do not deviate from the layout description.
 
-"A flat vector graphic design layout of a Brand Style Guide for the '{trend_name}' fashion trend. 
+"A flat vector graphic design layout of a Brand Style Guide for the '{trend_name}' consumption gap opportunity. 
 
 [Layout Structure]: The image is divided into two distinct sections. 
 1. **Left Side (The Mood Grid):** A bento-box style masonry grid of 4 vertical images.
    - Top-Left Cell: Negative space reserved for {product_description}.
-   - Other Cells: High-fashion lifestyle photography featuring {mood_keywords} vibes and props like [Insert 3 Props based on Aesthetic].
+   - Other Cells: Clean retail photography featuring {mood_keywords} vibes and props like [Insert 3 Props based on Aesthetic].
    
 2. **Right Side (The Brand Assets):** A clean white column containing:
    - **Palette Section:** Four square color swatches labeled with large bold text: [Insert Generated Hex Codes].

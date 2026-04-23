@@ -188,7 +188,7 @@ class SocialMediaDirector:
           logger.info(response.text)
           
           storage_client = storage.Client()
-          bucket_name = f"creative-content_{PROJECT_ID}"
+          bucket_name = "circlek-demo"
           gcs_folder=get_or_create_unique_session_id(tool_context)
 
           bucket = storage_client.bucket(bucket_name)

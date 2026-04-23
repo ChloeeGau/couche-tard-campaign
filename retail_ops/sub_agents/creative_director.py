@@ -169,7 +169,7 @@ class CreativeDirector:
               print(f"scene: {scene}")
 
               prompt = f"""
-              Generate a high-fidelity fashion image based on the following scene description:
+              Generate a high-fidelity marketing image based on the following scene description:
               
               **Setting:** {scene['setting']}
               **Lighting:** {scene['lighting_style']}
@@ -266,7 +266,7 @@ class CreativeDirector:
 
                           print("valid repsonse checkpoint 2")
                           storage_client = storage.Client()
-                          bucket_name = f"creative-content_{PROJECT_ID}"
+                          bucket_name = "circlek-demo"
                           bucket = storage_client.bucket(bucket_name)
                           destination_blob_name = f"scenes/{file_name}"
 

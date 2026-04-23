@@ -66,24 +66,40 @@ class ArtDirector:
     @log_function_call
     async def _generate_style_guide_prompt(self, brand_data: Brand, trend_data: Trend, product_image_path: str) -> str:
         
-        attrs = trend_data['taxonomy_attributes']
+        if isinstance(trend_data, dict):
+            attrs = trend_data.get('taxonomy_attributes', {})
+            trend_name = trend_data.get('trend_name', 'Unknown')
+        else:
+            attrs = trend_data.taxonomy_attributes
+            trend_name = trend_data.trend_name
         
-        colors = attrs['color_palette']
-        prompt_template = ""
-
+        if isinstance(attrs, dict):
+            colors = attrs.get('color_palette', [])
+            mood_keywords = attrs.get('mood_keywords', [])
+            materials_and_textures = attrs.get('materials_and_textures', [])
+            target_occasion = attrs.get('target_occasion', [])
+            aesthetic_keywords = attrs.get('primary_aesthetic', '')
+            secondary = attrs.get('secondary_aesthetic')
+            if secondary:
+                aesthetic_keywords += f", {secondary}"
+        else:
+            colors = attrs.color_palette
+            mood_keywords = attrs.mood_keywords
+            materials_and_textures = attrs.materials_and_textures
+            target_occasion = attrs.target_occasion
+            aesthetic_keywords = attrs.primary_aesthetic
+            if hasattr(attrs, 'secondary_aesthetic') and attrs.secondary_aesthetic:
+                aesthetic_keywords += f", {attrs.secondary_aesthetic}"
+                
         prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/graphic_designer.md")
-        # TODO check for existince of these values to avoid errors
-        aesthetic_keywords = attrs['primary_aesthetic']
-        if 'secondary_aesthetic' in attrs:
-            aesthetic_keywords += f", {attrs['secondary_aesthetic']}"
 
 
 
         # Constructing the message to the LLM
-        example_moodboard_location = f"gs://creative-content_{PROJECT_ID}/brands/{brand_data.brand_identifier}/moodboard_{brand_data.brand_identifier}.png"
-        logo_location = f"gs://creative-content_{PROJECT_ID}/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
+        example_moodboard_location = f"gs://circlek-demo/brands/{brand_data.brand_identifier}/moodboard_{brand_data.brand_identifier}.png"
+        logo_location = f"gs://circlek-demo/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
         llm_instruction = f"""
-            Please write an Image Generation Prompt for a Brand Board, for the specified fashion trend, highlighting the product provided in the image.
+            Please write an Image Generation Prompt for a Brand Board, for the specified consumption gap opportunity, highlighting the product provided in the image.
 
             Brand Data:
             - Brand: {brand_data.name}
@@ -92,9 +108,9 @@ class ArtDirector:
             - Brand Visual Identity: {brand_data.visual_identity}            
 
             Trend Data:
-            - Trend: {trend_data['trend_name']}
+            - Trend: {trend_name}
             - Aesthetic Keywords: {aesthetic_keywords}
-            - Moods: {', '.join(attrs['mood_keywords'])}
+            - Moods: {', '.join(mood_keywords)}
             - Color List: {', '.join(colors)} (Please convert these to Hex codes in the prompt)
 
             Product Data:
@@ -110,13 +126,13 @@ class ArtDirector:
 
 
             Imagery Requirements (multiple images should be used, but the following are required):
-            * **Product Image:** One image should be of the product
-            * **Textures:** Multiple textures should be used to represent the materials and textures, taking into consideration {', '.join(attrs['materials_and_textures'])}
-            * **Accessories Image:** One image should represent associated accessories that match the style of the trend. This single image should represent multiple accessories.
+            * **Product Image:** One image should be of the core product.
+            * **Freshness & Context:** Images should represent the context and consumption trigger, taking into consideration {', '.join(materials_and_textures)}.
+            * **Complementary Items:** One image should represent associated food/beverage items that pair well with the core product for basket expansion.
             """
-        if "target_occasion" in attrs:
+        if target_occasion:
             llm_instruction += f"""
-            * **Scene:** One image should represent a scene (without people) based on the trend occasions: {', '.join(attrs['target_occasion'])}
+            * **Scene:** One image should represent a scene (without people) based on the trend occasions: {', '.join(target_occasion)}
             """
         
         llm_instruction += f"""
@@ -214,12 +230,21 @@ class ArtDirector:
         moodboard_urls = []
 
         for trend in trend_data:
-            attrs = trend['taxonomy_attributes']
-            colors = attrs['color_palette']
+            if isinstance(trend, dict):
+                attrs = trend.get('taxonomy_attributes', {})
+                trend_name = trend.get('trend_name', 'Unknown')
+            else:
+                attrs = trend.taxonomy_attributes
+                trend_name = trend.trend_name
+                
+            if isinstance(attrs, dict):
+                colors = attrs.get('color_palette', [])
+            else:
+                colors = attrs.color_palette
             
             # Use the loop variable 'trend' here
             prompt_contents = await self._generate_style_guide_prompt(brand_data, trend, product_image_path)
-            logo_location = f"gs://creative-content_{PROJECT_ID}/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
+            logo_location = f"gs://circlek-demo/brands/{brand_data.brand_identifier}/logo_{brand_data.brand_identifier}.png"
             prompt_contents += (
                 f"""
 
@@ -253,10 +278,10 @@ class ArtDirector:
                 logger.info(response.text)
                 
                 storage_client = storage.Client()
-                bucket_name = f"creative-content_{PROJECT_ID}"
+                bucket_name = "circlek-demo"
                 bucket = storage_client.bucket(bucket_name)
                 # Unique name for each moodboard
-                moodboard_file_name = f"moodboard_{trend['trend_name'].replace(' ', '_')}_{base64.urlsafe_b64encode(os.urandom(6)).decode()}.png"
+                moodboard_file_name = f"moodboard_{trend_name.replace(' ', '_')}_{base64.urlsafe_b64encode(os.urandom(6)).decode()}.png"
                 destination_blob_name = f"moodboards/{moodboard_file_name}"
 
                 for part in response.parts:
@@ -288,7 +313,7 @@ class ArtDirector:
                         moodboard_urls.append(public_url)
                         logger.info(f"Generated Moodboard: {public_url}")
             except Exception as e:
-                logger.error(f"Moodboard generation failed for trend {trend['trend_name']}: {e}")
+                logger.error(f"Moodboard generation failed for trend {trend_name}: {e}")
                 continue
 
         return moodboard_urls

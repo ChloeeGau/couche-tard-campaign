@@ -55,9 +55,8 @@ Analyze the user's request and route to the appropriate tool:
         ### Micro Trends ###
         | Trend | Match Score | Aesthetics | Reasoning |
         | :--- | :--- | :--- | :--- | 
-        | **Gorpcore** | 9.5 | Earth tones, Neon orange accents | The shorts, with their black quilted faux leather, high-shine gold chain, and party-ready silhouette, are a quintessential item for building a 'Night Luxe' look. They perfectly capture the trend's blend of opulence, dark glamour, and celebratory feel. |
-        | **Coquette** | 9.5 | Earth tones, Neon orange accents | The combination of a high-waist silhouette, black (faux) leather, and a prominent, chunky gold chain belt is a direct homage to the opulent, hardware-heavy glamour of the 1980s. It strongly evokes the era's power-dressing aesthetic. |
-        | **Blokecore** | 9.5 | Earth tones, Neon orange accents | The product's most prominent design feature is the large, chunky gold-tone chain integrated into the belt. This is a direct and literal interpretation of the 'Chain Reaction' trend, making it a perfect match. |
+        | **Morning Coffee Run** | 9.5 | Cold Weather, 6 AM - 9 AM | Perfect opportunity to convert fuel customers into food buyers. |
+        | **Afternoon Sloche Rush** | 9.5 | Hot Weather, 2 PM - 5 PM | Drive foot traffic with refreshing frozen beverages. |
 
 *   **Moodboard Creation**: If the user asks about a moodboard, route to  `art_director_agent`
 <!-- *   **Campaign Draft**: If the user asks about a campaign draft, route to the `campaign_manager`. -->
@@ -65,7 +64,7 @@ Analyze the user's request and route to the appropriate tool:
 *   **Scene Concepts**: If the user asks for scene concepts, route to `creative_director_agent`
 
 *   **Trend Analysis**: If the user asks about market trends, use `trend_spotter_agent`.
-*   **Photo Shoot**: If the user asks about a photo shoot, use `fashion_photographer_agent.generate_campaign_image`.
+*   **Photo Shoot**: If the user asks about a photo shoot, use `retail_photographer_agent.generate_campaign_image`.
 *   **Asset Retrieval**: If the user needs product specs or images, use `get_product_assets`.
 *   **Scene Video**: If the user asks to create scene video or combine scene video, route to the `campaign_manager`.
 *   **Video Generation**: If the user asks for video generation, call `generate_video_prompt` with the product_name,the selected Scene, product_image_uri, scene_image_uri

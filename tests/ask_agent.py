@@ -19,7 +19,7 @@ async def main():
     print("Sending message to agent...")
     async for event in runner.run_async(
         user_id="user", session_id="s1",
-        new_message=types.Content(role="user", parts=[types.Part.from_text(text="Analyze the visual requirements for a campaign featuring SKU F-PIZZA-001 for the Couche-Tard brand.")]),
+        new_message=types.Content(role="user", parts=[types.Part.from_text(text="Analyze the visual requirements for a campaign featuring SKU F-PIZZA-001 for the Couche-Tard brand. Target the 'Morning Coffee Run' consumption gap.")]),
     ):
         if event.is_final_response():
             print("\n--- Agent Response ---")

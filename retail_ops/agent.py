@@ -36,7 +36,7 @@ from retail_ops.schema import (
 from retail_ops.sub_agents.art_director import ArtDirector
 # from retail_ops.sub_agents.campaign_manager import CampaignManager
 from retail_ops.sub_agents.creative_director import CreativeDirector
-from retail_ops.sub_agents.fashion_photographer import FashionPhotographer
+from retail_ops.sub_agents.retail_photographer import RetailPhotographer
 from retail_ops.sub_agents.product_trend_mapper import ProductTrendMapper
 from retail_ops.sub_agents.trend_spotter import TrendSpotter
 from retail_ops.sub_agents.social_media_director import SocialMediaDirector
@@ -66,7 +66,7 @@ from retail_ops.tools.sales import SalesTool
 inventory_tool = InventoryTool()
 sales_tool = SalesTool()
 trend_spotter_agent = TrendSpotter()
-fashion_photographer_agent = FashionPhotographer()
+retail_photographer_agent = RetailPhotographer()
 art_director_agent = ArtDirector()
 creative_director_agent = CreativeDirector()
 product_trend_mapper_agent = ProductTrendMapper()
@@ -156,7 +156,9 @@ def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict:
     for product in products:
         if product.core_identifiers.sku == sku:
             tool_context.state['product'] = to_dict_recursive(product)
-            min_image = generate_min_image(product.media.main_image_url)
+            main_image_url = product.media.main_image_url if product.media else None
+            if main_image_url:
+                min_image = generate_min_image(main_image_url)
             brand_name = product.core_identifiers.brand
             brand_info = next((brand for brand in tool_context.state.get("brand_data", []) if brand.get("name") == brand_name), None)
             if brand_info:
@@ -164,7 +166,7 @@ def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict:
                 log_message(f"Brand info for {brand_name} loaded successfully into state.", Severity.INFO)
             else:
                 log_message(f"Brand info for {brand_name} not found in loaded data.", Severity.WARNING)
-            return to_dict_recursive(product), to_dict_recursive(tool_context.state['brand_info'])
+            return to_dict_recursive(product), to_dict_recursive(tool_context.state.get('brand_info', {}))
 
     return to_dict_recursive(Product()),to_dict_recursive(Brand())
     
@@ -213,7 +215,7 @@ def create_couche_tard_campaign_agent() -> Agent:
                 AgentTool(agent=art_director_agent.agent),
                 # art_director_agent.create_moodboards,
                 # art_director_agent.create_campaign_directive,
-                fashion_photographer_agent.generate_campaign_image,
+                retail_photographer_agent.generate_campaign_image,
                 AgentTool(agent=creative_director_agent.agent),
                 # creative_director_agent.create_video_scenes,
                 # creative_director_agent.generate_scene_image,

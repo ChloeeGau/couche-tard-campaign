@@ -400,7 +400,7 @@ class ProductTrendMapper:
             ),
         )
         storage_client = storage.Client()
-        bucket_name = f"creative-content_{PROJECT_ID}"
+        bucket_name = "circlek-demo"
         bucket = storage_client.bucket(bucket_name)
         # Unique name for each moodboard
         product_trend_file_name = f"{product['core_identifiers']['sku']}_trends.png"
