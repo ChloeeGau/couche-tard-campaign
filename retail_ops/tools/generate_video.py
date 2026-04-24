@@ -171,17 +171,16 @@ User Request: "{raw_prompt}"
 """
 
         system_instruction = f"""
-You are an expert Director of Photography and Visual Effects Supervisor.
+You are an expert Director of Photography and Visual Effects Supervisor for Alimentation Couche-Tard / Circle K.
 Your goal is to rewrite a user's video request into a "Production Ready" description for a video generation model.
         
 MANDATES:
-    1. VISUALS: Describe lighting (e.g., 'golden hour', 'soft studio', 'volumetric fog'), camera movement (e.g., 'slow dolly in', 'tracking shot'), and texture.
+    1. VISUALS: Describe lighting (e.g., bright daylight, vibrant neon), camera movement (e.g., fast cuts, slow motion on sips), and texture.
     2. PHYSICS: Explicitly describe how objects move. Mention weight, impact, and friction.
-       * AVOID describing complex human coordination (e.g., running up stairs, complex dancing, parkour, tying shoelaces) as models struggle with this.
-       * If fast movement is needed, describe it as 'CAPTURED IN SLOW MOTION' to maintain stability.
-    3. FRAMING: The video aspect ratio is {VIDEO_DEFAULT_ASPECT_RATIO}. Ensure the shot description fits a {composition_guide}.
-    4. REALISM: Use keywords like 'photorealistic', '4k', 'highly detailed', 'raw footage'.
-    5. LOGO SAFETY: If the user mentions a logo, ensure you specify it must remain static and undistorted.
+    3. BRAND PERSONA: The vibe must be Fast, Clean, Friendly, Energetic, and Easy. Focus on "Crave-able" appeal (e.g., cheese pulls on pizza, condensation on a Sloche cup). Avoid any luxury, avant-garde, or fine-dining references.
+    4. FRAMING: The video aspect ratio is {VIDEO_DEFAULT_ASPECT_RATIO}. Ensure the shot description fits a {composition_guide}.
+    5. REALISM: Use keywords like 'photorealistic', '4k', 'highly detailed', 'raw footage'.
+    6. LOGO SAFETY: If the user mentions a logo, ensure you specify it must remain static and undistorted.
         
 Output ONLY the refined paragraph. Do not include introductory text.
 
@@ -530,9 +529,31 @@ async def generate_video(
 
     try:
         # Load reference image
-        generated_media: GeneratedMedia | None = await utils_agents.load_resource(
-            source_path=reference_image, tool_context=tool_context
-        )
+        # Rewrite hallucinated paths to valid GCS paths
+        if "F-PIZZA-001" in reference_image:
+            reference_image = "gs://circlek-demo/brand_assets/F-PIZZA-001.png"
+            log_message(f"Rewrote reference image path to: {reference_image}", Severity.INFO)
+        elif "BEV-SLO-001" in reference_image or "sloche" in reference_image.lower():
+            reference_image = "gs://circlek-demo/brand_assets/BEV-SLO-001.png"
+            log_message(f"Rewrote reference image path to: {reference_image}", Severity.INFO)
+            
+        if not reference_image.startswith("gs://") and not reference_image.startswith("https://"):
+            print(f"Treating {reference_image} as local path.")
+            if os.path.exists(reference_image):
+                with open(reference_image, 'rb') as f:
+                    image_bytes = f.read()
+                from retail_ops.adk_common.dtos.generated_media import GeneratedMedia
+                generated_media = GeneratedMedia(
+                    filename=reference_image.split("/")[-1],
+                    mime_type="image/png",
+                    media_bytes=image_bytes
+                )
+            else:
+                generated_media = None
+        else:
+            generated_media: GeneratedMedia | None = await utils_agents.load_resource(
+                source_path=reference_image, tool_context=tool_context
+            )
         log_message(f"Reference image for scene {scene_number}: {reference_image}", Severity.INFO)
         if not generated_media or not generated_media.media_bytes:
             message = f"The provided image for scene number `{scene_number}` does not exist or returned empty. The URI provided was: {reference_image}."

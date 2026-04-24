@@ -81,7 +81,7 @@ class SocialMediaDirector:
     
     # TODO add intermediary step to generate the prompt, provide to the user before generating the image
     @log_function_call
-    async def generate_keyframe_image_prompt(self, product_data: Product, trend_data: Trend, product_research: str, tool_context: ToolContext) -> List[str]:
+    async def generate_keyframe_image_prompt(self, product_research: str, tool_context: ToolContext) -> List[str]:
         logger.info(f"generate_keyframe_image_prompt {product_data}")
         logger.info(f"trend_data {trend_data}")
         selected_product = tool_context._invocation_context.session.state.get('product')
@@ -230,7 +230,7 @@ class SocialMediaDirector:
         return formatted_image_prompt, formatted_video_prompt, social_media_urls[0]
 
     @log_function_call
-    async def product_research(self, product_data: Product, trend_data: Trend, tool_context: ToolContext) -> str:
+    async def product_research(self, tool_context: ToolContext) -> str:
         logger.info(f"product_research {product_data}")
         logger.info(f"trend_data {trend_data}")
         selected_product = tool_context._invocation_context.session.state.get('product')

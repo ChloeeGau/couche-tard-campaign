@@ -65,5 +65,5 @@ class SalesTool:
             return results
         except Exception as e:
             print(f"BigQuery Error in SalesTool: {e}")
-            return []
+            return retrieve_products()
 

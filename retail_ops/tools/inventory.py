@@ -63,19 +63,4 @@ class InventoryTool:
         except Exception as e:
             print(f"BigQuery Error: {e}")
             # Fallback for demo stability
-            return [
-                Product(
-                    core_identifiers=CoreIdentifiers(
-                        sku="F-PIZZA-ERR",
-                        product_name="Breakfast Pizza Slice (Fallback)"
-                    ),
-                    attributes=Attributes(),
-                    categorization=Categorization(),
-                    commercial_status=CommercialStatus(
-                        stock_quantity=500,
-                        in_stock=True
-                    ),
-                    media=Media(),
-                    description=Description()
-                )
-            ]
+            return retrieve_products()

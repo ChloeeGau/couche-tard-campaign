@@ -15,7 +15,17 @@
 },
 "commercial_status": {
   "current_price": 4.49,
-  "stock_quantity": 45
+  "stock_quantity": 45,
+  "sales_velocity": "low",
+  "q4_2025": "10 🔻5%",
+  "q1_2026": "10 🔻5%"
+},
+"description": {
+  "short": "A delicious, freshly baked slice of breakfast pizza with savory bacon and egg.",
+  "long": "Start your morning right with our signature Breakfast Pizza Slice. Featuring a crispy crust, a rich savory base, and topped with melting cheese and real smoky bacon pieces. It's the ultimate on-the-go morning comfort food."
+},
+"media": {
+  "main_image_url": "https://storage.cloud.google.com/circlek-demo/brand_assets/F-PIZZA-001.png"
 }
 },
 {
@@ -34,7 +44,17 @@
 },
 "commercial_status": {
   "current_price": 3.99,
-  "stock_quantity": 60
+  "stock_quantity": 60,
+  "sales_velocity": "average",
+  "q4_2025": "20 🟡0%",
+  "q1_2026": "20 🟡0%"
+},
+"description": {
+  "short": "Classic Pepperoni Pizza Slice with rich tomato sauce and mozzarella.",
+  "long": "A staple of our Fresh Food Fast menu. Enjoy a thick, satisfying slice of pepperoni pizza with a rich sauce and plenty of cheese."
+},
+"media": {
+  "main_image_url": "https://storage.cloud.google.com/circlek-demo/brand_assets/F-PIZZA-001.png"
 }
 },
 {
@@ -53,8 +73,16 @@
 },
 "commercial_status": {
   "current_price": 2.49,
-  "stock_quantity": 80
-}
+  "stock_quantity": 80,
+  "sales_velocity": "average",
+  "q4_2025": "30 🟡0%",
+  "q1_2026": "30 🟡0%"
+},
+"description": {
+  "short": "Juicy all-beef jumbo hot dog served on a soft bun.",
+  "long": "Our famous roller grill hot dog. 100% all-beef, grilled to perfection and served in a fresh bun. Grab it and customize with your favorite toppings."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -72,8 +100,16 @@
 },
 "commercial_status": {
   "current_price": 6.99,
-  "stock_quantity": 25
-}
+  "stock_quantity": 25,
+  "sales_velocity": "low",
+  "q4_2025": "5 🔻10%",
+  "q1_2026": "5 🔻10%"
+},
+"description": {
+  "short": "Fresh turkey and Swiss cheese on artisan bread.",
+  "long": "A premium grab-and-go sandwich featuring sliced turkey breast, Swiss cheese, and crisp lettuce on fresh artisan bread."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -91,7 +127,17 @@
 },
 "commercial_status": {
   "current_price": 2.99,
-  "stock_quantity": 500
+  "stock_quantity": 500,
+  "sales_velocity": "high",
+  "q4_2025": "200 🟢15%",
+  "q1_2026": "200 🟢15%"
+},
+"description": {
+  "short": "An icy, refreshing Sloche with bold red sour cherry flavor.",
+  "long": "Beat the heat with the iconic Circle K Sloche. This frozen treat features an intense sour cherry flavor that will wake up your taste buds. Perfect for hot summer days or as a fun afternoon pick-me-up."
+},
+"media": {
+  "main_image_url": "https://storage.cloud.google.com/circlek-demo/brand_assets/BEV-SLO-001.png"
 }
 },
 {
@@ -110,7 +156,17 @@
 },
 "commercial_status": {
   "current_price": 2.99,
-  "stock_quantity": 500
+  "stock_quantity": 500,
+  "sales_velocity": "high",
+  "q4_2025": "180 🟢10%",
+  "q1_2026": "180 🟢10%"
+},
+"description": {
+  "short": "Icy blue raspberry Sloche for a bold cooling break.",
+  "long": "Vibrant blue raspberry flavor in a classic frozen Sloche format. It's the ultimate thirst quencher."
+},
+"media": {
+  "main_image_url": "https://storage.cloud.google.com/circlek-demo/brand_assets/BEV-SLO-001.png"
 }
 },
 {
@@ -129,7 +185,17 @@
 },
 "commercial_status": {
   "current_price": 2.49,
-  "stock_quantity": 500
+  "stock_quantity": 500,
+  "sales_velocity": "high",
+  "q4_2025": "150 🟢5%",
+  "q1_2026": "150 🟢5%"
+},
+"description": {
+  "short": "Tart and sweet lemonade Sloche.",
+  "long": "A glowing yellow lemonade flavor with a radioactive kick. Sour, sweet, and incredibly cold."
+},
+"media": {
+  "main_image_url": "https://storage.cloud.google.com/circlek-demo/brand_assets/BEV-SLO-001.png"
 }
 },
 {
@@ -148,8 +214,16 @@
 },
 "commercial_status": {
   "current_price": 2.25,
-  "stock_quantity": 1000
-}
+  "stock_quantity": 1000,
+  "sales_velocity": "high",
+  "q4_2025": "500 🟢20%",
+  "q1_2026": "500 🟢20%"
+},
+"description": {
+  "short": "Freshly brewed medium roast coffee.",
+  "long": "Our signature medium roast blend, brewed fresh around the clock. Smooth, balanced, and perfect for your morning commute."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -167,8 +241,16 @@
 },
 "commercial_status": {
   "current_price": 2.75,
-  "stock_quantity": 1000
-}
+  "stock_quantity": 1000,
+  "sales_velocity": "high",
+  "q4_2025": "450 🟢15%",
+  "q1_2026": "450 🟢15%"
+},
+"description": {
+  "short": "Bold and rich dark roast coffee.",
+  "long": "For those who need a stronger kick. Our dark roast is bold, full-bodied, and always fresh."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -186,8 +268,16 @@
 },
 "commercial_status": {
   "current_price": 1.99,
-  "stock_quantity": 240
-}
+  "stock_quantity": 240,
+  "sales_velocity": "high",
+  "q4_2025": "120 🟢5%",
+  "q1_2026": "120 🟢5%"
+},
+"description": {
+  "short": "Chilled purified water.",
+  "long": "Pure, clean, and refreshing. Keep a bottle in your cup holder."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -205,8 +295,16 @@
 },
 "commercial_status": {
   "current_price": 3.49,
-  "stock_quantity": 180
-}
+  "stock_quantity": 180,
+  "sales_velocity": "average",
+  "q4_2025": "40 🟡0%",
+  "q1_2026": "40 🟡0%"
+},
+"description": {
+  "short": "Original flavor Joker energy drink.",
+  "long": "Get the energy you need to power through your drive. Bold flavor and high caffeine content."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -224,8 +322,16 @@
 },
 "commercial_status": {
   "current_price": 4.29,
-  "stock_quantity": 150
-}
+  "stock_quantity": 150,
+  "sales_velocity": "average",
+  "q4_2025": "50 🟡0%",
+  "q1_2026": "50 🟡0%"
+},
+"description": {
+  "short": "Crunchy kettle cooked sea salt potato chips.",
+  "long": "Extra crunchy chips seasoned with sea salt. Perfect for a savory snack craving."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -243,8 +349,16 @@
 },
 "commercial_status": {
   "current_price": 4.29,
-  "stock_quantity": 130
-}
+  "stock_quantity": 130,
+  "sales_velocity": "average",
+  "q4_2025": "45 🟡0%",
+  "q1_2026": "45 🟡0%"
+},
+"description": {
+  "short": "Crispy potato chips with spicy BBQ seasoning.",
+  "long": "A bold, smoky, and spicy chip experience. Great for sharing on road trips."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -262,8 +376,16 @@
 },
 "commercial_status": {
   "current_price": 2.99,
-  "stock_quantity": 200
-}
+  "stock_quantity": 200,
+  "sales_velocity": "average",
+  "q4_2025": "30 🟡0%",
+  "q1_2026": "30 🟡0%"
+},
+"description": {
+  "short": "Classic roasted and salted peanuts.",
+  "long": "High-protein snack to keep you going. Simple, salty, and satisfying."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -281,8 +403,16 @@
 },
 "commercial_status": {
   "current_price": 3.49,
-  "stock_quantity": 180
-}
+  "stock_quantity": 180,
+  "sales_velocity": "average",
+  "q4_2025": "40 🟡0%",
+  "q1_2026": "40 🟡0%"
+},
+"description": {
+  "short": "Sour neon gummy worms.",
+  "long": "Sweet and sour chewy worms. A fun, colorful treat for the drive."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -300,8 +430,16 @@
 },
 "commercial_status": {
   "current_price": 1.65,
-  "stock_quantity": 50000
-}
+  "stock_quantity": 50000,
+  "sales_velocity": "high",
+  "q4_2025": "10000 🟢5%",
+  "q1_2026": "10000 🟢5%"
+},
+"description": {
+  "short": "Standard 87 octane regular gasoline.",
+  "long": "Quality fuel to keep you moving. Our standard regular unleaded gasoline."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -319,8 +457,16 @@
 },
 "commercial_status": {
   "current_price": 1.89,
-  "stock_quantity": 30000
-}
+  "stock_quantity": 30000,
+  "sales_velocity": "high",
+  "q4_2025": "5000 🟢2%",
+  "q1_2026": "5000 🟢2%"
+},
+"description": {
+  "short": "High-performance 91 octane premium gasoline.",
+  "long": "Optimized performance for premium engines. Formulated to keep your engine clean."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -338,8 +484,16 @@
 },
 "commercial_status": {
   "current_price": 1.72,
-  "stock_quantity": 40000
-}
+  "stock_quantity": 40000,
+  "sales_velocity": "high",
+  "q4_2025": "6000 🟢3%",
+  "q1_2026": "6000 🟢3%"
+},
+"description": {
+  "short": "Standard diesel fuel for trucks and cars.",
+  "long": "Reliable diesel fuel for commercial and passenger vehicles."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -357,8 +511,16 @@
 },
 "commercial_status": {
   "current_price": 15.99,
-  "stock_quantity": 9999
-}
+  "stock_quantity": 9999,
+  "sales_velocity": "average",
+  "q4_2025": "100 🟡0%",
+  "q1_2026": "100 🟡0%"
+},
+"description": {
+  "short": "Our best touchless car wash service.",
+  "long": "Keep your car looking brand new. Includes high-pressure wash, wax, and tire shine."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -376,8 +538,16 @@
 },
 "commercial_status": {
   "current_price": 4.99,
-  "stock_quantity": 35
-}
+  "stock_quantity": 35,
+  "sales_velocity": "low",
+  "q4_2025": "8 🔻8%",
+  "q1_2026": "8 🔻8%"
+},
+"description": {
+  "short": "Hot breakfast sandwich on a flaky croissant.",
+  "long": "Sausage, egg, and melted cheese on a buttery, flaky croissant. A perfect warm morning treat."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -395,8 +565,16 @@
 },
 "commercial_status": {
   "current_price": 0.99,
-  "stock_quantity": 5000
-}
+  "stock_quantity": 5000,
+  "sales_velocity": "high",
+  "q4_2025": "1000 🟢10%",
+  "q1_2026": "1000 🟢10%"
+},
+"description": {
+  "short": "Massive XL cup of ice-cold fountain soda for just $1.",
+  "long": "The legendary Polar Pop. Fill it with your choice of fountain soda and crushed ice. Stays cold for hours."
+},
+"media": null
 },
 {
 "core_identifiers": {
@@ -414,7 +592,42 @@
 },
 "commercial_status": {
   "current_price": 1.25,
-  "stock_quantity": 100
-}
+  "stock_quantity": 100,
+  "sales_velocity": "average",
+  "q4_2025": "30 🟡0%",
+  "q1_2026": "30 🟡0%"
+},
+"description": {
+  "short": "Freshly baked chocolate chip cookie.",
+  "long": "Soft and chewy chocolate chip cookie, baked fresh in-store daily."
+},
+"media": null
+},
+{
+"core_identifiers": {
+  "sku": "BNDL-PIZSLO-001",
+  "brand": "Fresh Food Fast",
+  "product_name": "Summer Refresh Bundle - Pizza & Sloche"
+},
+"attributes": {
+  "flavor": "Savory & Sweet",
+  "serving_size": "Combo"
+},
+"categorization": {
+  "category": "Foodservice",
+  "sub_category": "Bundles"
+},
+"commercial_status": {
+  "current_price": 5.99,
+  "stock_quantity": 100,
+  "sales_velocity": "average",
+  "q4_2025": "0 🟡0%",
+  "q1_2026": "0 🟡0%"
+},
+"description": {
+  "short": "Promotional combo: Pizza Slice + Sloche.",
+  "long": "The ultimate summer combo concept. Pair a hot, savory Breakfast Pizza slice with an icy, refreshing Sloche to beat the heat and satisfy your hunger."
+},
+"media": null
 }
 ]

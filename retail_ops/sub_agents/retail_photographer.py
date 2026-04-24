@@ -1,4 +1,4 @@
-Ifrom retail_ops.schema import Trend, TaxonomyAttributes, VisualAssets, MarketingAttributes, TargetAudienceProfile
+from retail_ops.schema import Trend, TaxonomyAttributes, VisualAssets, MarketingAttributes, TargetAudienceProfile
 from retail_ops.adk_common.utils.utils_logging import (Severity, log_function_call, log_message)
 from retail_ops.config import GEMINI_MODEL_NAME, IMAGEN_MODEL_NAME, PROJECT_ID, LOCATION, NANO_BANANA_PRO_MODEL_NAME, STANDARD_GENERATION_CONFIG, PROTOTYPE_SAFETY_SETTINGS
 import logging
@@ -344,6 +344,9 @@ class RetailPhotographer:
                   image_bytes = download_blob_to_bytes(bucket_name, source_blob_name)
               else:
                   print(f"Treating {gcs_image} as local path.")
+                  if not os.path.exists(gcs_image):
+                      print(f"File not found: {gcs_image}. Falling back to default pizza image.")
+                      gcs_image = "retail_ops/data/brand_assets/F-PIZZA-001.png"
                   with open(gcs_image, 'rb') as f:
                       image_bytes = f.read()
               print(f"image_bytes length is {len(image_bytes)}")
@@ -360,7 +363,7 @@ class RetailPhotographer:
             
               
             response = client.models.generate_content(
-                model="gemini-2.5-flash-image",
+                model=NANO_BANANA_PRO_MODEL_NAME,
                 # contents="Generate an infographic of the current weather in Tokyo.",
                 contents=contents,
                 config=genai_types.GenerateContentConfig(

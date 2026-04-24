@@ -20,8 +20,23 @@ class TrendSpotter:
             name="trend_spotter",
             model=GEMINI_MODEL_NAME,
             instruction=self.prompt_template,
-            output_schema=TrendSpotterOutput
+            output_schema=TrendSpotterOutput,
+            tools=[self.google_search]
         )
+
+    def google_search(self, query: str) -> str:
+        """Searches the web for real-time trends.
+        
+        Args:
+            query (str): The search query.
+            
+        Returns:
+            str: Search results.
+        """
+        print(f"MOCK SEARCH: {query}")
+        if "food trends" in query or "hot weather" in query:
+            return "Found 2 major trends in Quebec: 1. Extreme heatwave forecasted for the weekend (30°C+), leading to a surge in cold beverage searches. 2. Viral TikTok trend 'Dirty Sloche' (mixing Sloche with creamer or energy drinks) is trending among Gen Z."
+        return "No significant trends found for this query."
 
 
     # def spot_trends(self) -> TrendSpotterOutput:

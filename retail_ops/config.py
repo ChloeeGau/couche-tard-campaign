@@ -12,11 +12,11 @@ GCS_BUCKET_NAME: str | None = None
 VEO_MODEL_NAME: str = "veo-001"
 IMAGEN_MODEL_NAME: str = "imagen-3.0-generate-001"
 # GEMINI_MODEL_NAME: str = "gemini-2.5-pro"
-NANO_BANANA_PRO_MODEL_NAME: str = "gemini-3.0-pro-image"
+NANO_BANANA_PRO_MODEL_NAME: str = "gemini-3-pro-image-preview"
 
 # BigQuery Settings
-BQ_DATASET: str = "retail_analytics" # Default dataset for observability/inventory if not specified
-WITH_MOCKED_DATA: bool = True # Set to True to force use of mocked data
+BQ_DATASET = os.getenv("BQ_DATASET", "retail_analytics")
+WITH_MOCKED_DATA = os.getenv("WITH_MOCKED_DATA", "True").lower() == "true"
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "your-project-id")
 LOCATION = os.getenv("GOOGLE_CLOUD_REGION", "us-central1")

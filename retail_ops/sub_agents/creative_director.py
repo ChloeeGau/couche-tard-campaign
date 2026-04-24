@@ -55,6 +55,10 @@ class CreativeDirector:
         Generates video scene concepts based on product and trend.
         Returns a JSON string containing the creative direction and scenes.
         """
+        if not product_image_path or product_image_path == "string" or not os.path.exists(product_image_path):
+            print("Product image path not provided or invalid. Falling back to default pizza image.")
+            product_image_path = "retail_ops/data/brand_assets/F-PIZZA-001.png"
+            
         try:
             print(f"Creative Director: Creating video scenes for product: {product_image_path}, trend data: {trend_data}")
             client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)

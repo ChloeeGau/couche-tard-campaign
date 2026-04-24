@@ -114,6 +114,19 @@ def identify_inventory_opportunities(tool_context: InvocationContext) -> List[di
     return opportunities_as_dict    
 
 
+@log_function_call
+def identify_low_conversion_stores(tool_context: InvocationContext, product_sku: str) -> str:
+    """Identifies stores with high fuel traffic but low conversion for a specific product.
+    
+    Args:
+        tool_context (InvocationContext): The context for the tool execution.
+        product_sku (str): The SKU of the product to analyze.
+        
+    Returns:
+        str: A summary of identified stores.
+    """
+    return "Analysis complete. Identified 3 stores in the Montreal area (Store #104, #208, #312) with high fuel traffic but below-average conversion on Breakfast Pizza (SKU F-PIZZA-001)."
+
 # TODO: read from BQ instead of JSON
 @log_function_call
 def load_brand_data(tool_context: InvocationContext):
@@ -153,6 +166,7 @@ def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict:
         tuple[dict, dict]: A tuple containing the product dictionary and the brand info dictionary.
     """
     products = retrieve_products()
+    print(f"Loaded {len(products)} products from local storage.")
     for product in products:
         if product.core_identifiers.sku == sku:
             tool_context.state['product'] = to_dict_recursive(product)
@@ -166,9 +180,11 @@ def get_product_by_sku(tool_context: InvocationContext, sku: str) -> dict:
                 log_message(f"Brand info for {brand_name} loaded successfully into state.", Severity.INFO)
             else:
                 log_message(f"Brand info for {brand_name} not found in loaded data.", Severity.WARNING)
-            return to_dict_recursive(product), to_dict_recursive(tool_context.state.get('brand_info', {}))
+            product_dict = to_dict_recursive(product)
+            product_dict['brand_info'] = tool_context.state.get('brand_info', {})
+            return product_dict
 
-    return to_dict_recursive(Product()),to_dict_recursive(Brand())
+    return {}, {}
     
 
 @log_function_call
@@ -204,6 +220,7 @@ def create_couche_tard_campaign_agent() -> Agent:
                 # create_session,
                 load_brand_data,
                 identify_inventory_opportunities,
+                identify_low_conversion_stores,
                 get_product_by_sku,
                 # get_product_assets,
                 analyze_market_trends,

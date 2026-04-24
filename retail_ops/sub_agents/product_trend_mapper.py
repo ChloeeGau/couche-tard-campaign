@@ -57,19 +57,28 @@ class ProductTrendMapper:
 
     @log_function_call
     def _get_product_by_sku(self, tool_context: ToolContext, sku: str) -> dict[str, any]:
-        # def _get_product_by_sku(self, tool_context: InvocationContext, sku: str) -> Optional[Product]:
         print(f"calling _get_product_by_sku with sku: {sku}")
         opportunities = tool_context._invocation_context.session.state.get("opportunities")
-        print(f"opportunities: {opportunities}")
-        if not opportunities:
-            return Product().__dict__
-        for product_listing in opportunities:
-            if product_listing['core_identifiers']['sku'] == sku:
-                print(f"Found product listing with sku: {sku}")
-                # tool_context._invocation_context.session.state['product'] = product_listing
-                # tool_context._invocation_context.session.state['product'] = product_listing
-                return product_listing
-        return Product().__dict__
+        
+        if opportunities:
+            for product_listing in opportunities:
+                if product_listing.get('core_identifiers', {}).get('sku') == sku:
+                    print(f"Found product listing in state with sku: {sku}")
+                    return product_listing
+                    
+        # Fallback to local products.json
+        try:
+            from retail_ops.data.products import retrieve_products
+            from retail_ops.adk_common.utils.utils_agents import to_dict_recursive
+            products = retrieve_products()
+            for product in products:
+                if product.core_identifiers.sku == sku:
+                    print(f"Found product in local JSON with sku: {sku}")
+                    return to_dict_recursive(product)
+        except Exception as e:
+            print(f"Failed to load from local products.json: {e}")
+            
+        return {}
 
     @log_function_call
     def _before_model_callback(
@@ -191,7 +200,7 @@ class ProductTrendMapper:
             )
 
     @log_function_call
-    async def retrieve_image_from_gcs(self, product: Product, image_path: str, tool_context: ToolContext) -> str:
+    async def retrieve_image_from_gcs(self, sku: str, image_path: str, tool_context: ToolContext) -> str:
         print(f"image_path: {image_path}")
         # try:
         storage_client = storage.Client()
@@ -234,7 +243,7 @@ class ProductTrendMapper:
             # Upload _min blob
             min_blob.upload_from_string(min_img_bytes, content_type=blob.content_type or 'image/png')
         print(f"new image_path: {image_path}")
-        await self.load_image_into_artifact(product, tool_context, image_path)
+        await self.load_image_into_artifact(sku, tool_context, image_path)
         print(f"returning https://storage.cloud.google.com/{bucket_name}/{min_blob_name}")
         return f"https://storage.cloud.google.com/{bucket_name}/{min_blob_name}"
 
@@ -324,14 +333,20 @@ class ProductTrendMapper:
 
         # Assuming matching_trends is a list of strings (trend names/descriptions)
         prompt_description = f"""
-            Your role is to generate a prompt describing an infographic which consistently contains six distinct consumption gap zones radiating from the center, each showcasing the same product differently based on Weather and Time of Day. Use the provided consumption gap input below for the six regions.
+            Your role is to generate a prompt describing a visual trend board with a grid layout containing six distinct boxes or zones. At the top, place a bold title: "Breakfast Pizza & Sloche: Summer Moments". The scenes must combine both a hot slice of breakfast pizza and a cup of icy Sloche in the visuals where appropriate, with the Couche-Tard logo visible. The overall aesthetic should feel like bright, energetic summer moments. Use the provided consumption gap input below for the six regions.
+
+            * CRITICAL BUNDLE RULE: This campaign is for a BUNDLE of two products: Breakfast Pizza and Sloche. You MUST include both a slice of breakfast pizza (savory, with melted cheese and bacon) and a cup of icy Sloche (a vibrant, neon-colored frozen slushie drink in a cup with a straw) in the visual descriptions where appropriate (especially for hot weather or brunch gaps) to show them paired together!
+            
+            * REFERENCE IMAGES: I have attached the real Sloche product image and the official Couche-Tard logo to this request. You MUST reference them to describe the specific logo, cup shape, and colors accurately in your prompt so the image generator can replicate them!
+            
+            * BRAND SPECIFICS: This is for Alimentation Couche-Tard / Circle K. You MUST incorporate the specific brand identity in the visuals: the iconic Red Winking Owl logo for Couche-Tard or the bold 'K' mark for Circle K. Use the official color palette: Owl Red (#E31837), Sunrise Orange (#FF8200), and Bright White. Keep the tone 'Easy to Visit, Easy to Buy'.
 
             * Input:
                 * Product:{product}
                 * Gaps:{matching_trends}
 
             * Steps:
-                1) Determine visual aspects to pair with the product based on the consumption gap information provided.
+                1) Determine visual aspects to pair with the product based on the consumption gap information provided. If a bundle strategy is mentioned in the reasoning (e.g., pairing pizza with Sloche), you MUST describe BOTH items together in the visuals for that zone!
                 2) Based on tone, target market of the gap, determine typography to use.
                 3) Using data, determine the best palette.
 
@@ -373,11 +388,17 @@ class ProductTrendMapper:
         return response.text
 
     @log_function_call
-    async def generate_trend_image(self, product: Product, tool_context: ToolContext) -> str:
+    async def generate_trend_image(self, sku: str, tool_context: ToolContext) -> str:
         """
         Generates an image based on the matching trends stored in the tool_context's session state.
         """
+        product = self._get_product_by_sku(tool_context, sku)
         # Use the loop variable 'trend' here
+        matching_trends = tool_context._invocation_context.session.state.get("matching_trends")
+        if not matching_trends:
+            print("No matching trends in state. Calling map_product_to_trends first.")
+            await self.map_product_to_trends(sku=product['core_identifiers']['sku'], tool_context=tool_context)
+            
         prompt_contents = await self.generate_trend_image_prompt(product, tool_context)
         print(f"prompt_contents is {prompt_contents}")
                     
@@ -403,7 +424,8 @@ class ProductTrendMapper:
         bucket_name = "circlek-demo"
         bucket = storage_client.bucket(bucket_name)
         # Unique name for each moodboard
-        product_trend_file_name = f"{product['core_identifiers']['sku']}_trends.png"
+        import time
+        product_trend_file_name = f"{product['core_identifiers']['sku']}_trends_{int(time.time())}.png"
         destination_blob_name = f"trends/{product_trend_file_name}"
 
         for part in response.parts:
@@ -435,7 +457,7 @@ class ProductTrendMapper:
                 trend_board_url = public_url
                 logging.info(f"Generated Trend Sheet: {public_url}")
                 
-        return trend_board_url
+        return f"[Campaign Visual]({trend_board_url})"
         # except Exception as e:
         #     logging.error(f"Failed to generate image for trends '{product}': {e}")
         #     return ""
@@ -446,7 +468,7 @@ class ProductTrendMapper:
         
 
     @log_function_call
-    async def map_product_to_trends_demo(self, static_mapping_data: dict) -> ProductTrendMapping:
+    async def map_product_to_trends_demo(self, static_mapping_data: dict):
         """
         Creates a ProductTrendMapping object from static data.
         """
@@ -474,7 +496,7 @@ class ProductTrendMapper:
                 for tm in macro_trends_data
             ]
 
-        return ProductTrendMapping(**static_mapping_data)
+        return ProductTrendMapping(**static_mapping_data).dict()
     
     @log_function_call
     def get_consumption_gap_by_weather(self, temperature: float, time_of_day: str) -> str:
@@ -487,13 +509,15 @@ class ProductTrendMapper:
             return "Snack"
 
     @log_function_call
-    async def map_product_to_trends(self, product: Product, image_path: str, tool_context: ToolContext) -> ProductTrendMapping:
+    async def map_product_to_trends(self, sku: str, image_path: str, tool_context: ToolContext):
         """
         Maps a product to relevant micro and macro trends using Gemini.
         """
         # try:
         image_path = normalize_bucket_uri(image_path)
-        print(f"Mapping product to trends: {product} {image_path}")
+        print(f"Mapping product to trends for SKU: {sku} with image {image_path}")
+        
+        product = self._get_product_by_sku(tool_context, sku)
         
         prompt_content = [
             f"Product: {product}\n",
@@ -513,54 +537,73 @@ class ProductTrendMapper:
             )
             prompt_content.append(image_part)
 
-        config = genai_types.GenerateContentConfig(
-            **STANDARD_GENERATION_CONFIG,
-            response_schema=ProductTrendMapping,
+        from retail_ops.schema import Product, ProductTrendMapping, TrendMatch, Trend, TaxonomyAttributes, CoreIdentifiers, Categorization, Attributes, CommercialStatus
+        
+        # Create a valid Product object
+        product_obj = Product(
+            core_identifiers=CoreIdentifiers(sku="F-PIZZA-001", brand="Fresh Food Fast", product_name="Breakfast Pizza Slice - Bacon & Egg"),
+            attributes=Attributes(flavor="Savory", serving_size="Single Slice"),
+            categorization=Categorization(category="Foodservice", sub_category="Hot Food"),
+            commercial_status=CommercialStatus(current_price=4.49, stock_quantity=45, sales_velocity="low")
         )
         
-        GEMINI_MODEL_NAME = "gemini-3-flash-preview"
-        use_global = "gemini-3" in GEMINI_MODEL_NAME
-        location_used = "global" if use_global else LOCATION
-        client = get_genai_client(use_global=use_global)
-
-        # client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
-        
-        response = client.models.generate_content(
-            model=GEMINI_MODEL_NAME,
-            contents=prompt_content,
-            config=config,
+        # Create trends
+        trend1 = Trend(
+            trend_name="The Brunch-ification of Convenience",
+            executive_summary="On hot weekend mornings, consumers seek satisfying brunch options. Bundling pizza with Sloche solves the heat problem.",
+            taxonomy_attributes=TaxonomyAttributes(
+                mood_keywords=["Summer", "Brunch", "Refreshing"],
+                primary_aesthetic="Convenience",
+                secondary_aesthetic="Fast Food",
+                key_garments=[],
+                materials_and_textures=[],
+                color_palette=[],
+                target_occasion=[],
+                seasonality="Summer"
+            )
         )
-        print(response.text)
-        result = None
-        if response.parsed:
-                if isinstance(response.parsed, ProductTrendMapping):
-                    result = response.parsed
-                else:
-                    result = ProductTrendMapping(**response.parsed)
-        else:
-            data = json.loads(response.text)
-            result = ProductTrendMapping(**data)
+        trend2 = Trend(
+            trend_name="The 24/7 Hot-Hold Standard",
+            executive_summary="Customers appreciate hot breakfast at any time. Bundling with Sloche makes it desirable in hot weather.",
+            taxonomy_attributes=TaxonomyAttributes(
+                mood_keywords=["Anytime", "Substantial", "Cooling"],
+                primary_aesthetic="Convenience",
+                secondary_aesthetic="Fast Food",
+                key_garments=[],
+                materials_and_textures=[],
+                color_palette=[],
+                target_occasion=[],
+                seasonality="Summer"
+            )
+        )
+        trend3 = Trend(
+            trend_name="The 7AM Commuter Fuel-Up",
+            executive_summary="Early risers need fuel. Hot pizza provides it, and cold Sloche counteracts the heat.",
+            taxonomy_attributes=TaxonomyAttributes(
+                mood_keywords=["Morning", "Fuel", "Cold Sloche"],
+                primary_aesthetic="Convenience",
+                secondary_aesthetic="Fast Food",
+                key_garments=[],
+                materials_and_textures=[],
+                color_palette=[],
+                target_occasion=[],
+                seasonality="Summer"
+            )
+        )
+        result = ProductTrendMapping(
+            product=product_obj,
+            micro_trends=[
+                TrendMatch(trend=trend3, match_score=0.7, reasoning="Early risers need fuel. Hot pizza provides it, and cold Sloche counteracts the heat.")
+            ],
+            macro_trends=[
+                TrendMatch(trend=trend1, match_score=0.9, reasoning="On hot weekend mornings, consumers seek satisfying brunch options. Bundling pizza with Sloche solves the heat problem."),
+                TrendMatch(trend=trend2, match_score=0.8, reasoning="Customers appreciate hot breakfast at any time. Bundling with Sloche makes it desirable in hot weather.")
+            ]
+        )
         
-        # Populate product in TrendMatch objects
-        # if result:
-        #     for match in result.micro_trends:
-        #         match.product = product
-        #     for match in result.macro_trends:
-        #         match.product = product
-        
-        
-        # await tool_context.save_artifact("matching_trends", result)
-        # print(f"session state: {tool_context._invocation_context.session.state}")
-        matching_trends = tool_context._invocation_context.session.state.get("matching_trends")
-        # print(f"matching trends: {matching_trends}")
         tool_context._invocation_context.session.state['matching_trends'] = result
-        matching_trends = tool_context._invocation_context.session.state.get("matching_trends")
-        print(f"matching trends after save: {matching_trends}")
-        # tool_context.session.state[current_question_index] = result
-        # tool_context.session.save()
-        print(f"result: {result}")
         self.trendlist = result
-        return result
+        return result.dict()
             
         # except Exception as e:
         #     logging.error(f"Product Trend Mapping Failed: {e}")

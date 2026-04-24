@@ -98,5 +98,51 @@
         "Your commute just got an upgrade. Pizza + Coffee = The ultimate power couple."
       ]
     }
+  },
+  {
+    "brand_identifier": "fresh_food_fast",
+    "name": "Fresh Food Fast",
+    "brand_guide_url": "https://storage.cloud.google.com/couche-tard-assets/brands/circle_k/global_style_guide.pdf",
+    "brand_core": {
+      "archetype": "The Provider",
+      "mantra": "Fresh, fast, and delicious.",
+      "target_audience": "Hungry commuters and drivers looking for quality hot food on the go.",
+      "key_differentiator": "Restaurant quality food at convenience speed."
+    },
+    "visual_identity": {
+      "logo": "Fresh Food Fast logo. Warm and appetizing.",
+      "color_palette": [
+        "Warm Red (#D32F2F)",
+        "Golden Yellow (#FBC02D)",
+        "Leaf Green (#388E3C)",
+        "White"
+      ],
+      "typography": {
+        "headlines": "Friendly Rounded Sans-Serif",
+        "body_copy": "Clean Sans-Serif"
+      }
+    },
+    "photography_and_art_direction": {
+      "style": "Appetizing food photography. Focus on freshness and quality.",
+      "lighting": "Warm, bright lighting that makes the food look delicious.",
+      "environment": "Clean kitchen or display warmer environment.",
+      "styling": "Hero shots of the food: cheese pulls, steam rising, fresh ingredients."
+    },
+    "voice_and_tone": {
+      "tone": "Warm, inviting, and appetizing.",
+      "keywords": [
+        "Fresh",
+        "Delicious",
+        "Hot",
+        "Ready",
+        "Crave-able"
+      ],
+      "do": "Focus on taste and quality. Use descriptive sensory words.",
+      "dont": "Sound like typical bland fast food.",
+      "sample_copy": [
+        "Hot, fresh, and ready when you are.",
+        "Crave restaurant quality at convenience speed? We got you."
+      ]
+    }
   }
 ]

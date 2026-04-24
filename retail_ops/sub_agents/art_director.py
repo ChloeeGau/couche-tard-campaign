@@ -185,7 +185,7 @@ class ArtDirector:
 
 
     @log_function_call
-    async def create_moodboards(self, trend_data: List[Trend], tool_context: ToolContext) -> List[str]:
+    async def create_moodboards(self, trend_data: List[dict], tool_context: ToolContext) -> List[str]:
         """
         Generates moodboard options for a campaign based on trend data.
         """
@@ -208,7 +208,20 @@ class ArtDirector:
         location_used = "global" if use_global else LOCATION
         client = get_genai_client(use_global=use_global)
         selected_product = tool_context._invocation_context.session.state.get('product')
-        product_image_path = selected_product['media']['main_image_url']
+        if not selected_product:
+            print("Product not found in state. Falling back to local products.json")
+            from retail_ops.data.products import retrieve_products
+            from retail_ops.adk_common.utils.utils_agents import to_dict_recursive
+            products = retrieve_products()
+            for p in products:
+                if p.core_identifiers.sku == "F-PIZZA-001":
+                    selected_product = to_dict_recursive(p)
+                    break
+                    
+        if not selected_product:
+             raise ValueError("Product not found in state or local storage.")
+            
+        product_image_path = selected_product.get('media', {}).get('main_image_url')
             
         brand_data: Brand = await self._load_brand_data_from_json(selected_product)
         # Download product image once if provided
