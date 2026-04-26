@@ -55,15 +55,23 @@ class CreativeDirector:
         Generates video scene concepts based on product and trend.
         Returns a JSON string containing the creative direction and scenes.
         """
+        import os
         if not product_image_path or product_image_path == "string" or not os.path.exists(product_image_path):
-            print("Product image path not provided or invalid. Falling back to default pizza image.")
-            product_image_path = "retail_ops/data/brand_assets/F-PIZZA-001.png"
+            print("Product image path not provided or invalid. Falling back...")
+            if os.path.exists("retail_ops/data/brand_assets/F-PIZZA-001.png"):
+                product_image_path = "retail_ops/data/brand_assets/F-PIZZA-001.png"
+            else:
+                product_image_path = "https://storage.cloud.google.com/circlek-demo/brand_assets/F-PIZZA-001.png"
             
         try:
             print(f"Creative Director: Creating video scenes for product: {product_image_path}, trend data: {trend_data}")
             client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
 
-            scene_prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/creative_director_scenes.md")
+            import os
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            prompt_path = os.path.join(current_dir, "..", "prompts", "creative_director_scenes.md")
+            with open(prompt_path, "r") as f:
+                scene_prompt_template = f.read()
 
             # Step 1: Generate the Scene Concepts using Gemini
             prompt_content = [

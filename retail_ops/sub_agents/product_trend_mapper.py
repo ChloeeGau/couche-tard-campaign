@@ -34,7 +34,11 @@ class ProductTrendMapper:
         # )
         #   try:
 
-        self.prompt_template = load_prompt_file_from_calling_agent(prompt_filename="../prompts/product_trend_mapper.md")
+        import os
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        prompt_path = os.path.join(current_dir, "..", "prompts", "product_trend_mapper.md")
+        with open(prompt_path, "r") as f:
+            self.prompt_template = f.read()
         print(self.prompt_template)
         #   except Exception as e:
         #       logging.error(f"Failed to load product_trend_mapper prompt: {e}")

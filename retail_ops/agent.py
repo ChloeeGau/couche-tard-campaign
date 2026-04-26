@@ -197,7 +197,11 @@ def analyze_market_trends():
     return trend_spotter_agent.spot_trends()
 
 
-system_instruction = load_prompt_file_from_calling_agent(prompt_filename="prompts/instructions.md")
+import os
+current_dir = os.path.dirname(os.path.abspath(__file__))
+prompt_path = os.path.join(current_dir, "prompts", "instructions.md")
+with open(prompt_path, "r") as f:
+    system_instruction = f.read()
 # system_instruction = load_prompt_file_from_calling_agent(prompt_filename="prompts/instructions_demo.md")
 
 @log_function_call
